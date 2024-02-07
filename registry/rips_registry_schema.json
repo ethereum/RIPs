@@ -1,0 +1,26 @@
+{
+    "$id": "https://json-schema.hyperjump.io/schema",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": ["number", "type", "chains_with_mainnet_support"],
+      "properties": {
+        "number": {
+          "type": "string"
+        },
+        "type": {
+          "enum": ["precompile", "opcode", "networking", "interface", "other"]
+        },
+        "address": {
+          "type": "string"
+        },
+        "chains_with_mainnet_support": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }

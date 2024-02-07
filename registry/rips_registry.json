@@ -1,0 +1,9 @@
+[
+  {
+    "number": "rip-7212",
+    "type": "precompile",
+    "address": "0x0000000000000000000000000000000000000100",
+    "chains_with_mainnet_support": [
+    ]
+  }
+]
