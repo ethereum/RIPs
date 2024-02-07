@@ -3,7 +3,7 @@ rip: TBD
 title: Expose call stack to contracts
 description: Implement a call stack to record opcodes, addresses and function signatures and expose through a precompiled contract.
 author: Caner Çıdam (@canercidam) <caner@openzeppelin.com>, Jonathan Alexander (@jalex206) <jonathan@openzeppelin.com>, Andrew Beal (@ajbealETH) <andy@forta.org>, Ariel Tempelhof (@ArielTM) <ariel.t@spherex.xyz>, Oren Fine (@orenfine) <orenfine@spherex.xyz>, Assaf Eli (@assafIronblocks) <assaf@ironblocks.com>, Or Dadosh (@ordd) <or@ironblocks.com>, Idan Levin <idan@collider.vc>, Alejandro Navarro (Grover-a5) <anavarro@neurablock.ai>
-discussions-to: TBD
+discussions-to: https://ethereum-magicians.org/t/rip-expose-call-stack-to-contracts/18535
 status: Draft
 type: Standards Track
 category: Core
