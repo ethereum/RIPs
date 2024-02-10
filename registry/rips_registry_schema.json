@@ -18,7 +18,19 @@
         "chains_with_mainnet_support": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "object",
+            "required" : ["name", "chainID", "activation_block"],
+            "properties" : {
+                "name": {
+                    "type": "string"
+                },
+                "chainID": {
+                    "type": "number"
+                },
+                "activation_block": {
+                    "type": "number"
+                }
+            }
           }
         }
       }
