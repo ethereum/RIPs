@@ -4,7 +4,7 @@
     "type": "array",
     "items": {
       "type": "object",
-      "required": ["number", "type", "chains_with_mainnet_support"],
+      "required": ["number", "type", "chains_with_support"],
       "properties": {
         "number": {
           "type": "string"
@@ -15,10 +15,22 @@
         "address": {
           "type": "string"
         },
-        "chains_with_mainnet_support": {
+        "chains_with_support": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "object",
+            "required" : ["name", "chainID", "activation_block"],
+            "properties" : {
+                "name": {
+                    "type": "string"
+                },
+                "chainID": {
+                    "type": "number"
+                },
+                "activation_block": {
+                    "type": "number"
+                }
+            }
           }
         }
       }
