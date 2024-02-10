@@ -4,6 +4,11 @@
     "type": "precompile",
     "address": "0x0000000000000000000000000000000000000100",
     "chains_with_mainnet_support": [
+      {
+        "name": "Polygon Mumbai",
+        "chainID": 80001,
+        "activation_block": 45648608
+      }
     ]
   }
 ]
