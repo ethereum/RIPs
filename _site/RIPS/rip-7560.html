@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+    
+      <title>EIP-7560: Native Account Abstraction</title>
+      <meta property="og:title" content="EIP-7560: Native Account Abstraction" />
+    
+    <meta name="description" content="An account abstraction proposal that introduces consensus-layer protocol changes, instead of relying on higher-layer infrastructure." />
+    <meta property="og:description" content="An account abstraction proposal that introduces consensus-layer protocol changes, instead of relying on higher-layer infrastructure." />
+    <meta name="twitter:description" content="An account abstraction proposal that introduces consensus-layer protocol changes, instead of relying on higher-layer infrastructure." />
+  
+  <meta name="generator" content="Jekyll" />
+  <meta property="og:locale" content="en_US" />
+  <link rel="canonical" href="http://localhost:4000/RIPS/rip-7560" />
+  <meta property="og:url" content="http://localhost:4000/RIPS/rip-7560" />
+  <meta property="og:site_name" content="Ethereum Rollup Improvement Proposals" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <script type="application/ld+json">
+    {
+      "@type": "WebSite",
+      "url": "http://localhost:4000",
+      "name": "Ethereum Rollup Improvement Proposals",
+      "description": "Ethereum Improvement Proposals (EIPs) describe standards for the Ethereum platform, including core protocol specifications, client APIs, and contract standards.",
+      "@context": "https://schema.org"
+    }
+  </script>
+  <link rel="stylesheet" href="/assets/css/style.css" /><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Ethereum Rollup Improvement Proposals" /><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/override.css" />
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    });
+  </script>
+  <script type="text/javascript">
+    window.MathJax = {
+      loader: {
+        load: ['input/tex-base', 'output/chtml']
+      },
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        processEnvironments: false,
+        processRefs: false
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js" integrity="sha384-/1zmJ1mBdfKIOnwPxpdG6yaRrxP6qu3eVYm0cz2nOx+AcL4d3AqEFrwcqGZVVroG" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/citation-js/0.6.7/citation.min.js" integrity="sha512-N+LDFMa9owHXGS+CyMrBvuxq2QuGl3fiB/7cys3aUEL7K6P1soHGqsS0sjHXZpwNd9Kz0m3R4IPy1HYRi6ROEQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript">
+    addEventListener('DOMContentLoaded', async () => {
+      const Cite = window.require('citation-js');
+      const citationElements = document.querySelectorAll('.language-csl-json');
+      for (let citationElement of citationElements) {
+        try {
+          const citation = await Cite.async(citationElement);
+          const template = document.createElement('template');
+          template.innerHTML = citation.format('bibliography', {
+            format: 'html',
+            template: 'apa',
+            lang: 'en-US'
+          });
+          if (citationElement.parentElement && citationElement.parentElement.matches('pre')) {
+            citationElement.parentElement.replaceWith(template.content);
+          } else {
+            citationElement.replaceWith(template.content);
+          }
+        } catch (e) {
+          console.error("unable to render citation", e);
+        }
+      }
+    });
+  </script>
+</head>
+<body><header class="site-header" role="banner">
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Ethereum Rollup Improvement Proposals</a><nav class="site-nav d-flex">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger row p-2"><a class="page-link col" href="/all">All</a><a class="page-link col" href="/core">Core</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="bi-megaphone-fill" fill="currentColor" viewBox="0 0 16 16">
+    <title>Alert</title>
+    <path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-11zm-1 .724c-2.067.95-4.539 1.481-7 1.656v6.237a25.222 25.222 0 0 1 1.088.085c2.053.204 4.038.668 5.912 1.56V3.224zm-8 7.841V4.934c-.68.027-1.399.043-2.008.053A2.02 2.02 0 0 0 0 7v2c0 1.106.896 1.996 1.994 2.009a68.14 68.14 0 0 1 .496.008 64 64 0 0 1 1.51.048zm1.39 1.081c.285.021.569.047.85.078l.253 1.69a1 1 0 0 1-.983 1.187h-.548a1 1 0 0 1-.916-.599l-1.314-2.48a65.81 65.81 0 0 1 1.692.064c.327.017.65.037.966.06z"/>
+  </symbol>
+  <symbol id="bi-code" fill="currentColor" viewBox="0 0 16 16">
+    <title>Source</title>
+    <path d="M5.854 4.854a.5.5 0 1 0-.708-.708l-3.5 3.5a.5.5 0 0 0 0 .708l3.5 3.5a.5.5 0 0 0 .708-.708L2.707 8l3.147-3.146zm4.292 0a.5.5 0 0 1 .708-.708l3.5 3.5a.5.5 0 0 1 0 .708l-3.5 3.5a.5.5 0 0 1-.708-.708L13.293 8l-3.147-3.146z"/>
+  </symbol>
+  <svg id="bi-chat" fill="currentColor" viewBox="0 0 16 16">
+    <title>Discuss</title>
+    <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+  </svg>
+</svg>
+
+<div class="home">
+  <span class="h5">
+    
+    
+    
+      <span class="badge text-light bg-warning" data-bs-toggle="tooltip" data-bs-title="This EIP is not yet recommended for general use or implementation, as it is subject to normative (breaking) changes.">⚠️ Draft</span>
+    
+    
+    
+      <a class="badge text-light bg-primary" data-bs-toggle="tooltip" data-bs-title="Improvements requiring a consensus fork, as well as changes that are not necessarily consensus critical but may be relevant to “core dev” discussions." href="../core">Standards Track: Core</a>
+    
+  </span>
+  <h1 class="page-heading">
+    
+      EIP-7560: Native Account Abstraction
+    
+    <a href="https://ethereum-magicians.org/t/rip-7560-native-account-abstraction/16664" class="no-underline">
+      <svg role="img" aria-label="Discuss" class="inline-svg" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 16 16">
+        <use xlink:href="#bi-chat"/>
+      </svg>
+    </a>
+    <a href="https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7560.md" class="no-underline">
+      <svg role="img" aria-label="Source" class="inline-svg" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 16 16">
+        <use xlink:href="#bi-code"/>
+      </svg>
+    </a>
+  </h1>
+  <h3>An account abstraction proposal that introduces consensus-layer protocol changes, instead of relying on higher-layer infrastructure.</h3>
+  <table class="table table-borderless preamble">
+    <tbody>
+      <tr>
+        <th scope="row">Authors</th>
+        <td>Vitalik Buterin&nbsp;(<a href="https://github.com/vbuterin">@vbuterin</a>), Yoav Weiss&nbsp;(<a href="https://github.com/yoavw">@yoavw</a>), Alex Forshtat&nbsp;(<a href="https://github.com/forshtat">@forshtat</a>), Dror Tirosh&nbsp;(<a href="https://github.com/drortirosh">@drortirosh</a>), Shahaf Nacson&nbsp;(<a href="https://github.com/shahafn">@shahafn</a>)</td>
+      </tr>
+      
+        <tr>
+          <th scope="row">Created</th>
+          <td>2023-09-01</td>
+        </tr>
+      
+      
+      
+        <tr>
+          <th scope="row">Discussion Link</th>
+          <td><a href="https://ethereum-magicians.org/t/rip-7560-native-account-abstraction/16664" target="__blank">https://ethereum-magicians.org/t/rip-7560-native-account-abstraction/16664</a></td>
+        </tr>
+      
+      
+        <tr>
+          <th scope="row">Requires</th>
+          <td>
+
+  <a href="eip-4337">EIP-4337</a>, 
+
+  <a href="eip-6780">EIP-6780</a>
+
+</td>
+        </tr>
+      
+    </tbody>
+  </table>
+  <br/>
+
+  
+
+  <div class="toc">
+    <h2>Table of Contents</h2>
+    <ul>
+  <li><a href="#abstract">Abstract</a></li>
+  <li><a href="#motivation">Motivation</a></li>
+  <li><a href="#specification">Specification</a>
+    <ul>
+      <li><a href="#constants">Constants</a></li>
+      <li><a href="#new-transaction-type">New Transaction Type</a></li>
+      <li><a href="#optional-transaction-counter-header">Optional “transaction counter header”</a></li>
+      <li><a href="#non-sequential-nonce-support">Non-sequential nonce support</a></li>
+      <li><a href="#gas-fees-are-charged-directly-from-the-contract-balance">Gas fees are charged directly from the contract balance</a></li>
+      <li><a href="#gas-fees-charged-for-transaction-input">Gas fees charged for transaction input</a></li>
+      <li><a href="#builder-fee">Builder Fee</a></li>
+      <li><a href="#unused-gas-penalty-charge">Unused gas penalty charge</a></li>
+      <li><a href="#multiple-execution-frames-for-a-single-transaction">Multiple execution frames for a single transaction</a></li>
+      <li><a href="#execution-flow-diagram">Execution flow diagram</a></li>
+      <li><a href="#execution-layer-transaction-validation">Execution layer transaction validation</a></li>
+      <li><a href="#all-validation-state-changes-apply-before-all-execution-ones">All validation state changes apply before all execution ones</a></li>
+      <li><a href="#block-structure-diagram">Block structure diagram</a></li>
+      <li><a href="#validation-state-change-virtual-transactions">Validation state change virtual transactions</a></li>
+      <li><a href="#transaction-validity-time-range-parameters">Transaction validity time range parameters</a></li>
+      <li><a href="#calculation-of-transaction-type-aa_tx_type-hash">Calculation of Transaction Type AA_TX_TYPE hash</a></li>
+      <li><a href="#accepting-eoa-account-as-sender-to-achieve-native-gas-abstraction">Accepting EOA account as sender to achieve native gas abstraction</a></li>
+      <li><a href="#execution-layer-block-validation">Execution layer block validation</a></li>
+      <li><a href="#rpc-methods-eth-namespace">RPC methods (eth namespace)</a></li>
+    </ul>
+  </li>
+  <li><a href="#rationale">Rationale</a>
+    <ul>
+      <li><a href="#using-solidity-method-selectors-in-a-core-eip">Using Solidity method selectors in a Core EIP</a></li>
+      <li><a href="#accepting-aa_tx_type-transactions-from-eoas">Accepting AA_TX_TYPE transactions from EOAs</a></li>
+    </ul>
+  </li>
+  <li><a href="#backwards-compatibility">Backwards Compatibility</a>
+    <ul>
+      <li><a href="#migration-path-for-existing-erc-4337-projects-and-further-roadmap">Migration path for existing ERC-4337 projects and further roadmap</a></li>
+    </ul>
+  </li>
+  <li><a href="#security-considerations">Security Considerations</a>
+    <ul>
+      <li><a href="#attacks-on-validation-execution-separation">Attacks on validation-execution separation</a></li>
+      <li><a href="#dos-attacks-on-block-builders">DoS attacks on block builders</a></li>
+      <li><a href="#directly-charging-the-balance-of-a-contract">Directly charging the balance of a contract</a></li>
+      <li><a href="#observing-revert-reasons-in-a-validation-frame">Observing revert reasons in a validation frame</a></li>
+    </ul>
+  </li>
+  <li><a href="#copyright">Copyright</a></li>
+</ul>
+
+  </div>
+
+  <h2 id="abstract">
+      
+      
+        <a href="#abstract" class="anchor-link"></a> Abstract
+      
+      
+    </h2>
+
+<p>Combining the <a href="./eip-2938">EIP-2938</a>
+and <a href="./eip-4337">ERC-4337</a>
+into a comprehensive Native Account Abstraction proposal.</p>
+
+<p>We propose splitting the Ethereum transaction scope into multiple steps: validations, execution,
+and post-transaction logic.
+Transaction validity is determined by the result of the validation steps of a transaction.</p>
+
+<p>We further separate transaction validation for the purposes of authorization and the gas fee payment,
+allowing contract B to pay gas for a transaction that will be executed from account contract A.</p>
+
+<p>The benefits are in backward compatibility with the emerging ERC-4337 ecosystem while achieving the
+long-term goal of Native Account Abstraction.</p>
+  
+    <h2 id="motivation">
+      
+      
+        <a href="#motivation" class="anchor-link"></a> Motivation
+      
+      
+    </h2>
+
+<p>ERC-4337 can do a lot as a purely voluntary ERC. However, any of the out-of-protocol ways of achieving
+Account Abstraction faces several drawbacks compared to native support. There are a few key areas where
+it is weaker than a truly in-protocol solution:</p>
+
+<ul>
+  <li>
+    <p>Existing users cannot benefit from it or upgrade to use it without moving all their assets and activity
+to a new account.</p>
+  </li>
+  <li>
+    <p>Extra gas overhead of ~42k for a basic <code class="language-plaintext highlighter-rouge">UserOperation</code> compared to ~21k for a basic transaction.</p>
+  </li>
+  <li>
+    <p>Less benefit from in-protocol censorship resistance techniques such as crLists, which target transactions
+and would miss <code class="language-plaintext highlighter-rouge">UserOperations</code>.</p>
+  </li>
+  <li>
+    <p>Relying on a significantly smaller set of participating nodes and non-standard RPC methods like
+<code class="language-plaintext highlighter-rouge">eth_sendRawTransactionConditional</code>.</p>
+  </li>
+  <li>
+    <p>Inability to use <code class="language-plaintext highlighter-rouge">tx.origin</code> or contracts that rely on it as it returns the meaningless address of a bundler.</p>
+  </li>
+</ul>
+
+<p>EIP-2938 defines a very mature alternative approach to Account Abstraction. However, it does not translate
+well to the architecture of ERC-4337 that is being used in production without any protocol changes.
+Therefore, the implementation of EIP-2938 will not benefit as much from the production experience gained by using
+ERC-4337 and from maintaining backward compatibility with it.</p>
+
+<p>There is also a possibility that at some point in the future, the EOAs on Ethereum will be replaced with pre-deployed
+smart contracts. This, however, is impossible without an addition of Native Account Abstraction to the protocol.</p>
+  
+    <h2 id="specification">
+      
+      
+        <a href="#specification" class="anchor-link"></a> Specification
+      
+      
+    </h2>
+  
+    <h3 id="constants">
+      
+      
+        <a href="#constants" class="anchor-link"></a> Constants
+      
+      
+    </h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FORK_BLOCK</td>
+      <td>TBD</td>
+    </tr>
+    <tr>
+      <td>AA_TX_TYPE</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>AA_ENTRY_POINT</td>
+      <td><code class="language-plaintext highlighter-rouge">address(7560)</code></td>
+    </tr>
+    <tr>
+      <td>AA_SENDER_CREATOR</td>
+      <td><code class="language-plaintext highlighter-rouge">address(ffff7560)</code></td>
+    </tr>
+    <tr>
+      <td>AA_NONCE_MANAGER</td>
+      <td>TODO</td>
+    </tr>
+    <tr>
+      <td>AA_BASE_GAS_COST</td>
+      <td>15000</td>
+    </tr>
+    <tr>
+      <td>AA_ECRECOVER_COST</td>
+      <td>6000</td>
+    </tr>
+    <tr>
+      <td>VERSION</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>MAGIC_VALUE_SENDER</td>
+      <td>0xbf45c166  // bytes4(keccak256(“validateTransaction(uint256,bytes32,bytes)”))</td>
+    </tr>
+    <tr>
+      <td>MAGIC_VALUE_PAYMASTER</td>
+      <td>0xe0e6183a  // bytes4(keccak256(“validatePaymasterTransaction(uint256,bytes32,bytes)”))</td>
+    </tr>
+    <tr>
+      <td>MAX_CONTEXT_SIZE</td>
+      <td>65536</td>
+    </tr>
+    <tr>
+      <td>UNUSED_GAS_PENALTY</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+  
+    <h3 id="new-transaction-type">
+      
+      
+        <a href="#new-transaction-type" class="anchor-link"></a> New Transaction Type
+      
+      
+    </h3>
+
+<p>A new <a href="./eip-2718">EIP-2718</a> transaction with type AA_TX_TYPE is introduced. Transactions of this type are referred to as
+“AA transactions”. Their payload should be interpreted as:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+0x04 || 0x00 || rlp([
+  chainId, sender, nonce, builderFee,
+  callData, paymasterData, deployerData,
+  maxPriorityFeePerGas, maxFeePerGas,
+  validationGasLimit, paymasterGasLimit, callGasLimit,
+  accessList, signature
+])
+
+</code></pre></div></div>
+
+<p>The base gas cost of this transaction is set to AA_BASE_GAS_COST instead of 21000 to reflect the lack of “intrinsic”
+ECDSA signature verification.</p>
+
+<p>If <code class="language-plaintext highlighter-rouge">paymasterData</code> is specified, its first 20 bytes contain the address of a <code class="language-plaintext highlighter-rouge">paymaster</code> contract.</p>
+
+<p>If <code class="language-plaintext highlighter-rouge">deployerData</code> is specified, its first 20 bytes contain the address of a <code class="language-plaintext highlighter-rouge">deployer</code> contract.</p>
+  
+    <h3 id="optional-transaction-counter-header">
+      
+      
+        <a href="#optional-transaction-counter-header" class="anchor-link"></a> Optional “transaction counter header”
+      
+      
+    </h3>
+
+<p>In some cases the block builders may want to split up an array of type <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> transactions into individual
+batches of transactions that perform validations and executions separately.</p>
+
+<p>Without a header transaction type this would only be possible by creating an artificial legacy type transaction.
+Instead, we propose to introduce an explicit “counter” transaction subtype.</p>
+
+<p>Their payload should be interpreted as:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0x04 || 0x01 || rlp([chainId, transactionCount])
+</code></pre></div></div>
+
+<p>Header transactions have a unique hash calculated as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keccak256(AA_TX_TYPE || 0x01 || rlp(chainId, transactionCount, blockNumber, txIndex))
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">blockNumber</code> and <code class="language-plaintext highlighter-rouge">txIndex</code> parameters are added to the hash to achieve unique header transaction IDs.</p>
+
+<p>The header transactions are only used to help execution clients determine how many of the <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> transactions
+belong to each individual batch.
+The block is not valid if a header transaction is located anywhere except before an <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> transactions.<br />
+If a header transaction is included all <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> transactions in the block must be covered by one.</p>
+
+<p>Header transactions do not affect blockchain state and do not cost any gas.</p>
+  
+    <h3 id="non-sequential-nonce-support">
+      
+      
+        <a href="#non-sequential-nonce-support" class="anchor-link"></a> Non-sequential nonce support
+      
+      
+    </h3>
+
+<p>Before RIP-7560, for accounts with associated code (smart contracts), the account nonce is only used and incremented
+when the account executes the <code class="language-plaintext highlighter-rouge">CREATE</code> (<code class="language-plaintext highlighter-rouge">0xf0</code>) opcode.</p>
+
+<p>However, with Smart Contract Accounts this creates a bottleneck for some use-cases.
+For example, an account that is operated by multiple participants simultaneously will require these participants
+to coordinate their transactions to avoid invalidating each other.</p>
+
+<p>Another example when this can also be a limitation is a case where there are separate execution flows.
+A configuration change may require multiple participants to co-sign a transaction but a regular operation does not.
+With sequential nonces, all operations will have to be halted until the configuration change is executed.</p>
+
+<p>To address it we propose an introduction of a separate 2-dimensional nonce used when contracts initiate a transaction.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">nonce</code> parameter of the transaction is to be interpreted as <code class="language-plaintext highlighter-rouge">uint192 key || uint64 seq</code> value.
+The contract account nonce is then defined as a mapping <code class="language-plaintext highlighter-rouge">address account =&gt; uint192 key =&gt; uint64 seq</code>.
+This approach guarantees unique transaction nonce and hash but removes the requirement of nonce being sequential
+numbers.</p>
+
+<p>This <code class="language-plaintext highlighter-rouge">nonce</code> is exposed to the EVM in a <code class="language-plaintext highlighter-rouge">NonceManager</code> pre-deployed contract located at the AA_NONCE_MANAGER address.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">nonce</code> is <a href="#nonce-validation-frame">validated and incremented</a> on-chain before the rest of the validation code.</p>
+
+<p>The old <code class="language-plaintext highlighter-rouge">nonce</code> account parameter remains in use for transactions initiated by EOAs and for the <code class="language-plaintext highlighter-rouge">CREATE</code> opcode.</p>
+  
+    <h4 id="noncemanager-pseudocode">
+      
+      
+        <a href="#noncemanager-pseudocode" class="anchor-link"></a> NonceManager Pseudocode
+      
+      
+    </h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+if evm.caller == AA_ENTRY_POINT:
+    validate_increment()
+else:
+    get()
+
+def get():
+    if len(evm.calldata) != 44:
+        evm.revert()
+
+    // address sender, uint192 key
+    address = to_uint160_be(evm.calldata[0:20])
+    key = to_uint192_be(evm.calldata[20:44])
+
+    nonce = storage.get(keccak(address, key))
+
+    evm.return((key &lt;&lt; 64) + nonce)
+
+def validate_increment():
+
+    address = to_uint160_be(evm.calldata[0:20])
+    key = to_uint192_be(evm.calldata[20:44])
+    nonce = to_uint64_be(evm.calldata[44:52])
+
+    current_nonce = storage.get(keccak(address, key))
+
+    if (nonce != current_nonce):
+        evm.revert()
+
+    storage.set(kecca
+    k(address, key), current_nonce + 1)
+
+</code></pre></div></div>
+  
+    <h4 id="noncemanager-bytecode-and-deployment">
+      
+      
+        <a href="#noncemanager-bytecode-and-deployment" class="anchor-link"></a> NonceManager Bytecode and deployment
+      
+      
+    </h4>
+
+<p>TODO.</p>
+  
+    <h3 id="gas-fees-are-charged-directly-from-the-contract-balance">
+      
+      
+        <a href="#gas-fees-are-charged-directly-from-the-contract-balance" class="anchor-link"></a> Gas fees are charged directly from the contract balance
+      
+      
+    </h3>
+
+<p>The maximum gas cost of the AA_TX_TYPE transaction is defined as:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+maxPossibleGasCost = AA_BASE_GAS_COST +
+  callGasLimit +
+  paymasterGasLimit +
+  validationGasLimit
+
+</code></pre></div></div>
+
+<p>If <code class="language-plaintext highlighter-rouge">paymaster</code> is not specified, the <code class="language-plaintext highlighter-rouge">maxPossibleGasCost</code> is charged up-front, before any computation is done in any
+execution frame, from the balance of the <code class="language-plaintext highlighter-rouge">sender</code> address.
+If <code class="language-plaintext highlighter-rouge">paymaster</code> is specified, the gas cost is charged from its balance.
+The transaction is invalid if the balance of the account that is being pre-charged,
+whether it is a <code class="language-plaintext highlighter-rouge">sender</code> or a <code class="language-plaintext highlighter-rouge">paymaster</code>, is insufficient.
+After the transaction finishes its execution, the address that was pre-charged may receive a gas refund.</p>
+  
+    <h3 id="gas-fees-charged-for-transaction-input">
+      
+      
+        <a href="#gas-fees-charged-for-transaction-input" class="anchor-link"></a> Gas fees charged for transaction input
+      
+      
+    </h3>
+
+<p>For all the existing transaction types, G_txdatazero (4 gas) and G_txdatanonzero (16 gas) per byte is
+charged for the <code class="language-plaintext highlighter-rouge">data</code> parameter.</p>
+
+<p>Transaction Type AA_TX_TYPE introduces the following dynamic length inputs: <code class="language-plaintext highlighter-rouge">callData</code>, <code class="language-plaintext highlighter-rouge">paymasterData</code>,
+<code class="language-plaintext highlighter-rouge">deployerData</code>, <code class="language-plaintext highlighter-rouge">signature</code>. Each of these parameters’ gas cost is counted towards transaction data cost.
+This transaction data gas cost is referred to as <code class="language-plaintext highlighter-rouge">calldataCost</code> and is subtracted from the <code class="language-plaintext highlighter-rouge">validationGasLimit</code>
+before execution of the transaction.
+The transaction is considered INVALID if <code class="language-plaintext highlighter-rouge">validationGasLimit</code> is smaller than <code class="language-plaintext highlighter-rouge">calldataCost</code>.</p>
+  
+    <h3 id="builder-fee">
+      
+      
+        <a href="#builder-fee" class="anchor-link"></a> Builder Fee
+      
+      
+    </h3>
+
+<p>As we need to account for an additional off-chain work that block builders have to perform to
+include <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> transactions in their blocks, as well as a potential L1 gas cost for builders
+operating on L2 rollups, and given that this work does not correspond to the amount of gas spent on
+validation and is not linked to the gas price, the <code class="language-plaintext highlighter-rouge">sender</code> may decide
+to pay an extra <code class="language-plaintext highlighter-rouge">builderFee</code> as a “tip” to the block builder.</p>
+
+<p>This value is denominated in wei and is passed from the <code class="language-plaintext highlighter-rouge">sender</code>, or the <code class="language-plaintext highlighter-rouge">paymaster</code> if it is specified,
+to the <code class="language-plaintext highlighter-rouge">coinbase</code> of the current block as part of the gas pre-charge.</p>
+  
+    <h3 id="unused-gas-penalty-charge">
+      
+      
+        <a href="#unused-gas-penalty-charge" class="anchor-link"></a> Unused gas penalty charge
+      
+      
+    </h3>
+
+<p>Transactions of type <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> that reserve a lot of gas for themselves using <code class="language-plaintext highlighter-rouge">validationGasLimit</code>,
+<code class="language-plaintext highlighter-rouge">paymasterGasLimit</code> and <code class="language-plaintext highlighter-rouge">callGasLimit</code> fields but do not use the reserved gas present a challenge for
+block builders. This is especially demanding in case a gas used by a transaction can be significantly different
+based on its position within a block, as such transactions may cause the block builder to iterate its algorithm
+many times until a fully utilized block is discovered.</p>
+
+<p>A penalty of <code class="language-plaintext highlighter-rouge">UNUSED_GAS_PENALTY</code> percent of the entire unused gas limit is charged from the
+transaction <code class="language-plaintext highlighter-rouge">sender</code> or <code class="language-plaintext highlighter-rouge">paymaster</code>.</p>
+
+<p>The total gas limit is calculated as <code class="language-plaintext highlighter-rouge">totalLimit = validationGasLimit + paymasterGasLimit + callGasLimit</code>.<br />
+The <code class="language-plaintext highlighter-rouge">totalGasUsed</code> is calculated as a sum of all gas used during the transaction.<br />
+The unused gas is calculated as <code class="language-plaintext highlighter-rouge">unusedGas = totalLimit - totalGasUsed</code>.</p>
+  
+    <h3 id="multiple-execution-frames-for-a-single-transaction">
+      
+      
+        <a href="#multiple-execution-frames-for-a-single-transaction" class="anchor-link"></a> Multiple execution frames for a single transaction
+      
+      
+    </h3>
+
+<p>All existing transaction types only have an implicit validation phase where balance, nonce, and signature are checked,
+and a single top-level execution frame with
+<code class="language-plaintext highlighter-rouge">tx.origin == msg.sender</code> which is the address that is determined by a transaction ECDSA signature.</p>
+
+<p>When processing a transaction of type <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code>, however, multiple execution frames will be created.
+The full list of possible frames tries to replicate the ERC-4337 flow:</p>
+
+<ol>
+  <li>Validation Phase
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">nonce</code> validation and increment frame (required)</li>
+      <li><code class="language-plaintext highlighter-rouge">sender</code> deployment frame (once per account)</li>
+      <li><code class="language-plaintext highlighter-rouge">sender</code> validation frame (required)</li>
+      <li><code class="language-plaintext highlighter-rouge">paymaster</code> validation frame (optional)</li>
+    </ul>
+  </li>
+  <li>Execution Phase
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sender</code> execution frame (required)</li>
+      <li><code class="language-plaintext highlighter-rouge">paymaster</code> post-transaction frame (optional)</li>
+    </ul>
+  </li>
+</ol>
+
+<p>All execution frames in the “Validation Phase” must be completed successfully without reverting, and the return value
+for <code class="language-plaintext highlighter-rouge">sender</code> and <code class="language-plaintext highlighter-rouge">paymaster</code> validation frames must include <code class="language-plaintext highlighter-rouge">MAGIC_VALUE_SENDER</code> and <code class="language-plaintext highlighter-rouge">MAGIC_VALUE_PAYMASTER</code> accrodingly
+in order for the transaction to be considered valid for a given position in a block.</p>
+
+<p>In terms of block validity, all validation and execution frames may read and write any state when included in the block.
+However, the AA transactions in the mempool SHOULD be bound by storage access rules to avoid DoS on block builders.
+These rules are defined in <a href="./eips/eip-7562">ERC-7562</a>.</p>
+
+<p>In all top-level frames, the global variables have the following meaning:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Opcode Name</th>
+      <th>Solidity Equivalent</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CALLER</code></td>
+      <td><code class="language-plaintext highlighter-rouge">msg.sender</code></td>
+      <td>The <code class="language-plaintext highlighter-rouge">AA_ENTRY_POINT</code> address. <code class="language-plaintext highlighter-rouge">AA_SENDER_CREATOR</code> for the “deployment frame”.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ORIGIN</code></td>
+      <td><code class="language-plaintext highlighter-rouge">tx.origin</code></td>
+      <td>The transaction <code class="language-plaintext highlighter-rouge">sender</code> address</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CALLDATA*</code></td>
+      <td><code class="language-plaintext highlighter-rouge">msg.data</code></td>
+      <td>The transaction data is set to inputs of the corresponding frame</td>
+    </tr>
+  </tbody>
+</table>
+  
+    <h4 id="nonce-validation-frame">
+      
+      
+        <a href="#nonce-validation-frame" class="anchor-link"></a> Nonce validation frame
+      
+      
+    </h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">NonceManager</code> is invoked with the following data:</p>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">abi</span><span class="p">.</span><span class="n">encodePacked</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">nonce</span><span class="p">)</span>
+</code></pre></div></div>
+  
+    <h4 id="sender-deployment-frame">
+      
+      
+        <a href="#sender-deployment-frame" class="anchor-link"></a> Sender deployment frame
+      
+      
+    </h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">deployer</code> address is invoked with the <code class="language-plaintext highlighter-rouge">deployerData[20:]</code> as call data input.
+It is important that the <code class="language-plaintext highlighter-rouge">deployer</code> is <strong>not</strong> invoked from the <code class="language-plaintext highlighter-rouge">AA_ENTRY_POINT</code> but from the <code class="language-plaintext highlighter-rouge">AA_SENDER_CREATOR</code>.
+This is necessary to guarantee that <code class="language-plaintext highlighter-rouge">AA_ENTRY_POINT</code> may never initiate a call to a <code class="language-plaintext highlighter-rouge">sender</code> execution function
+without first completing a successful validation.</p>
+
+<p>The gas limit of this frame is set to <code class="language-plaintext highlighter-rouge">validationGasLimit</code>.
+The amount of gas used by this frame is referred to as <code class="language-plaintext highlighter-rouge">senderCreationGasUsed</code>.</p>
+
+<p>The sender deployment frame MUST result in the <code class="language-plaintext highlighter-rouge">sender</code> address becoming
+initialized with contract code.</p>
+  
+    <h4 id="sender-validation-frame">
+      
+      
+        <a href="#sender-validation-frame" class="anchor-link"></a> Sender validation frame
+      
+      
+    </h4>
+
+<p>We define the following Solidity struct to represent the AA transaction on-chain:</p>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">struct</span> <span class="n">TransactionType4</span> <span class="p">{</span>
+    <span class="kt">address</span> <span class="n">sender</span><span class="p">;</span>
+    <span class="kt">uint256</span> <span class="n">nonce</span><span class="p">;</span>
+    <span class="kt">uint256</span> <span class="n">validationGasLimit</span><span class="p">;</span>
+    <span class="kt">uint256</span> <span class="n">paymasterGasLimit</span><span class="p">;</span>
+    <span class="kt">uint256</span> <span class="n">callGasLimit</span><span class="p">;</span>
+    <span class="kt">uint256</span> <span class="n">maxFeePerGas</span><span class="p">;</span>
+    <span class="kt">uint256</span> <span class="n">maxPriorityFeePerGas</span><span class="p">;</span>
+    <span class="kt">uint256</span> <span class="n">builderFee</span><span class="p">;</span>
+    <span class="kt">bytes</span> <span class="n">paymasterData</span><span class="p">;</span>
+    <span class="kt">bytes</span> <span class="n">deployerData</span><span class="p">;</span>
+    <span class="kt">bytes</span> <span class="n">callData</span><span class="p">;</span>
+    <span class="kt">bytes</span> <span class="n">signature</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>We then define the following Solidity method and the <code class="language-plaintext highlighter-rouge">sender</code> of the transaction is invoked with the corresponding data:</p>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">function</span> <span class="n">validateTransaction</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">version</span><span class="p">,</span> <span class="kt">bytes32</span> <span class="n">txHash</span><span class="p">,</span> <span class="kt">bytes</span> <span class="n">transaction</span><span class="p">)</span> <span class="k">external</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span> <span class="n">validationData</span><span class="p">);</span>
+
+</code></pre></div></div>
+
+<p>The gas limit of this frame is set to <code class="language-plaintext highlighter-rouge">validationGasLimit - senderCreationGasUsed - calldataCost</code>.<br />
+The <code class="language-plaintext highlighter-rouge">transaction</code> parameter is interpreted as an ABI encoding of <code class="language-plaintext highlighter-rouge">TransactionType4</code>.<br />
+The <code class="language-plaintext highlighter-rouge">txHash</code> parameter represents the hash of the AA_TX_TYPE transaction with empty signature, as defined in section
+<a href="#calculation-of-transaction-type-aatxtype-hash">Calculation of Transaction Type AA_TX_TYPE hash</a>.<br />
+The <code class="language-plaintext highlighter-rouge">version</code> parameter is added in order to maintain the Solidity method ID in case of changes to this struct
+in future revisions of this EIP.</p>
+
+<p>The amount of gas used by this frame is referred to as <code class="language-plaintext highlighter-rouge">senderValidationGasUsed</code>.</p>
+
+<p>The frame must return 32 bytes <code class="language-plaintext highlighter-rouge">validationData</code> that is interpreted as:</p>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">abi</span><span class="p">.</span><span class="n">encodePacked</span><span class="p">(</span><span class="n">MAGIC_VALUE_SENDER</span><span class="p">,</span> <span class="n">validUntil</span><span class="p">,</span> <span class="n">validAfter</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>In order to allow a gas estimation to determine the amount of gas that this frame
+requires to complete successfully while not having the actual <code class="language-plaintext highlighter-rouge">signature</code> value, this function
+should avoid reverting on invalid signature, and should return a value different from <code class="language-plaintext highlighter-rouge">MAGIC_VALUE_SENDER</code>.</p>
+
+<p>Type of the <code class="language-plaintext highlighter-rouge">validUntil</code> is 6-byte timestamp value, or zero for “infinite”. The transaction is valid only up to this time.
+Type of the <code class="language-plaintext highlighter-rouge">validAfter</code> is 6-byte timestamp. The transaction is valid only after this time.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">validateTransaction</code> function can choose to revert on any condition that can be satisfied during gas estimation.</p>
+  
+    <h4 id="paymaster-validation-frame">
+      
+      
+        <a href="#paymaster-validation-frame" class="anchor-link"></a> Paymaster validation frame
+      
+      
+    </h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">paymaster</code> of the transaction, if specified, is invoked with the following data:</p>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">function</span> <span class="n">validatePaymasterTransaction</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">version</span><span class="p">,</span> <span class="kt">bytes32</span> <span class="n">txHash</span><span class="p">,</span> <span class="kt">bytes</span> <span class="n">transaction</span><span class="p">)</span> <span class="k">external</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bytes</span> <span class="n">context</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">validationData</span><span class="p">);</span>
+
+</code></pre></div></div>
+
+<p>The gas limit of this frame is set to <code class="language-plaintext highlighter-rouge">paymasterGasLimit</code>.</p>
+
+<p>The amount of gas used by this frame is referred to as <code class="language-plaintext highlighter-rouge">paymasterValidationGasUsed</code>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">transaction</code> parameter is interpreted as an ABI encoding of <code class="language-plaintext highlighter-rouge">TransactionType4</code>.<br />
+The <code class="language-plaintext highlighter-rouge">txHash</code> parameter represents the hash of the AA_TX_TYPE transaction with empty signature, as defined in section
+<a href="#calculation-of-transaction-type-aatxtype-hash">Calculation of Transaction Type AA_TX_TYPE hash</a>.</p>
+
+<p>The frame must return a bytes array that is interpreted as:</p>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">abi</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">MAGIC_VALUE_PAYMASTER</span><span class="p">,</span> <span class="n">validUntil</span><span class="p">,</span> <span class="n">validAfter</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>Same as in the <a href="#sender-validation-frame"><code class="language-plaintext highlighter-rouge">sender</code> validation frame</a>, in order to support gas estimation this
+frame should return a value different from <code class="language-plaintext highlighter-rouge">MAGIC_VALUE_PAYMASTER</code> for conditions that cannot be satisfied
+before signing.</p>
+
+<p>The size of the <code class="language-plaintext highlighter-rouge">context</code> byte array may not exceed <code class="language-plaintext highlighter-rouge">MAX_CONTEXT_SIZE</code> for a transaction to be considered valid.</p>
+  
+    <h4 id="sender-execution-frame">
+      
+      
+        <a href="#sender-execution-frame" class="anchor-link"></a> Sender execution frame
+      
+      
+    </h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">sender</code> address is invoked with <code class="language-plaintext highlighter-rouge">callData</code> input.</p>
+
+<p>The gas limit of this frame is set to <code class="language-plaintext highlighter-rouge">callGasLimit</code>.<br />
+Calculation of the <code class="language-plaintext highlighter-rouge">calldataCost</code> value is defined in the
+<a href="#gas-fees-charged-for-transaction-input">Gas fees charged for transaction input</a> section.<br />
+The amount of gas used by this frame is referred to as <code class="language-plaintext highlighter-rouge">gasUsedByExecution</code>.</p>
+
+<p>The validation frames do not revert if the execution frame reverts.
+The <code class="language-plaintext highlighter-rouge">postPaymasterTransaction</code> may still be called with a <code class="language-plaintext highlighter-rouge">success: false</code> flag.</p>
+  
+    <h4 id="paymaster-post-transaction-frame">
+      
+      
+        <a href="#paymaster-post-transaction-frame" class="anchor-link"></a> Paymaster post-transaction frame
+      
+      
+    </h4>
+
+<p>After the sender execution frame is over the <code class="language-plaintext highlighter-rouge">paymaster</code> may need to perform some post-transaction logic,
+for instance to perform some kind of cleanup or bookkeeping.
+If the gas payment validation returned a non-zero <code class="language-plaintext highlighter-rouge">context</code>, the <code class="language-plaintext highlighter-rouge">paymaster</code> is invoked again
+with the following inputs:</p>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">function</span> <span class="n">postPaymasterTransaction</span><span class="p">(</span><span class="kt">bool</span> <span class="n">success</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">actualGasCost</span><span class="p">,</span> <span class="kt">bytes</span> <span class="n">context</span><span class="p">)</span> <span class="k">external</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">actualGasCost</code> parameter is the actual amount paid by the paymaster for this transaction,
+and <code class="language-plaintext highlighter-rouge">success</code> indicates whether this transaction’s execution frame completed without revert.</p>
+
+<p>The gas limit of this frame is set to <code class="language-plaintext highlighter-rouge">paymasterGasLimit - paymasterValidationGasUsed</code>.</p>
+
+<p>Revert in the <code class="language-plaintext highlighter-rouge">postPaymasterTransaction</code> frame reverts the transaction’s execution frame as well.
+The validation frames do not revert if the <code class="language-plaintext highlighter-rouge">postPaymasterTransaction</code> frame reverts.
+The gas fees charged from the <code class="language-plaintext highlighter-rouge">paymaster</code> will still include the gas cost of the reverted execution frame.</p>
+  
+    <h3 id="execution-flow-diagram">
+      
+      
+        <a href="#execution-flow-diagram" class="anchor-link"></a> Execution flow diagram
+      
+      
+    </h3>
+
+<p>The execution flow determined by an Account Abstraction Transaction is visualised by the following flow diagram:</p>
+
+<p><img src="/assets/rip-7560/flow_diagram.png" alt="" />
+<em>Execution flow for the Native Account Abstraction Transactions</em></p>
+  
+    <h3 id="execution-layer-transaction-validation">
+      
+      
+        <a href="#execution-layer-transaction-validation" class="anchor-link"></a> Execution layer transaction validation
+      
+      
+    </h3>
+
+<p>On the execution layer, the transaction validity conditions for a block are extended as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+func validateAccountAbstractionTransaction(tx *Transaction) {
+    assert !(sender.code.length &gt; 0 &amp;&amp; deployerData.length &gt; 0)
+
+    if (sender.code.length == 0 &amp;&amp; deployerData.length == 0) {
+        validUntil = (nonce &gt;&gt; 112) &amp; 0xffffffffffff
+        validAfter = (nonce &gt;&gt; 160) &amp; 0xffffffffffff
+        assert Date.now() &lt;= validUntil
+        assert Date.now() &gt;= validAfter
+    }
+
+    if (sender.code.length == 0 &amp;&amp; deployerData.length &gt; 0) {
+        assert deployerData.length &gt;= 20
+        deployer := deployerData[0:20]
+        calldataCost := calculateCalldataCost(tx)
+        retDeployer, error := evm.Call(
+            from: AA_SENDER_CREATOR,
+            to: deployer,
+            input: deployerData[20:],
+            gas: validationGasLimit - calldataCost)
+        assert error == nil
+        assert sender.code.length &gt; 0
+    }
+
+    if (paymasterData.length &gt; 0) {
+        assert paymasterData.length &gt;= 20
+        paymaster := paymasterData[0:20]
+        paymasterInput := ABI.encodeWithSelector('validatePaymasterTransaction', tx, tx.hash)
+        retPaymaster, error := evm.Call(
+            from: AA_ENTRY_POINT,
+            to: paymaster,
+            input: paymasterInput,
+            gas: paymasterGasLimit)
+        assert error == nil
+        assert Date.now() &lt;= retPaymaster.validUntil
+        assert Date.now() &gt;= retPaymaster.validAfter
+        assert retPaymaster.isValid
+    }
+
+    if (sender.code.length == 0) {
+      signer := ecrecover(tx.hash, tx.signature)
+      assert signer == sender.address
+    } else {
+      senderInput := ABI.encodeWithSelector('validateTransaction', tx, tx.hash);
+      retSender, error := evm.Call(
+          from: AA_ENTRY_POINT,
+          to: sender,
+          input: senderInput,
+          gas: validationGasLimit - retDeployer.gasUsed)
+      assert error == nil
+      assert Date.now() &lt;= retSender.validUntil
+      assert Date.now() &gt;= retSender.validAfter
+      assert retSender.isValid
+    }
+}
+
+</code></pre></div></div>
+
+<p>In order to defend from DoS attack vectors, the block builders performing mempool transaction validation SHOULD consider
+the opcode banning and storage access rules described in ERC-7562.</p>
+
+<p><a href="#execution-layer-block-validation">Block validation</a> takes roughly the same amount of work as without AA transactions.
+In any case, validation must execute the entire block in order to verify the state change.
+During this execution, it currently verifies signatures, nonces, and gas payment.
+With Account Abstraction, it will also verify that all the validation frames were successful.
+There is a slight increase in required memory mostly used to store the <code class="language-plaintext highlighter-rouge">context</code> value that is passed from
+the <code class="language-plaintext highlighter-rouge">paymaster</code> validation frame to its post-transaction frame.</p>
+
+<p>As long as all transaction validation steps return correct values the block is considered valid.
+Block builders who are willing to relax the rules applied to the validation frames MAY do so.</p>
+
+<p>Such transactions MUST NOT be propagated through the default transaction mempool as they will be rejected by the nodes
+and the sending node will be blocked as a spammer.
+They may be propagated in the alternative mempool that allows them explicitly as defined in ERC-7562.</p>
+  
+    <h3 id="all-validation-state-changes-apply-before-all-execution-ones">
+      
+      
+        <a href="#all-validation-state-changes-apply-before-all-execution-ones" class="anchor-link"></a> All validation state changes apply before all execution ones
+      
+      
+    </h3>
+
+<p>Filling a block with AA transactions must not be a challenge for the block builder.
+However, if each transaction during its execution can alter any state that affects the validity of another transaction
+in the mempool, the block builder will be forced to revalidate all transactions in the mempool after each inclusion.</p>
+
+<p>We mitigate that by applying all changes in all the validation frames of a sequence of AA transactions first
+and all execution frames apply immediately after that.</p>
+
+<p>In theory, the validation frames can also invalidate each other, but we define ways to prevent that by applying
+certain rules for the mempool transactions in ERC-7562.</p>
+
+<p>A builder that chooses not to enforce the rules from ERC-7562 <strong>must</strong> take care to re-validate each transaction
+against the mid-block state at the position where it is being included into a block.
+Otherwise, the resulting block is likely to end up being invalid.</p>
+  
+    <h3 id="block-structure-diagram">
+      
+      
+        <a href="#block-structure-diagram" class="anchor-link"></a> Block structure diagram
+      
+      
+    </h3>
+
+<p>Here is a visual representation of a block that contains multiple Account Abstraction Transactions.
+The validation parts of AA transactions are executed as separate transactions,
+but are not represented as separate transactions in the block data.</p>
+
+<p><img src="/assets/rip-7560/block_overview.png" alt="" />
+<em>The structure of a block containing multiple Native Account Abstraction Transactions</em></p>
+
+<p>Zooming into a single transaction, the validation part of an AA transaction may include multiple exectution frames:</p>
+
+<p><img src="/assets/rip-7560/zoom_into_transaction.png" alt="" />
+<em>Frames within a single Native Account Abstraction Transaction within a block</em></p>
+  
+    <h3 id="validation-state-change-virtual-transactions">
+      
+      
+        <a href="#validation-state-change-virtual-transactions" class="anchor-link"></a> Validation state change virtual transactions
+      
+      
+    </h3>
+
+<p>The validation frames of the AA_TX_TYPE transaction are represented as individual virtual transactions by the clients.
+They are assigned their own sequential <code class="language-plaintext highlighter-rouge">transactionIndex</code>, and their <code class="language-plaintext highlighter-rouge">transactionHash</code> is defined as
+(<code class="language-plaintext highlighter-rouge">AA_TX_TYPE transaction hash + 1</code>).</p>
+
+<p>All block-related RPC methods, like <code class="language-plaintext highlighter-rouge">eth_getBlockByHash</code> and <code class="language-plaintext highlighter-rouge">eth_getBlockByNumber</code>, must include these virtual
+transactions as part of the <code class="language-plaintext highlighter-rouge">transactions</code> field and include validation in the block transaction count.</p>
+
+<p>All transaction-related RPC methods, like <code class="language-plaintext highlighter-rouge">eth_getTransactionByHash</code> and <code class="language-plaintext highlighter-rouge">eth_getTransactionReceipt</code>, must
+accept the virtual transaction hash as input and return the details calculated as if the validation was a
+separate transaction.</p>
+
+<p>There is a number of behaviours that define transaction-wide effects in Ethereum.
+This list includes, but is not limited to:</p>
+
+<ul>
+  <li>Tracking <code class="language-plaintext highlighter-rouge">accessed_addresses</code></li>
+  <li><a href="./eip-1283">EIP-1283</a> Gas metering for SSTORE</li>
+  <li><a href="./eip-1153">EIP-1153</a> Transient storage opcodes</li>
+</ul>
+
+<p>Any such behaviour has separate effects in the “Validation Virtual Transaction” and “Execution Transaction”.</p>
+
+<p>Gas refunds are issued at the end of the entire transaction only.</p>
+  
+    <h3 id="transaction-validity-time-range-parameters">
+      
+      
+        <a href="#transaction-validity-time-range-parameters" class="anchor-link"></a> Transaction validity time range parameters
+      
+      
+    </h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">Paymaster validation frame</code> and the <code class="language-plaintext highlighter-rouge">Sender validation frame</code> each return values <code class="language-plaintext highlighter-rouge">validUntil</code> and <code class="language-plaintext highlighter-rouge">validAfter</code>.
+If the transaction is initiated by an EOA, these fields may be encoded into unused bits of the <code class="language-plaintext highlighter-rouge">nonce</code>.</p>
+
+<p>These values allow the <code class="language-plaintext highlighter-rouge">sender</code> and <code class="language-plaintext highlighter-rouge">paymaster</code> contracts to specify
+a time range for the blocks the transaction will be valid for.</p>
+
+<p>Transaction cannot be included in a block outside of this time range.
+If included, such a block is considered invalid.</p>
+
+<p>Passing <code class="language-plaintext highlighter-rouge">validUntil = 0</code> and <code class="language-plaintext highlighter-rouge">validAfter = 0</code> disables the check.</p>
+  
+    <h3 id="calculation-of-transaction-type-aa_tx_type-hash">
+      
+      
+        <a href="#calculation-of-transaction-type-aa_tx_type-hash" class="anchor-link"></a> Calculation of Transaction Type AA_TX_TYPE hash
+      
+      
+    </h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+keccak256(AA_TX_TYPE || 0x00 || rlp(transaction_payload)
+
+</code></pre></div></div>
+
+<p>Note that the <code class="language-plaintext highlighter-rouge">chainId</code> and <code class="language-plaintext highlighter-rouge">accessList</code> parameters are included in the transaction hash calculation but are not
+available on-chain as part of the <code class="language-plaintext highlighter-rouge">TransactionType4</code> struct.</p>
+
+<p>In order to calculate the transaction hash that will be used during the signing of the transaction and validation of
+the transaction signature by the <code class="language-plaintext highlighter-rouge">sender</code>, the value of the <code class="language-plaintext highlighter-rouge">signature</code> parameter is considered to be an empty
+byte array.</p>
+  
+    <h3 id="accepting-eoa-account-as-sender-to-achieve-native-gas-abstraction">
+      
+      
+        <a href="#accepting-eoa-account-as-sender-to-achieve-native-gas-abstraction" class="anchor-link"></a> Accepting EOA account as <code class="language-plaintext highlighter-rouge">sender</code> to achieve native gas abstraction
+      
+      
+    </h3>
+
+<p>In case the <code class="language-plaintext highlighter-rouge">sender</code> address does not have any code deployed and the <code class="language-plaintext highlighter-rouge">deployerData</code> length is zero,
+interpret the <code class="language-plaintext highlighter-rouge">signature</code> parameter as <code class="language-plaintext highlighter-rouge">(y_parity, r, s)</code> and the <code class="language-plaintext highlighter-rouge">nonce</code> parameter
+as <code class="language-plaintext highlighter-rouge">(validUntil, validAfter, nonce)</code>.
+Replace the sender validation frame with default ECDSA signature validation.
+Also check the block timestamp is within the <code class="language-plaintext highlighter-rouge">[validUntil, validAfter]</code> range.</p>
+
+<p>The base transaction gas cost, in this case, is increased by <code class="language-plaintext highlighter-rouge">AA_ECRECOVER_COST</code>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">callData</code> parameter in this case is interpreted as following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+target || value || data
+
+</code></pre></div></div>
+  
+    <h3 id="execution-layer-block-validation">
+      
+      
+        <a href="#execution-layer-block-validation" class="anchor-link"></a> Execution layer block validation
+      
+      
+    </h3>
+
+<p>When validating a block, the validity conditions for a block are extended as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+for txIndex := 0; txIndex &lt; range block.Transactions.Len(); txIndex++ {
+
+    // 1. Save the current transaction
+    txCurr = block.Transactions[txIndex]
+
+    if (txCurr.Type() == AccountAbstractionTransaction) {
+
+      // 2. Start running validations for AA transactions
+      for j := txIndex; j &lt; range block.Transactions().Len(); j++ {
+        tx = block.Transactions[j]
+
+        // 3. Stop after encountering a non-AA transaction (or reaching the end of the block)
+        if (tx.Type() != AccountAbstractionTransaction) {
+          break
+        }
+        context[j], paymasterValidationGasUsed[j], error := validateAccountAbstractionTransaction(tx)
+        assert error == nil
+      }
+
+      // 4. If all validations are successful, go back to the saved tx index and run all executions
+      for j := txIndex; j &lt; range block.Transactions().Len(); j++ {
+        tx = block.Transactions[j]
+        if (tx.Type() != AccountAbstractionTransaction) {
+          break
+        }
+
+        retCall, error := evm.Call(
+            from: AA_ENTRY_POINT,
+            to: sender,
+            input: callData,
+            gas: callGasLimit)
+
+        txIndex := j // transaction executed - no need to revisit in the outer loop
+
+
+        // 5. Run paymaster's post-transaction logic if necessary
+        if (context[j].Len() == 0){
+          continue
+        }
+
+        paymasterPostTransactionInput := ABI.encodeWithSelector('postPaymasterTransaction', success, actualGasCost, context[j])
+        retPostTransaction, error := evm.Call(
+            from: AA_ENTRY_POINT,
+            to: paymaster,
+            input: paymasterPostTransactionInput,
+            gas: paymasterGasLimit - paymasterValidationGasUsed[j])
+      }
+   }
+   else {
+      // handle other types of transactions
+      evm.Apply(txCurr)
+   }
+}
+
+</code></pre></div></div>
+  
+    <h3 id="rpc-methods-eth-namespace">
+      
+      
+        <a href="#rpc-methods-eth-namespace" class="anchor-link"></a> RPC methods (eth namespace)
+      
+      
+    </h3>
+  
+    <h4 id="eth_sendtransaction-and-eth_sendrawtransaction">
+      
+      
+        <a href="#eth_sendtransaction-and-eth_sendrawtransaction" class="anchor-link"></a> <code class="language-plaintext highlighter-rouge">eth_sendTransaction</code> and <code class="language-plaintext highlighter-rouge">eth_sendRawTransaction</code>
+      
+      
+    </h4>
+
+<p>Accepts Transaction Type <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code>.</p>
+
+<p>Return values unchanged for a successful call.</p>
+
+<p>In case of failure, MUST return an error result object, with code and message.
+The error code and message SHOULD be set as follows:</p>
+
+<ul>
+  <li>
+    <p>code: -32500 - transaction validation failed by <code class="language-plaintext highlighter-rouge">sender</code>.
+The message field SHOULD be set to the revert message from the <code class="language-plaintext highlighter-rouge">sender</code>.</p>
+  </li>
+  <li>
+    <p>code: -32501 - transaction validation failed by <code class="language-plaintext highlighter-rouge">paymaster</code>.
+The message field SHOULD be set to the revert message from the <code class="language-plaintext highlighter-rouge">paymaster</code>.</p>
+  </li>
+  <li>
+    <p>code: -32502 - transaction rejected because of storage or opcode rules violation in a validation frame.
+The message field SHOULD be set to the location and description of the violated rule.</p>
+  </li>
+  <li>
+    <p>code: -32503 - Transaction out of time range.</p>
+  </li>
+  <li>
+    <p>code: -32504 - transaction rejected because <code class="language-plaintext highlighter-rouge">paymaster</code> is throttled or banned, as defined by ERC-7562.</p>
+  </li>
+  <li>
+    <p>code: -32505 - transaction rejected because <code class="language-plaintext highlighter-rouge">factory</code> is throttled or banned.</p>
+  </li>
+  <li>
+    <p>code: -32506 - transaction rejected because <code class="language-plaintext highlighter-rouge">sender</code> is throttled or banned.</p>
+  </li>
+</ul>
+  
+    <h4 id="eth_signtransaction">
+      
+      
+        <a href="#eth_signtransaction" class="anchor-link"></a> <code class="language-plaintext highlighter-rouge">eth_signTransaction</code>
+      
+      
+    </h4>
+
+<p>Accepts Transaction Type <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code>.</p>
+
+<p>Returns the RLP-encoded transaction object with value for the <code class="language-plaintext highlighter-rouge">signature</code> field that makes the <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code>
+transaction valid.</p>
+
+<p>Returns error object if this operation cannot be performed by the RPC endpoint.</p>
+  
+    <h4 id="eth_gettransactionreceipt">
+      
+      
+        <a href="#eth_gettransactionreceipt" class="anchor-link"></a> <code class="language-plaintext highlighter-rouge">eth_getTransactionReceipt</code>
+      
+      
+    </h4>
+
+<p>Accepts the hash of a virtual transaction that encapsulates the validation frames of the <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> transaction.
+This transaction’s ID is defined as (<code class="language-plaintext highlighter-rouge">AA_TX_TYPE transaction hash + 1</code>).</p>
+
+<p>If an AA transaction is included in a block, returns the following values in addition to the existing fields:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sender</td>
+      <td>Address of the sender of this transaction</td>
+    </tr>
+    <tr>
+      <td>nonce</td>
+      <td>The transaction nonce value</td>
+    </tr>
+    <tr>
+      <td>paymaster</td>
+      <td>Address of the Paymaster if it is paying for the transaction, null otherwise</td>
+    </tr>
+    <tr>
+      <td>deployer</td>
+      <td>Address of the Deployer if it is included in the transaction, null otherwise</td>
+    </tr>
+    <tr>
+      <td>senderCreationGasUsed</td>
+      <td>The amount of gas actually used by the sender deployment frame</td>
+    </tr>
+    <tr>
+      <td>senderValidationGasUsed</td>
+      <td>The amount of gas actually used by the sender validation frame</td>
+    </tr>
+    <tr>
+      <td>paymasterValidationGasUsed</td>
+      <td>The amount of gas actually used by the paymaster validation frame</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Accepts hash of Transaction Type <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code>.</p>
+
+<p>If an AA transaction is included in a block, returns the following values in addition to the existing fields:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>status</td>
+      <td>Either 1 (success) or 0 (failure) status of the execution frame</td>
+    </tr>
+    <tr>
+      <td>executionGasUsed</td>
+      <td>The amount of gas actually used by the execution frame</td>
+    </tr>
+    <tr>
+      <td>postPaymasterTransactionStatus</td>
+      <td>Either 1 (success), 0 (failure), or <code class="language-plaintext highlighter-rouge">null</code> (did not run) status of the <code class="language-plaintext highlighter-rouge">postPaymasterTransaction</code> frame</td>
+    </tr>
+    <tr>
+      <td>postPaymasterTransactionGasUsed</td>
+      <td>The amount of gas actually used by the paymaster <code class="language-plaintext highlighter-rouge">postPaymasterTransaction</code> frame</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note that the field <code class="language-plaintext highlighter-rouge">to</code> is not included as there is no clear <code class="language-plaintext highlighter-rouge">target</code> in an <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> transaction.</p>
+  
+    <h4 id="eth_call">
+      
+      
+        <a href="#eth_call" class="anchor-link"></a> <code class="language-plaintext highlighter-rouge">eth_call</code>
+      
+      
+    </h4>
+
+<p>Accepts Transaction Type <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> with all fields except <code class="language-plaintext highlighter-rouge">from</code> and <code class="language-plaintext highlighter-rouge">callData</code> optional.</p>
+
+<p>Returns the return value of <a href="#sender-execution-frame">the <code class="language-plaintext highlighter-rouge">sender</code> execution frame</a>.</p>
+
+<p>If provided with <code class="language-plaintext highlighter-rouge">paymasterData</code> and <code class="language-plaintext highlighter-rouge">deployerData</code> also executes the corresponding frame.</p>
+
+<p>If any of the frames reverts the call returns the revert data of each reverted frame.</p>
+  
+    <h4 id="eth_estimategasaccountabstraction">
+      
+      
+        <a href="#eth_estimategasaccountabstraction" class="anchor-link"></a> <code class="language-plaintext highlighter-rouge">eth_estimateGasAccountAbstraction</code>
+      
+      
+    </h4>
+
+<p>Accepts Transaction Type <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> with fields <code class="language-plaintext highlighter-rouge">validationGasLimit</code>, <code class="language-plaintext highlighter-rouge">paymasterGasLimit</code>, <code class="language-plaintext highlighter-rouge">callGasLimit</code> optional.</p>
+
+<p>Optionally accepts the State Override Set to allow users to modify the state during the gas estimation.
+This field as well as its behavior is equivalent to the ones defined for <code class="language-plaintext highlighter-rouge">eth_call</code> RPC method.</p>
+
+<p>Returns <code class="language-plaintext highlighter-rouge">{validationGasLimit, paymasterGasLimit, callGasLimit, builderFee}</code> object.</p>
+
+<p>Note that the <code class="language-plaintext highlighter-rouge">deployerData</code> and <code class="language-plaintext highlighter-rouge">paymasterData</code> fields are required for a consistent result.</p>
+
+<p>As mentioned earlier, the <code class="language-plaintext highlighter-rouge">sender</code> and <code class="language-plaintext highlighter-rouge">paymaster</code> contracts should not revert on the validation failure
+and should return a value different from <code class="language-plaintext highlighter-rouge">MAGIC_VALUE_SENDER</code> or <code class="language-plaintext highlighter-rouge">MAGIC_VALUE_PAYMASTER</code> accordingly
+in order to enable gas estimation.</p>
+
+<p>One acceptable way to achieve this behavior for Smart Contract Accounts is to compare the <code class="language-plaintext highlighter-rouge">signature</code> parameter to
+a predetermined “dummy signature” and to return without reverting in case the values match.
+This will not result in transaction being authorized as long as returned value does not include <code class="language-plaintext highlighter-rouge">MAGIC_VALUE_SENDER</code>.</p>
+  
+    <h2 id="rationale">
+      
+      
+        <a href="#rationale" class="anchor-link"></a> Rationale
+      
+      
+    </h2>
+  
+    <h3 id="using-solidity-method-selectors-in-a-core-eip">
+      
+      
+        <a href="#using-solidity-method-selectors-in-a-core-eip" class="anchor-link"></a> Using Solidity method selectors in a Core EIP
+      
+      
+    </h3>
+
+<p>The contracts that have a role in this Account Abstraction proposal, such as <code class="language-plaintext highlighter-rouge">sender</code> or <code class="language-plaintext highlighter-rouge">paymaster</code>,
+MUST know which code to execute and understand the calldata provided to them in order to validate the transaction.</p>
+
+<p>We argue that the most straightforward implementation is to rely on Solidity 4-byte method selectors as it is an
+established de-facto standard.</p>
+  
+    <h3 id="accepting-aa_tx_type-transactions-from-eoas">
+      
+      
+        <a href="#accepting-aa_tx_type-transactions-from-eoas" class="anchor-link"></a> Accepting <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> transactions from EOAs
+      
+      
+    </h3>
+
+<p>While it may seem like allowing EOAs to initiate <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> transactions contradicts the purpose of Account Abstraction, we argue that this
+may actually be important for the adoption of Smart Contract Accounts.</p>
+
+<p>It will enable all existing EOAs to benefit from the improved UX features like gas abstraction and validity ranges.</p>
+
+<p>In the future, this can be used to pay gas for transactions that add code to the EOA addresses,
+once Ethereum implements changes like the ones proposed in
+<a href="./eip-5003">EIP-5003: Insert Code into EOAs with AUTHUSURP</a>,
+<a href="./eip-6913">EIP-6913: SETCODE instruction</a> and
+<a href="./eip-7377">EIP-7377: Migration Transaction</a>.</p>
+  
+    <h2 id="backwards-compatibility">
+      
+      
+        <a href="#backwards-compatibility" class="anchor-link"></a> Backwards Compatibility
+      
+      
+    </h2>
+
+<p>This EIP preserves most of the design elements established by the ERC-4337. This allows the same client code and smart
+contracts to be used in both systems with minimal to no modifications, while providing significant UX improvements.</p>
+
+<p>Existing contracts are not significantly affected by the change.
+The assumption that <code class="language-plaintext highlighter-rouge">tx.origin</code> is guaranteed to be an EOA is no longer valid.
+The assumption that <code class="language-plaintext highlighter-rouge">tx.origin</code> is the address that pays for the current transaction is no longer valid as well.</p>
+
+<p>Any code that expects a single top-level execution frame for an Ethereum transaction will have to accommodate
+the new transaction type.</p>
+
+<p><a href="./eip-3607">EIP-3607</a> introduces a ban on transactions from senders with deployed code.
+This limitation does not apply to AA_TX_TYPE transactions.</p>
+  
+    <h3 id="migration-path-for-existing-erc-4337-projects-and-further-roadmap">
+      
+      
+        <a href="#migration-path-for-existing-erc-4337-projects-and-further-roadmap" class="anchor-link"></a> Migration path for existing ERC-4337 projects and further roadmap
+      
+      
+    </h3>
+  
+    <h4 id="existing-bundlers-can-co-exist-on-the-network">
+      
+      
+        <a href="#existing-bundlers-can-co-exist-on-the-network" class="anchor-link"></a> Existing bundlers can co-exist on the network
+      
+      
+    </h4>
+
+<p>The ERC-4337 is not a protocol change and may remain operational in parallel to this EIP indefinitely.
+Given the similarity to ERC-4337, the same block builders may easily support both ERC-4337 and <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> transactions.</p>
+  
+    <h4 id="accounts-need-to-upgrade-their-entrypoint-to-an-adapter-contract">
+      
+      
+        <a href="#accounts-need-to-upgrade-their-entrypoint-to-an-adapter-contract" class="anchor-link"></a> Accounts need to upgrade their <code class="language-plaintext highlighter-rouge">EntryPoint</code> to an adapter contract
+      
+      
+    </h4>
+
+<p>The team behind ERC-4337 will provide a reference implementation of a contract converting
+the ABI of the <code class="language-plaintext highlighter-rouge">paymaster</code> and <code class="language-plaintext highlighter-rouge">sender</code> contracts. This adapter can be set as a trusted
+<code class="language-plaintext highlighter-rouge">EntryPoint</code> address by the ERC-4337 contracts.</p>
+  
+    <h4 id="supporting-erc-4337-rpc-calls-as-a-compatibility-layer">
+      
+      
+        <a href="#supporting-erc-4337-rpc-calls-as-a-compatibility-layer" class="anchor-link"></a> Supporting ERC-4337 RPC calls as a compatibility layer
+      
+      
+    </h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">sender</code> contracts MAY support both ERC-4337 and <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> transactions during a transition period,
+as long as this EIP may be adopted by some chains and not by others.</p>
+  
+    <h2 id="security-considerations">
+      
+      
+        <a href="#security-considerations" class="anchor-link"></a> Security Considerations
+      
+      
+    </h2>
+
+<p>This EIP creates a complex and sophisticated mechanism and aims to expand the usage of Smart Contract Accounts.
+All of it creates a lot of new risk vectors and attack surfaces.</p>
+
+<p>The following is a non-exhaustive list of known security considerations regarding Native Account Abstraction.</p>
+  
+    <h3 id="attacks-on-validation-execution-separation">
+      
+      
+        <a href="#attacks-on-validation-execution-separation" class="anchor-link"></a> Attacks on validation-execution separation
+      
+      
+    </h3>
+
+<p>The state that exists at the end of the validation frame may be observed or modified by unrelated contracts before
+the execution frame begins.
+<code class="language-plaintext highlighter-rouge">Sender</code> contracts must take great care in making sure their code does not make any false assumptions.</p>
+  
+    <h3 id="dos-attacks-on-block-builders">
+      
+      
+        <a href="#dos-attacks-on-block-builders" class="anchor-link"></a> DoS attacks on block builders
+      
+      
+    </h3>
+
+<p>The amount of computation and available memory that is necessary to maintain a mempool and produce valid blocks is
+increased significantly.</p>
+  
+    <h3 id="directly-charging-the-balance-of-a-contract">
+      
+      
+        <a href="#directly-charging-the-balance-of-a-contract" class="anchor-link"></a> Directly charging the balance of a contract
+      
+      
+    </h3>
+
+<p>This EIP adds a new way for a smart contract to have its balance charged simply by returning a valid value from a
+function with method ID that corresponds to <code class="language-plaintext highlighter-rouge">validateTransaction</code>, <code class="language-plaintext highlighter-rouge">validatePaymasterTransaction</code>.</p>
+
+<p>This creates a new kind of risk for contracts that accidentally or maliciously contain such methods but are not public
+about the fact that these contracts can be used as a <code class="language-plaintext highlighter-rouge">sender</code> or a <code class="language-plaintext highlighter-rouge">paymaster</code> in an <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> transaction.</p>
+
+<p>This is somewhat mitigated by requiring these contracts to return <code class="language-plaintext highlighter-rouge">MAGIC_VALUE_SENDER</code> or <code class="language-plaintext highlighter-rouge">MAGIC_VALUE_PAYMASTER</code>,
+however code reviewers should still be aware of this.</p>
+  
+    <h3 id="observing-revert-reasons-in-a-validation-frame">
+      
+      
+        <a href="#observing-revert-reasons-in-a-validation-frame" class="anchor-link"></a> Observing revert reasons in a validation frame
+      
+      
+    </h3>
+
+<p>Existing transaction types get included in a block even if reverted and provide a revert reason for debugging purposes.
+There is a very short list of things that can cause a transaction not to be included on-chain:</p>
+
+<ul>
+  <li>low gas fee</li>
+  <li>insufficient balance</li>
+  <li>invalid nonce</li>
+  <li>censorship</li>
+</ul>
+
+<p>This is not the case for reverts that occur in the validation phase of an <code class="language-plaintext highlighter-rouge">AA_TX_TYPE</code> transaction.
+In order to address this developers should track the validity of these transactions being signed and are encouraged
+to rely on the <code class="language-plaintext highlighter-rouge">validUntil</code> time range parameter to guarantee a transaction that has not been included in the intended time
+will not become valid again unexpectedly for the user who had sent it.</p>
+  
+    <h2 id="copyright">
+      
+      
+        <a href="#copyright" class="anchor-link"></a> Copyright
+      
+      
+    </h2>
+
+<p>Copyright and related rights waived via <a href="/LICENSE">CC0</a>.</p>
+
+  <h2>Citation</h2>
+  <p>Please cite this document as:</p>
+  
+  <p>Vitalik Buterin&nbsp;(<a href="https://github.com/vbuterin">@vbuterin</a>), Yoav Weiss&nbsp;(<a href="https://github.com/yoavw">@yoavw</a>), Alex Forshtat&nbsp;(<a href="https://github.com/forshtat">@forshtat</a>), Dror Tirosh&nbsp;(<a href="https://github.com/drortirosh">@drortirosh</a>), Shahaf Nacson&nbsp;(<a href="https://github.com/shahafn">@shahafn</a>), "EIP-7560: Native Account Abstraction [DRAFT]," <em>Ethereum Improvement Proposals</em>, no. 7560, September 2023. [Online serial]. Available: https://eips.ethereum.org/EIPS/eip-7560.</p>
+</div>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "TechArticle",
+    
+    "headline": "EIP-7560: Native Account Abstraction [DRAFT]",
+    "name": "EIP-7560: Native Account Abstraction [DRAFT]",
+    
+    "author": "Vitalik Buterin (@vbuterin), Yoav Weiss (@yoavw), Alex Forshtat (@forshtat), Dror Tirosh (@drortirosh), Shahaf Nacson (@shahafn)",
+    "dateCreated": "2023-09-01",
+    "datePublished": "2023-09-01",
+    
+    "discussionUrl": "https://ethereum-magicians.org/t/rip-7560-native-account-abstraction/16664",
+    
+    "inLanguage": "en-US",
+    "license": "#copyright",
+    "copyrightYear": "2023"
+  }
+</script>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ethereum Rollup Improvement Proposals</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Ethereum Rollup Improvement Proposals</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ethereum/RIPs"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ethereum/RIPs</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ethereum Improvement Proposals (EIPs) describe standards for the Ethereum platform, including core protocol specifications, client APIs, and contract standards.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
