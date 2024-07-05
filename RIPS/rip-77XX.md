@@ -53,7 +53,7 @@ The listed factories are already in active use on multiple networks. To ensure f
 
 ## Backwards Compatibility
 
-One potential issue that is unlikely to arise is a rogue actor obtaining access to key-managed factories and deploying different code at the factory address to one of the networks affected by the proposal. If this happens before the proposal is implemented, the Authors propose two potential solutions:
+One potential issue that is unlikely to arise is a rogue actor obtaining access to a deployer key of one of the key-managed factories and deploying a different bytecode at the factory address to one of the networks affected by the proposal. If this happens before the proposal is implemented, the Authors propose two potential solutions:
 - Revisit the list of factories
 - Overwrite the code at the address.
 
