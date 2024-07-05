@@ -2,7 +2,7 @@
 rip: 77XX
 title: Preinstall deterministic deployment factories
 description: Proposal to add deployment factory contracts at common addresses to enable deterministic contract deployments
-author: Richard Meissner (@rmeissner), Mikhail Mikheev (@mmv08)
+author: Richard Meissner (@rmeissner), Mikhail Mikheev (@mmv08), Nicholas Rodrigues Lordello (@nlordell)
 discussions-to: https://ethereum-magicians.org/t/eip-proposal-create2-contract-factory-precompile-for-deployment-at-consistent-addresses-across-networks/6083/29
 status: Draft
 type: Standards Track
@@ -35,11 +35,13 @@ This RIP proposes aligning on a set of deterministic deployment factories and pr
 
 ### Factories
 
-The following factories should be added
+The following factories should be added:
  - [Deterministic Deployment Proxy](https://github.com/Arachnid/deterministic-deployment-proxy) at `0x4e59b44847b379578588920ca78fbf26c0b4956c`
  - [Safe Singleton Factory](https://github.com/safe-global/safe-singleton-factory) at `0x914d7Fec6aaC8cd542e72Bca78B30650d45643d7`
  - [CreateX](https://github.com/pcaversaccio/createx) at `0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed`
  - [Create2 Deployer](https://github.com/pcaversaccio/create2deployer) at `0x13b0D85CcB8bf860b6b79AF3029fCA081AE9beF2`
+
+For factories with a managed key, the nonce of the deployer account should be kept as is since the factories are not destructible and CREATE opcodes [revert](https://eips.ethereum.org/EIPS/eip-684) in case of a collision.
 
 ### References
 
