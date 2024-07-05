@@ -2,7 +2,7 @@
 rip: 77XX
 title: Preinstall deterministic deployment factories
 description: Proposal to add deployment factory contracts at common addresses to enable deterministic contract deployments
-author: Richard Meissner (@rmeissner)
+author: Richard Meissner (@rmeissner), Mikhail Mikheev (@mmv08)
 discussions-to: https://ethereum-magicians.org/t/eip-proposal-create2-contract-factory-precompile-for-deployment-at-consistent-addresses-across-networks/6083/29
 status: Draft
 type: Standards Track
@@ -53,4 +53,8 @@ The listed factories are already in active use on multiple networks. To ensure f
 
 ## Backwards Compatibility
 
-No backward compatibility issues were found.
+One potential issue that is unlikely to arise is a rogue actor obtaining access to key-managed factories and deploying different code at the factory address to one of the networks affected by the proposal. If this happens before the proposal is implemented, the Authors propose two potential solutions:
+- Revisit the list of factories
+- Overwrite the code at the address.
+
+No other backward compatibility issues were found.
