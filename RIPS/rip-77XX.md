@@ -22,10 +22,10 @@ Many projects rely on deployment factories that make use of `create2` to increas
 - Contracts can be redeployed in case of a selfdestruct
 
 The downside is that it is still necessary to deploy these deployment factories. There are two common ways to do so:
-- Utilize a randomly generated signature for a fixed deployment transactions
+- Utilize a randomly generated signature for fixed deployment transactions
 - Manage a deployment key for the deployment factory.
 
-Using a randomly generated signature for a fixed deployment transaction has the advantage that this is a fully trustless process, and no deployment key has to be managed. But the parameter of signed deployment transaction cannot be changed, therefore it is not possible to adjust the gas price, gas limits or set the chain id. 
+Using a randomly generated signature for a fixed deployment transaction has the advantage that this is a fully trustless process, and no deployment key has to be managed. But the parameter of the signed deployment transaction cannot be changed, therefore it is not possible to adjust the gas price, gas limits or set the chain ID. 
 
 Providing a stable way for deterministic and trustless deployments will become even more important with EIPs like EIP-7702. The strong guarantees provided by a deployment factory are extremely helpful in this case, as this EIP depends on the code at a specific address.
 
@@ -44,13 +44,13 @@ The following factories should be added
 ### References
 
 - [OP Stack Preinstalls](https://docs.optimism.io/builders/chain-operators/features/preinstalls)
-- 
+
 ## Rationale
 
 ### Why not align on one factory?
 
-The listed factories are already in active use on multiple networks. To ensure future compatibility without having to redeploy existing contracts it makes the most sense to enable a set of deployment factories that also cover a large part of the exsiting ecosystem.
+The listed factories are already in active use on multiple networks. To ensure future compatibility without having to redeploy existing contracts, it makes the most sense to enable a set of deployment factories that also cover a large part of the existing ecosystem.
 
 ## Backwards Compatibility
 
-No backward compatibility issues found as the precompiled contract will be added to `PRECOMPILED_ADDRESS` at the next available address in the precompiled address set.
+No backward compatibility issues were found.
