@@ -15,7 +15,7 @@ Contracts for facilitating request, fulfillment, and fulfillment reward of cross
 
 ## Motivation
 Cross-chain actions are an increasingly important part of crypto user experience. Today, most solutions for Ethereum layer 2s (L2s) have one or more drawback 
-1. Reliance on privated relayers with offchain access and incentives.
+1. Reliance on privatized relayers with offchain access and incentives.
 1. Reliance on protocols outside of Ethereum and its rollups. 
 1. High-level, intent-based systems that do not allow specifying exact calls to make. 
 
