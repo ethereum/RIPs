@@ -19,9 +19,7 @@ Cross-chain actions are an increasingly important part of crypto user experience
 1. Reliance on protocols outside of Ethereum and its rollups. 
 1. High-level, intent-based systems that do not allow specifying exact calls to make. 
 
-Ethereum L2s, which all write state to a shared execution environment, are uniquely positioned to offer a better alternative.  
-
-Ethereum L2 users should have access to a public, decentralized utility for making cross L2 calls.
+Ethereum L2s, which all write state to a shared execution environment, are uniquely positioned to offer a better alternative. Ethereum L2 users should have access to a public, decentralized utility for making cross L2 calls.
 
 From any L2 chain, users should be able to request a call be made on any other L2 chain. Users should be able to guarantee a compensation for this call being made, and thus be able to control the likelihood this call will be made. 
 
