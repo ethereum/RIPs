@@ -14,7 +14,7 @@ created: 2024-08-07
 Contracts for facilitating request, fulfillment, and fulfillment reward of cross-L2 calls.
 
 ## Motivation
-Cross-chain actions are an increasingly important part of crypto user experience. Today, most solutions for Ethereum layer 2s (L2s) have one or more drawback 
+Cross-chain actions are an increasingly important part of crypto user experience. Today, most solutions for Ethereum layer 2s (L2s) have one or more drawback. 
 1. Reliance on privatized relayers with offchain access and incentives.
 1. Reliance on protocols outside of Ethereum and its rollups. 
 1. High-level, intent-based systems that do not allow specifying exact calls to make. 
@@ -217,7 +217,66 @@ abstract contract CrossChainCallOriginator {
 ```
 
 ### CrossChainCallFulfillment Contract
-TODO
+On the destination chain, there is a `CrossChainCallFulfillment` contract to facilitate store proof of call fulfillment.
+
+```solidity
+contract CrossChainCallFulfillment {
+    error InvalidChainId();
+    error InvalidVerifyingContract();
+
+    event CallFulfilled(bytes32 indexed callHash, bytes32 indexed fulfillmentHash, address indexed fulfilledBy);
+
+    mapping(bytes32 fulfillmentHash => bool succeeded) public callFulfilled;
+
+    function fulfill(CrossChainCall calldata crossChainCall) external {
+        if (block.chainid != crossChainCall.destinationChainId) {
+            revert InvalidChainId();
+        }
+
+        if (address(this) != crossChainCall.verifyingContract) {
+            revert InvalidVerifyingContract();
+        }
+
+        for (uint256 i; i < crossChainCall.calls.length; i++) {
+            _call(crossChainCall.calls[i].to, crossChainCall.calls[i].value, crossChainCall.calls[i].data);
+        }
+
+        bytes32 hash = fulfillmentHash(crossChainCall, msg.sender);
+
+        callFulfilled[hash] = true;
+
+        emit CallFulfilled({
+            callHash: callHashCalldata(crossChainCall),
+            fulfillmentHash: hash, 
+            fulfilledBy: msg.sender
+        });
+    }
+
+    function fulfillmentHash(CrossChainCall calldata crossChainCall, address fulfiller) public returns (bytes32) {
+        return keccak256(abi.encode(crossChainCall, fulfiller));
+    }
+
+    function callHashCalldata(CrossChainCall calldata crossChainCall) public pure returns (bytes32) {
+        return keccak256(abi.encode(crossChainCall));
+    }
+
+    function _call(address target, uint256 value, bytes memory data) internal {
+        (bool success, bytes memory result) = target.call{value: value}(data);
+        if (!success) {
+            assembly ("memory-safe") {
+                revert(add(result, 32), mload(result))
+            }
+        }
+    }
+}
+```
 
 ## Example Usage
+### Transfer native asset across chains. 
+TODO
+### Transfer ERC20 asset across chains. 
+TODO
+### ERC20 swap on Chain B using assets from Chain A.
+TODO
+### Pay gas on Chain A for a smart account transaction on Chain B. 
 TODO
