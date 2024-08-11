@@ -14,27 +14,27 @@ created: 2024-08-07
 Contracts for facilitating request, fulfillment, and fulfillment reward of cross-L2 calls.
 
 ## Motivation
-Ethreum layer 2 (L2) users should have access to a public, decentralized utility for making cross L2 calls. 
+Cross-chain actions are an increasingly important part of crypto user experience. Today, most solutions for Ethereum layer 2s (L2s) have one or more drawback 
+1. Reliance on privated relayers with offchain access and incentives.
+1. Reliance on protocols outside of Ethereum and its rollups. 
+1. High-level, intent-based systems that do not allow specifying exact calls to make. 
 
-From any L2 chain, users should be able to request a call be made on any other L2 chain. Users should be able to guarentee a compensation for this call being made, and thus be able to control the liklihood this call will be made. 
+Ethereum L2s, which all write state to a shared execution environment, are uniquely positioned to offer a better alternative.  
+
+Ethereum L2 users should have access to a public, decentralized utility for making cross L2 calls.
+
+From any L2 chain, users should be able to request a call be made on any other L2 chain. Users should be able to guarantee a compensation for this call being made, and thus be able to control the likelihood this call will be made. 
 
 User should have full assurance that compensation will only be paid if the call was made. This assurance should depend ONLY on onchain information. 
 
-Example uses our solution should enable.
-1. Pay on Chain A for a function call to happen on Chain B. 
-1. Send native asset from Chain A to Chain B.
-1. Send ERC20 asset from Chain A to Chain B. 
-1. Fund a swap on Chain B with assets on Chain A.
-1. Pay gas for a smart account transaction on Chain B using native asset on Chain A. 
-
 ## Specification
 To only rely on onchain information, we use
-1. L1 blockhashes on the L2. 
-    - We take as an assumption that every L2 should have a trusted L1 blockhash in the execution environment. 
-2. L2 blockhashes on the L1.
+1. Layer 1 (L1), i.e. Ethereum Mainnet, blockhashes on the L2. 
+    - We take as an assumption that every Ethereum L2 should have a trusted L1 blockhash in the execution environment. 
+2. Ethereum L2 blockhashes on L1.
    - e.g. via an [L2 Output Oracle Contract](https://specs.optimism.io/glossary.html?#l2-output-oracle-contract)
 
-Using these inputs, on any L2, we can trustlessly verify [ERC-1183](https://eips.ethereum.org/EIPS/eip-1186) storage proofs of any other L2. 
+Using these inputs, on any Ethereum L2, we can trustlessly verify [ERC-1183](https://eips.ethereum.org/EIPS/eip-1186) storage proofs of any other Ethereum L2. 
 
 Our contracts' job, then, is to represent call requests and fulfillment in storage on each chain. 
 
@@ -77,6 +77,18 @@ struct CrossChainCall {
 }
 
 ```
+### Flow Diagrams
+#### Happy Case
+![image](../assets/rip-tbd/happy_case.png "Happy case flow")
+
+1. User calls to a facilitator contract with the CrossChainCall and reward funds 
+1. Facilitator emits event for fillers to discover 
+1. Filler relays CrossChainCall to verifyingContract, including any funds possibly needed to successfully complete the call. 
+1. verifyingContract makes the call as specified by CrossChainCall
+1. verifyingContract write to storage the call, the filler, and call outcome 
+1. After CrossChainCall.finalityDelaySeconds have elapsed, the filler can submit the proof
+1. If the proof is valid and the call was successfully made, filler is paid reward. 
+
 
 ### CrossChainCallOriginator Contract
 On the origin chain, there is an origination contract to receive cross-chain call requests and payout rewards on proof of their fulfillment. 
@@ -136,7 +148,7 @@ abstract contract CrossChainCallOriginator {
     bytes32 hash = callHashCalldata(crossChainCall);
     bytes32 storageKey = keccak256(
       abi.encodePacked(
-        abi.encode(crossChainCall, msg.sender),
+        _fulfillmentHash(crossChainCall, msg.sender),
         uint(0) // Must be at slot 0
       )
     );
@@ -184,6 +196,12 @@ abstract contract CrossChainCallOriginator {
     return keccak256(abi.encode(crossChainCall));
   }
 
+  /// @notice Produces the hash that should be used as they key in a mapping
+  /// on CrossChainCall.verifyingContract to indicate whether the call has been fulfilled.
+  function _fulfillmentHash(CrossChainCall calldata crossChainCall, address fulfiller) internal returns (bytes32) {
+    return keccak256(abi.encode(crossChainCall, fulfiller));
+  }
+
   /// @dev Validates storage proofs and verifies that 
   /// verifyingContractStorageKey on crossChainCall.verifyingContract 
   /// is set to `true`. Raises error if proof not valid or value not `true`.
@@ -203,5 +221,5 @@ abstract contract CrossChainCallOriginator {
 ### CrossChainCallFulfillment Contract
 TODO
 
-### Flow Diagrams
-![image](../assets/rip-tbd/happy_case.png "Happy case flow")
+## Example Usage
+TODO
