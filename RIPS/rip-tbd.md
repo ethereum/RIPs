@@ -198,10 +198,10 @@ abstract contract CrossChainCallOriginator {
   /// @dev Left abstract to minimize imports and maximize simplicity for this example
   function _sendERC20(address to, address asset, uint256 amount) internal virtual;
 }
+```
 
 ### CrossChainCallFulfillment Contract
 TODO
 
 ### Flow Diagrams
-![image](../assets/rip-tbd/happ_case.png "Happy case flow")
-```
+![image](../assets/rip-tbd/happy_case.png "Happy case flow")
