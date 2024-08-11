@@ -20,7 +20,7 @@ From any L2 chain, users should be able to request a call be made on any other L
 
 User should have full assurance that compensation will only be paid if the call was made. This assurance should depend ONLY on onchain information. 
 
-Example uses our solution should enable
+Example uses our solution should enable.
 1. Pay on Chain A for a function call to happen on Chain B. 
 1. Send native asset from Chain A to Chain B.
 1. Send ERC20 asset from Chain A to Chain B. 
