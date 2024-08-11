@@ -1,5 +1,5 @@
 ---
-eip: TBD
+rip: TBD
 title: Cross-L2-Call Specification
 description: Contract standard for cross-L2 calls facilitation
 author: Wilson Cusack (@WilsonCusack)
