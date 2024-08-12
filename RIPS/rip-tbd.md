@@ -3,11 +3,11 @@ rip: TBD
 title: Cross-L2-Call Specification
 description: Contract standard for cross-L2 calls facilitation
 author: Wilson Cusack (@WilsonCusack)
-discussions-to: pending
+discussions-to: [Ethereum Magicians](https://ethereum-magicians.org/t/rip-contract-standard-for-cross-l2-calls-facilitation)
 status: Draft
 type: Standards Track
 category: Core
-created: 2024-08-07
+created: 2024-08-11
 ---
 
 ## Abstract 
