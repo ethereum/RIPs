@@ -32,9 +32,10 @@ In reality, every rollup block is anchored to a specific Ethereum block at a con
 
 Depending on the L1 origin or L1 history that the L2 is derived from, the L2 block is technically produced sometime in the past as it’s generally the sum of both historical L1 and current L2 inputs.’’
 
-Let’s use an analogy here. For those of you who are familiar with the Time Variance Authority in the Marvel Cinematic Universe (or any time travel enthusiasts), the canonical Ethereum chain could be considered the “sacred timeline” from which many alternate realities branch off. ![](https://keep.google.com/u/0/media/v2/1sc0AdaQnb7574FdITUQIGIjvJXyIpRIJU_-gSqI8pAUeKK__1U7e6eMrIS_aSqyq/17yQ6kiAcIl5efdAFq4KUg-4VGg1c8m_W2MXGh3zfOjXnlNEsVPjYiQCiMcj-_Ds?accept=image%2Fgif%2Cimage%2Fjpeg%2Cimage%2Fjpg%2Cimage%2Fpng%2Caudio%2Faac&sz=1600)
+Let’s use an analogy here. For those of you who are familiar with the Time Variance Authority in the Marvel Cinematic Universe (or any time travel enthusiasts), the canonical Ethereum chain could be considered the “sacred timeline” from which many alternate realities branch off. 
+![image1](https://keep.google.com/u/0/media/v2/1sc0AdaQnb7574FdITUQIGIjvJXyIpRIJU_-gSqI8pAUeKK__1U7e6eMrIS_aSqyq/17yQ6kiAcIl5efdAFq4KUg-4VGg1c8m_W2MXGh3zfOjXnlNEsVPjYiQCiMcj-_Ds?accept=image%2Fgif%2Cimage%2Fjpeg%2Cimage%2Fjpg%2Cimage%2Fpng%2Caudio%2Faac&sz=1600)
 
-![](https://keep.google.com/u/0/media/v2/1DSxDxS4wITL-HuDmu_CKwJrdAin8O6lnb06XLkg17iOJzU-PjtddXQ52YFK8hWeG/10AddP5KP7KA9hdn-cZZLddUtfGs00vr5i01hvTTEYC3r68U_PYgWzmm76BwzFBtZ?accept=image%2Fgif%2Cimage%2Fjpeg%2Cimage%2Fjpg%2Cimage%2Fpng%2Caudio%2Faac&sz=1600)
+![image2](https://keep.google.com/u/0/media/v2/1DSxDxS4wITL-HuDmu_CKwJrdAin8O6lnb06XLkg17iOJzU-PjtddXQ52YFK8hWeG/10AddP5KP7KA9hdn-cZZLddUtfGs00vr5i01hvTTEYC3r68U_PYgWzmm76BwzFBtZ?accept=image%2Fgif%2Cimage%2Fjpeg%2Cimage%2Fjpg%2Cimage%2Fpng%2Caudio%2Faac&sz=1600)
 
 These alternate realities are analogous to Ethereum forks sub Ethereum finality. Eventually these Ethereum forks are pruned until only the sacred timeline or canonical Ethereum history remains.
 
