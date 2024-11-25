@@ -3,7 +3,7 @@ rip: 7810
 title: RIP Purpose and Guidelines
 status: Living
 type: Meta
-author: Nicolas Consigny <nicolas.consigny@ethereum.org>,Carl Beekhuizen <carl@ethereum.org>, Ansgar Dietrichs <ansgar@ethereum.org>, Yoav Weiss <yoav@ethereum.org>, et al.
+author: Nicolas Consigny <nicolas.consigny@ethereum.org>, Carl Beekhuizen <carl@ethereum.org>, Ansgar Dietrichs <ansgar@ethereum.org>, Yoav Weiss <yoav@ethereum.org>
 created: 2024-11-08
 ---
 ## What is an RIP?
