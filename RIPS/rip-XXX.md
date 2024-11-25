@@ -1,5 +1,5 @@
 ---
-rip: XXX
+rip: 7810
 title: RIP Purpose and Guidelines
 status: Living
 type: Meta
