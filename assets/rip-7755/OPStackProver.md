@@ -5,6 +5,10 @@ pragma solidity 0.8.24;
 import {StateValidator} from "../StateValidator.sol";
 import {BlockHeaders} from "../BlockHeaders.sol";
 
+/// @title OPStackProver
+///
+/// @author Coinbase (https://github.com/base-org/RIP-7755-poc)
+///
 /// @notice This is a utility library for validating OP Stack storage proofs.
 library OPStackProver {
     using StateValidator for address;

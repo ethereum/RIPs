@@ -5,6 +5,10 @@ pragma solidity 0.8.24;
 import {BlockHeaders} from "../BlockHeaders.sol";
 import {StateValidator} from "../StateValidator.sol";
 
+/// @title ArbitrumProver
+///
+/// @author Coinbase (https://github.com/base-org/RIP-7755-poc)
+///
 /// @notice This is a utility library for validating Arbitrum storage proofs.
 library ArbitrumProver {
     using StateValidator for address;

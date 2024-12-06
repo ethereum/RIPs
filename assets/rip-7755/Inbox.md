@@ -2,11 +2,23 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.24;
 
-// ... omitting imports
+import {Address} from "openzeppelin-contracts/contracts/utils/Address.sol";
 
+import {IPrecheckContract} from "./interfaces/IPrecheckContract.sol";
+import {GlobalTypes} from "./libraries/GlobalTypes.sol";
+import {CrossChainRequest} from "./RIP7755Structs.sol";
+
+/// @title RIP7755Inbox
+///
+/// @author Coinbase (https://github.com/base-org/RIP-7755-poc)
+///
 /// @notice An inbox contract within RIP-7755. This contract's sole purpose is to route requested transactions on
 /// destination chains and store record of their fulfillment.
 contract RIP7755Inbox {
+    using Address for address;
+    using Address for address payable;
+    using GlobalTypes for bytes32;
+
     struct MainStorage {
         /// @notice A mapping from the keccak256 hash of a `CrossChainRequest` to its `FulfillmentInfo`. This can only be set once per call
         mapping(bytes32 requestHash => FulfillmentInfo) fulfillmentInfo;
@@ -37,8 +49,22 @@ contract RIP7755Inbox {
     /// @notice This error is thrown when an account attempts to submit a cross chain call that has already been fulfilled
     error CallAlreadyFulfilled();
 
+    /// @notice This error is thrown if a fulfiller submits a `msg.value` greater than the total value needed for all the calls
+    /// @param expected The total value needed for all the calls
+    /// @param actual The received `msg.value`
+    error InvalidValue(uint256 expected, uint256 actual);
+
     /// @notice This error is thrown when the first element in the `extraData` array is less than 20 bytes
     error InvalidPrecheckData();
+
+    /// @notice Returns the stored fulfillment info for a passed in call hash
+    ///
+    /// @param requestHash A keccak256 hash of a CrossChainRequest
+    ///
+    /// @return _ Fulfillment info stored for the call hash
+    function getFulfillmentInfo(bytes32 requestHash) external view returns (FulfillmentInfo memory) {
+        return _getFulfillmentInfo(requestHash);
+    }
 
     /// @notice A fulfillment entrypoint for RIP7755 cross chain calls.
     ///
@@ -49,7 +75,7 @@ contract RIP7755Inbox {
             revert InvalidChainId();
         }
 
-        if (address(this) != request.inboxContract) {
+        if (address(this) != request.inboxContract.bytes32ToAddress()) {
             revert InvalidInboxContract();
         }
 
@@ -62,7 +88,6 @@ contract RIP7755Inbox {
             revert CallAlreadyFulfilled();
         }
 
-        // Store fulfillment info (execution receipt)
         _setFulfillmentInfo(requestHash, FulfillmentInfo({timestamp: uint96(block.timestamp), filler: fulfiller}));
 
         _sendCallsAndValidateMsgValue(request);
@@ -70,10 +95,21 @@ contract RIP7755Inbox {
         emit CallFulfilled({requestHash: requestHash, fulfilledBy: fulfiller});
     }
 
+    /// @notice Hashes a cross chain call request.
+    ///
+    /// @param request A cross chain call request formatted following the RIP-7755 spec. See {RIP7755Structs-CrossChainRequest}.
+    ///
+    /// @return _ A keccak256 hash of the cross chain call request.
+    function hashRequest(CrossChainRequest calldata request) public pure returns (bytes32) {
+        return keccak256(abi.encode(request));
+    }
+
     /// @notice Runs the precheck for a cross chain call.
     ///
     /// @dev The first element in the `extraData` array is reserved for precheck validation.
     /// @dev The precheck step is optional. It will be skipped if the `extraData` array is empty or if the first 20 bytes of the first element are the zero address.
+    ///
+    /// @param request A cross chain call request formatted following the RIP-7755 spec. See {RIP7755Structs-CrossChainRequest}.
     function _runPrecheck(CrossChainRequest calldata request) private {
         if (request.extraData.length == 0) return;
 
@@ -90,9 +126,29 @@ contract RIP7755Inbox {
         }
     }
 
-    /// @dev Iterates through request.calls and makes each low level call.
-    /// @dev Reverts if the total value sent does not match the `msg.value` provided by the fulfiller.
-    function _sendCallsAndValidateMsgValue(CrossChainRequest calldata request) private {}
+    function _sendCallsAndValidateMsgValue(CrossChainRequest calldata request) private {
+        uint256 valueSent;
+
+        for (uint256 i; i < request.calls.length; i++) {
+            _call(payable(request.calls[i].to.bytes32ToAddress()), request.calls[i].data, request.calls[i].value);
+
+            unchecked {
+                valueSent += request.calls[i].value;
+            }
+        }
+
+        if (valueSent != msg.value) {
+            revert InvalidValue(valueSent, msg.value);
+        }
+    }
+
+    function _call(address payable to, bytes calldata data, uint256 value) private {
+        if (data.length == 0) {
+            to.sendValue(value);
+        } else {
+            to.functionCallWithValue(data, value);
+        }
+    }
 
     function _getMainStorage() private pure returns (MainStorage storage $) {
         assembly {
