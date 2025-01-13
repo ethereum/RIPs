@@ -1,5 +1,5 @@
 ---
-rip: xxxx
+rip: 7859
 title: Store L1 origin data and historic L2 block hashes in L2 state
 description: Standardize the commitment of L1 origin data and historic L2 block hashes in L2 state
 author: Ian Norden (@i-norden), Bo Du (@notbdu)
