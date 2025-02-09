@@ -1,0 +1,57 @@
+---
+rip: TBD
+title: Canonical ERC-7802 token bridge address
+description: Standardize the ERC-7802 token bridge address on rollups that support it natively
+author: Yoav Weiss (@yoavw), skeletor (@skeletor-spaceman)
+discussions-to: TBD
+status: Draft
+type: Standards Track
+category: Core
+created: 2025-02-09
+---
+
+## Abstract
+
+This proposal sets a standard address for the ERC-7802 token bridge address trusted by ERC-20 tokens that support ERC-7802 Crosschain minting/burning
+
+## Motivation
+
+ERC-7802 is a minimal interface for crosschain minting/burning of ERC-20 tokens. The token is requires to trust a bridge address and allow it to call `crosschainMint`/`crosschainBurn`. The bridge address would typically be immutable and affect the token's address as determined by CREATE2.
+
+EIP-7587 reserved a range for standardized precompiles/predeploys used by rollups. The proposal makes use of this range to reserve the token bridge address.
+
+By standardizing the bridge address we gain two advantages:
+1. Tokens can be deployed in a future-proof manner on every chain. If/when a rollup adds native ERC-7802 capability to their canonical bridge, existing immutable tokens can benefit from the improved interoperability even though they were deployed earlier.
+2. Tokens can deploy to the same CREATE2 address if they wish. Having the same bridge address means they don't need to pass a different argument during deployment.
+
+## Specification
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 and RFC 8174.
+
+As of `FORK_TIMESTAMP` in the integrated EVM chain, add precompiled/predeployed contract which acts as an ERC-7802 token bridge at address `TOKEN_BRIDGE_ADDRESS` in `0x1ff` (indicates 0x00000000000000000000000000000000000001ff).
+
+The implementation is outside the scope of this proposal but it MUST implement a secure ERC-7802 bridge in `TOKEN_BRIDGE_ADDRESS` or not have anything in that address.
+
+The rollup MAY implement a token bridge at another address in addition to `TOKEN_BRIDGE_ADDRESS` but MUST not deploy something other than a secure ERC-7802 bridge to `TOKEN_BRIDGE_ADDRESS`.
+
+## Rationale
+
+The `TOKEN_BRIDGE_ADDRESS` is chosen as `0x1ff` because it is an available address for precompile RIPs as defined in EIP-7587.
+
+The implementation is deliberately out of scope because each rollup may choose different bridging methods, whether it's between L1 and L2, or across L2s within a cluster.
+
+Rollups do not trust each other unless such trust has been established explicitly. Therefore tokens can safely trust `TOKEN_BRIDGE_ADDRESS` within each rollup.
+
+## Backwards Compatibility
+
+No backward compatibility issues because `TOKEN_BRIDGE_ADDRESS` is currently empty in all rollups and shall remain so until standardized by a RIP, as per EIP-7587.
+
+## Security Considerations
+
+The only trust assumption introduced by this proposal is that `TOKEN_BRIDGE_ADDRESS` will not contain a malicious implementation of an ERC-7802 bridge. This is no different from the trust assumption introduced by any other precompile address, e.g. that the `ECRECOVER` precompile at address `0x01` will not be backdoored.
+
+No crosschain trust assumptions are made. Each rollup SHALL determine its trust model and decide whether it only trusts its own L1 canonical bridge or establishes trust relations with other rollups. Such trust relations should only be considered between rollups that share a trust model and can verify each other's soundness and finality.
+
+## Copyright
+
+Copyright and related rights waived via [CC0](../LICENSE.md).
