@@ -34,6 +34,12 @@ The implementation is outside the scope of this proposal but it MUST implement a
 
 The rollup MAY implement a token bridge at another address in addition to `TOKEN_BRIDGE_ADDRESS` but MUST not deploy something other than a secure ERC-7802 bridge to `TOKEN_BRIDGE_ADDRESS`.
 
+### Constants
+
+| Name                   | Value                                        |
+|------------------------|----------------------------------------------|
+| TOKEN_BRIDGE_ADDRESS   | `0x00000000000000000000000000000000000001ff` |
+
 ## Rationale
 
 The `TOKEN_BRIDGE_ADDRESS` is chosen as `0x1ff` because it is an available address for precompile RIPs as defined in EIP-7587.
