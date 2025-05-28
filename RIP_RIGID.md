@@ -1,17 +1,8 @@
 # RIP: Rollup Interoperable Gas Interface Declaration (RIGID)
 
----
-rip: TBA
-title: Rollup Interoperable Gas Interface Declaration
-description: Standard interface for declaring rollup gas market characteristics onchain
-author: Matt Cutler (@mcutler), Chris Meisl (@cmeisl), Sajida Zouarhi (@sajidazouarhi)
-discussions-to: https://ethereum-magicians.org/t/TODO
-status: Draft
-type: Standards Track
-category: RRC
-created: 2025-05-27
-requires:
----
+| RIP | Title | Description | Author | Discussions-To | Status | Type | Category | Created |
+|-----|-------|-------------|--------|----------------|--------|------|----------|---------|
+| TBA | Rollup Interoperable Gas Interface Declaration | Standard interface for declaring rollup gas market characteristics onchain | Matt Cutler (@mcutler), Chris Meisl (@cmeisl), Sajida Zouarhi (@sajidazouarhi) | https://ethereum-magicians.org/t/TODO | Draft | Standards Track | RRC | 2025-05-27 |
 
 ---
 
@@ -79,9 +70,6 @@ flowchart LR
 ---
 
 ## 2. RIGID Specification
-
-> The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119) and [RFC 8174](https://datatracker.ietf.org/doc/html/rfc8174).
-.
 
 
 Each network has a distinct gas market model. RIGID standardizes the process of publishing this information onchain in a verifiable way. RIGID introduces a set of standardized fields like structured fee components and robust RPN formalism. This enables automated systems to retrieve the declared gas market parameters, compute fees dynamically, and react to changes immediately. This allows changes in rollup gas market parameters to be transparently published and broadcast via events, allowing real-time automated adjustments.
