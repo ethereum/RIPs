@@ -563,7 +563,7 @@ example.fees[0].tokens[0] = 0; // ETH
 
 - Registries with Context variables information - id, variable name, type, unit -, Token metadata, and similarly relevant information for the consumers of RIGID declarations can be hosted offchain by the community
 - Third-party or community aggregator can query individual RIGID contracts on various rollups and provide an aggregated view of gas market attributes across chains for a better agent experience.
-- Section 6.3 introduces an onchain registry for all RIGID declarations.
+
 
 #### *Gas Agent Data Flow Across RIGID Layers*
 
