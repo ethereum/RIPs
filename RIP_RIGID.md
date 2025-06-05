@@ -125,7 +125,7 @@ classDiagram
 
 The **Standard Context Variables** are predefined inputs necessary for calculating fees within RIGID formulas. Each variable is identified by a unique `id` (`uint8`). IDs from `0` to `100` are reserved for these globally defined standard variables.
 
-These variables are consumed by the onchain fee formulas and represent universal parameters. Their types and units are precisely defined to ensure deterministic interpretation by smart contracts and gas agents.
+These variables are consumed by the onchain fee formulas and represent commonly used parameters by fee formulas. Their types and units are precisely defined to ensure deterministic interpretation by smart contracts and gas agents.
 
 | ID | Variable | Unit | Type |
 | :--- | :---------------------------------- | :----------- | :------ |
@@ -600,55 +600,9 @@ Aggregator"]
 
 - Aggregators may use relayers or oracles to bring RIGID data onchain to other destinations.
 - Messaging protocols can be used for rollups to push updates to a central registry.
-- Enables offchain systems and multi-chain apps to consume consistent fee data for purposes such as cross-chain transaction routing, decentralized exchanges displaying aggregated L2 costs, or universal block explorers.
+- Enables offchain systems and multi-chain apps to consume consistent fee data for purposes such as cross-chain transaction routing, decentralized exchanges displaying aggregated L2 costs, or cross-chain block explorers.
 
 
-
-### 6.3 Onchain RIGID Registry Interface
-
-
-The registry interface facilitates broader interoperability by standardizing access to RIGID declarations from many rollups.
-This interface applies to onchain declarations. 
-Context variable and token metadata are resolved from an offchain registry (section 6.1), not part of this interface.
-
-
-
-
-#### Key Goals:
-
-
-- Single point of access for multi-rollup RIGID data.
-- Historical query support.
-- Real-time subscriptions to updates.
-
-
-#### Proposed Functions:
-
-
-```solidity
-// --- Data Structures ---
-
-struct RollupInfo {
-    address rigidContractAddress;
-    uint256 chainId;
-    string  rollupIdentifier;
-}
-
-// --- Interface ---
-
-function registerRollup(address rollupRIGIDContractAddress, uint256 chainId, string memory rollupIdentifier) external;
-
-function getRegisteredRollups() view returns (RollupInfo[] memory);
-
-function getLatestDeclarationForRollup(address rollupRIGIDContractAddress) view returns (GasMarketDeclaration memory);
-
-function getDeclarationForRollupByVersion(address rollupRIGIDContractAddress, uint16 version_) view returns (GasMarketDeclaration memory);
-
-function getDeclarationForRollupByBlock(address rollupRIGIDContractAddress, uint256 blockNumber) view returns (GasMarketDeclaration memory);
-
-function getDeclarationForRollupAtTimestamp(address rollupRIGIDContractAddress, uint64 timestamp) view returns (GasMarketDeclaration memory);
-
-```
 
 ## 7. Security Considerations
 
