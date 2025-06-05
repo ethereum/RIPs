@@ -627,7 +627,7 @@ Rollups **may** adopt RIGID in parallel of any existing documentation effort.
 ## 9. Conclusion
 
 
-RIGID establishes a universal, onchain standard that empowers Ethereum rollups to transparently publish their gas market parameters in a uniform, machine-readable format. By leveraging structured, minimal schemas and RPN-encoded fee formulas with well-defined context variables, it enables automated agents to estimate costs accurately, adapt dynamically to evolving fee models, and route transactions optimally across diverse Layer 2 environments. 
+RIGID establishes a universal, onchain standard that empowers Ethereum rollups to transparently publish their gas market parameters in a uniform, machine-actionable format. By leveraging structured, minimal schemas and RPN-encoded fee formulas with well-defined context variables, it enables automated agents to estimate costs accurately, adapt dynamically to evolving fee models, and route transactions optimally across diverse Layer 2 environments. 
 
 Its built-in versioning and event-driven update mechanisms ensure full auditability and trustless interoperability, while the onchain registry and optional aggregators unlocks a better experience by providing a unified view and real-time notification. Altogether, RIGID lays the technical foundation for a cohesive, scalable ecosystem where developers, operators, and agents can interact with rollup gas markets confidently and efficiently.
 
