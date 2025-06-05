@@ -2,7 +2,7 @@
 
 | RIP | Title | Description | Author | Discussions-To | Status | Type | Category | Created |
 |-----|-------|-------------|--------|----------------|--------|------|----------|---------|
-| TBA | Rollup Interoperable Gas Interface Declaration | Standard interface for declaring rollup gas market characteristics onchain | Matt Cutler (@mcutler), Chris Meisl (@cmeisl), Sajida Zouarhi (@sajidazouarhi) | https://ethereum-magicians.org/t/TODO | Draft | Standards Track | RRC | 2025-05-27 |
+| TBA | Rollup Interoperable Gas Interface Declaration | Standard interface for declaring rollup gas market characteristics onchain | Matt Cutler (@mcutler), Chris Meisl (@cmeisl), Sajida Zouarhi (@sajidazouarhi) | [https://ethereum-magicians.org](https://ethereum-magicians.org/c/rips/58) | Draft | Standards Track | RRC | 2025-05-27 |
 
 ---
 
@@ -192,7 +192,7 @@ This ID uniquely identifies the fee component and always corresponds to a Contex
 
 The `formula` field contains a string encoded in RPN (Reverse Polish Notation). RPN is chosen for its suitability for onchain evaluation and processing by automated agents due to the following characteristics:
 
-* **Efficient evaluation**: RPN is stack-based, making it highly efficient for processing within constrained environments like smart contracts.
+* **Efficient evaluation**: RPN is stack-based, making it highly efficient for processing within constrained environments.
 * **Deterministic logic**: It inherently avoids operator precedence ambiguities, ensuring consistent evaluation across all implementations.
 * **Compact encoding**: RPN strings can be parsed with lower overhead, contributing to efficient onchain storage and machine processing.
 
@@ -237,7 +237,6 @@ This corresponds to the following evaluation logic:
 4.  Push the value corresponding to ID `5` (representing `user_priority_fee_per_gas`).
 5.  Execute `+` (add): Pop the top two values (5 and `4*6`), add them, and push the final result `(4 * 6) + 5`. This represents the total L2 execution cost plus the priority fee.
 
-This structure is efficient for stack-based execution and easily parsed by smart contracts or offchain agents.
 
 #### *RPN Formula Evaluation Flow Diagram*
 ```mermaid
@@ -302,7 +301,7 @@ This decimal value corresponds to `0b00001000000000000000000000000000` in binary
 #### Flags - Examples
 
 - **`is_subsidized` (bit 31)**  
-  Some rollups or dApps absorb the entire fee on behalf of end users.  
+  Some rollups or applications absorb the entire fee on behalf of end users.  
   - *Immutable X* pays all L2 gas for NFT mints/trades.  
   - Setting `is_subsidized = 1` means the user’s balance is never debited; the protocol covers the cost.  
 
@@ -338,7 +337,7 @@ This field records the **UNIX timestamp (in seconds)** indicating when this RIGI
 
 ### Versioning and Historical Data
 
-* RIGID supports multiple versions of gas mechanics. Old versions live forever onchain for historical analysis.
+* RIGID supports multiple versions of gas mechanics. Old versions live forever onchain which supports historical analysis.
 * Each declaration includes a `version` and `timestamp` for defining validity.
 * Contracts **should** support querying past versions by block or time.
 * A new version **must** clearly define its activation time or block.
@@ -420,7 +419,7 @@ struct FeeComponent {
 struct RollupSpecificContextVariable {
     uint8   id;          // Custom context variable ID (100-199)
     string  unit;        // Unit of the variable (e.g., "L1 gas units")
-    string  dataType;    // Data type of the variable (e.g., "uint256). Renamed from 'type' to avoid Solidity keyword conflict.
+    string  dataType;    // Data type of the variable (e.g., "uint256)
     string  description; // Human-readable description of the variable
 }
 
@@ -556,14 +555,15 @@ example.fees[0].tokens[0] = 0; // ETH
 
 
 
-## 6. Registry Aggregation and Cross-Chain Communication
+## 6. Registry, Aggregation and Cross-Chain Communication
 
 
-### 6.1 Onchain Registries
+### 6.1 Offchain Registries and Aggregators
 
 
-- Third-party or community registries can query individual RIGID contracts on various rollups.
-- These registries aggregate data across chains, providing a unified view.
+- Registries with Context variables information - id, variable name, type, unit -, Token metadata, and similarly relevant information for the consumers of RIGID declarations can be hosted offchain by the community
+- Third-party or community aggregator can query individual RIGID contracts on various rollups and provide an aggregated view of gas market attributes across chains for a better agent experience.
+- Section 6.3 introduces an onchain registry for all RIGID declarations.
 
 #### *Gas Agent Data Flow Across RIGID Layers*
 
@@ -581,8 +581,8 @@ flowchart TD
   %% Level 3 - Offchain Components
   subgraph Offchain["Offchain Systems"]
     direction LR
-    CanonicalRegistry["Context & Token Metadata(GitHub / Indexer)"]
-    OffchainRegistry["Multi-rollup Declaration 
+    CanonicalRegistry["Registries"]
+    OffchainRegistry["Declarations 
 Aggregator"]
   end
 
@@ -604,12 +604,12 @@ Aggregator"]
 
 
 
-### 6.3 RIGID Registry Interface
+### 6.3 Onchain RIGID Registry Interface
 
 
 The registry interface facilitates broader interoperability by standardizing access to RIGID declarations from many rollups.
 This interface applies to onchain declarations. 
-Context variable and token metadata are resolved from an offchain canonical registry, not part of this interface.
+Context variable and token metadata are resolved from an offchain registry (section 6.1), not part of this interface.
 
 
 
@@ -654,11 +654,11 @@ function getDeclarationForRollupAtTimestamp(address rollupRIGIDContractAddress, 
 
 The RIGID specification introduces a structured onchain format for declaring gas market parameters. The following risks and mitigations must be considered by implementers:
 
-- **Governance Controls**: Only authorized entities (e.g., multisig or DAO) MUST be able to update declarations. Improper access control could lead to malicious or incorrect declarations that affect fee estimation or routing logic.
-- **Unit Incompatibility**: Incorrect mixing of units (e.g., wei and bytes) in formulas MAY result in incorrect fee calculations. A minimal `UnitRegistry` and strict validation logic SHOULD be used to detect and prevent invalid updates.
-- **Formula Evaluation Safety**: RPN evaluation MUST handle invalid operations such as division by zero or invalid inputs for `ln()` and `sqrt()` safely. These MUST return zero, not throw.
-- **Offchain Agent Risks**: Consumers MUST validate inputs offchain and SHOULD apply limits and fail-safes to prevent manipulation, overflows, or unexpected formula behaviors.
-- **Timestamp Trust**: Declarations include a `timestamp`, but consumers MUST NOT rely on this as proof of freshness without additional verification (e.g., checking event block numbers).
+- **Governance Controls**: Only authorized entities (e.g., multisig or DAO) **must** be able to update declarations. Improper access control could lead to malicious or incorrect declarations that affect fee estimation or routing logic.
+- **Unit Incompatibility**: Incorrect mixing of units (e.g., wei and bytes) in formulas **may** result in incorrect fee calculations. A minimal `UnitRegistry` and strict validation logic **should** be used to detect and prevent invalid updates.
+- **Formula Evaluation Safety**: RPN evaluation **must** handle invalid operations such as division by zero or invalid inputs for `ln()` and `sqrt()` safely. These **must** return zero, not throw.
+- **Offchain Agent Risks**: Consumers **must** validate inputs offchain and **should** apply limits and fail-safes to prevent manipulation, overflows, or unexpected formula behaviors.
+- **Timestamp Trust**: Declarations include a `timestamp`, but consumers **must not** rely on this as proof of freshness without additional verification (e.g., checking event block numbers).
 
 These considerations are essential to avoid incorrect gas computation, DoS vectors, or exploit paths via misconfigured declarations.
 
@@ -668,41 +668,39 @@ This specification introduces a new, optional standard. It does not modify any e
 
 RIGID declarations exist in isolated onchain contracts and do not interfere with legacy gas pricing systems unless adopted by integrators.
 
-Rollups MAY adopt RIGID in parallel with existing mechanisms.
+Rollups **may** adopt RIGID in parallel of any existing documentation effort.
 
 ## 9. Conclusion
 
 
 RIGID establishes a universal, onchain standard that empowers Ethereum rollups to transparently publish their gas market parameters in a uniform, machine-readable format. By leveraging structured, minimal schemas and RPN-encoded fee formulas with well-defined context variables, it enables automated agents to estimate costs accurately, adapt dynamically to evolving fee models, and route transactions optimally across diverse Layer 2 environments. 
 
-Its built-in versioning and event-driven update mechanisms ensure full auditability and trustless interoperability, while optional registry interfaces facilitate multi-chain aggregation and real-time subscriptions. Altogether, RIGID lays the technical foundation for a cohesive, scalable ecosystem where developers, operators, and agents can interact with rollup gas markets confidently and efficiently.
+Its built-in versioning and event-driven update mechanisms ensure full auditability and trustless interoperability, while the onchain registry and optional aggregators unlocks a better experience by providing a unified view and real-time notification. Altogether, RIGID lays the technical foundation for a cohesive, scalable ecosystem where developers, operators, and agents can interact with rollup gas markets confidently and efficiently.
 
 ## 10. Open Questions and Future Considerations
 
 To ensure RIGID remains practical, robust, and implementable, the following areas require further definition or enhancements:
 
 * **Canonical Context Variable Source:**
-    The units, types, and labels for Standard Context Variables (IDs 0–99) do not need to be stored onchain. Instead, they can be maintained in a canonical offchain registry (e.g., in a RIGID GitHub repo or a decentralized indexer). This avoids unnecessary onchain state and simplifies community contribution. Tooling and agents can resolve variable metadata directly from this registry for validation and display purposes. The same approach applies to the token registry for `FeeComponent.tokens`. This ensures integrators consistently resolve the exact same metadata, maintaining ecosystem-wide coherence.
+    The units, types, and labels for Standard Context Variables (IDs 0–99) do not need to be stored onchain. They can be maintained in a canonical offchain registry (e.g., in a RIGID GitHub repo or a decentralized indexer). This avoids unnecessary onchain state and simplifies community contribution. Tooling and agents can resolve variable metadata directly from this registry for validation and display purposes. The same approach applies to the token registry for `FeeComponent.tokens`. This ensures integrators consistently resolve the exact same metadata, maintaining ecosystem-wide coherence. Defining the specific governance, integrity, and tooling for this canonical offchain registry remains an open discussion.
 * **Event Emission Modes:**
-  Continuously emitting full `GasMarketDeclaration` structures is costly. Define an explicit emission mode toggle (`FULL` vs. `HASH_ONLY`) allowing contracts to broadcast only minimal data `(version, hash)` for gas efficiency, with full declarations retrievable off-chain via view functions.
-* **On-chain Unit Validation:**
-  To prevent silent calculation errors from mixing incompatible units (bytes, gas units, wei), introduce a minimal on-chain `UnitRegistry` mapping each Context Variable ID explicitly to its unit. Implement a validation step in the declaration update flow, causing incompatible unit references to revert clearly and immediately.
+  Continuously emitting full `GasMarketDeclaration` structures is costly. Implementers could define an explicit emission mode (`Full` vs `Lite`) allowing contracts to broadcast only minimal data `(version, hash, blockNumber)` for gas efficiency, with full declarations retrievable offchain via view functions.
+* **Onchain Unit Validation:**
+  To prevent silent calculation errors from mixing incompatible units (bytes, gas units, wei), we could introduce a minimal onchain `UnitRegistry` mapping each Context Variable ID explicitly to its unit. Implementers could leverage this mapping and add a validation step in the declaration update flow, causing incompatible unit references to revert clearly and immediately.
 * **Formula Operator Policy:**
-  Establish a clear governance-driven policy for extending supported mathematical operators in RPN formulas. Unrecognized operators must explicitly revert, preventing silent failures or unintended gas consumption. Any operator additions should follow formal community proposal and governance processes.
+  Establish a clear governance-driven policy for extending supported mathematical operators in RPN formulas. Unrecognized operators must explicitly revert, preventing silent failures or unintended gas consumption. 
 * **ID Namespace Headroom:**
-  Document a clear but optional migration path from the current `uint8` ID namespace to a larger `uint16` namespace. While immediate migration isn't necessary, specifying a planned upgrade path ensures the namespace will comfortably accommodate future expansion, avoiding potential exhaustion.
+  We could document a clear but optional migration path from the current `uint8` ID namespace to a larger `uint16` namespace. While immediate migration isn't necessary, specifying a planned upgrade path ensures the namespace will comfortably accommodate future expansion, avoiding potential exhaustion.
 * **Historical Lookup Integrity:**
-  Embedding cryptographic anchors (e.g., parent-block hash or Merkle root) in each declaration ensures robust historical queries. Although all RIGID versions live permanently on-chain, explicitly recommending such anchors strengthens resilience against deep chain reorganizations or cross-chain synchronization ambiguities.
+  Embedding cryptographic anchors (e.g., parent-block hash or Merkle root) in each declaration ensures robust historical queries. Although all RIGID versions live permanently onchain, explicitly recommending such anchors strengthens resilience against deep chain reorganizations or cross-chain synchronization ambiguities.
 * **Deprecation & Migration Path:**
-  While RIGID declarations inherently persist permanently on-chain, clearly document expectations for agents handling breaking schema changes. Suggest minimal, automatable diff formats to ease agent migrations, specifying recommended timelines and transition periods for rollups introducing significantly altered schema versions.
-
+  While RIGID declarations inherently persist permanently onchain, we could set and document expectations for agents that have to handle with breaking schema changes. For example, specifying a reasonable timeline - for rollups introducing impactful gas mechanims changes - for consumers to adopt.
 
 
 ---
 For discussions, integrations, or to contribute improvements to this spec:
-
-**🔗 GitHub Repository:** _[https://github.com/rigid-spec/rigid](https://github.com/rigid-spec/rigid)_  
-Feedback, issues, and PRs are welcome.
+* Join the discussion on Ethereum Magicians: [https://ethereum-magicians.org/c/rips/58](https://ethereum-magicians.org/c/rips/58)
+* Feedback, issues, and PRs are welcome.
 
 # Copyright
 
