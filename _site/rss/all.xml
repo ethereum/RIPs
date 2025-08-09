@@ -1,0 +1,1650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ethereum EIPs</title>
+    <description>A feed of all EIPs</description>
+    <link>http://localhost:4000</link>
+    <atom:link href="http://localhost:4000/all.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Feb 2024 00:10:05 +0530</lastBuildDate>
+    
+    
+      <item>
+        <title></title>
+        <category>/</category>
+        
+        <description>&lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;
+  .container {
+    margin: 10px auto;
+    max-width: 600px;
+    text-align: center;
+  }
+  h1 {
+    margin: 30px 0;
+    font-size: 4em;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+&lt;/style&gt;
+
+&lt;div class=&quot;container&quot;&gt;
+  &lt;h1&gt;404&lt;/h1&gt;
+  &lt;p&gt;&lt;strong&gt;Page not found :(&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;The requested page could not be found.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+        <pubDate></pubDate>
+        <link>http://localhost:4000/404</link>
+        <guid isPermaLink="true">http://localhost:4000/404</guid>
+      </item>
+    
+      <item>
+        <title>All</title>
+        <category>/</category>
+        
+        <description>&lt;style type=&quot;text/css&quot;&gt;
+  .eiptable .title {
+    width: 67%;
+  }
+
+  .eiptable .author {
+    width: 33%;
+  }
+&lt;/style&gt;
+
+  
+  
+  
+
+  
+  
+  
+    &lt;h2 id=&quot;final&quot;&gt;Final&lt;/h2&gt;
+    &lt;table class=&quot;eiptable&quot;&gt;
+      &lt;thead&gt;
+        
+          &lt;tr&gt;&lt;th class=&quot;eipnum&quot;&gt;Number&lt;/th&gt;&lt;th class=&quot;title&quot;&gt;Title&lt;/th&gt;&lt;th class=&quot;author&quot;&gt;Author&lt;/th&gt;&lt;/tr&gt;
+        
+      &lt;/thead&gt;
+      
+        &lt;tr&gt;
+          &lt;td class=&quot;eipnum&quot;&gt;&lt;a href=&quot;/RIPS/rip-7212&quot;&gt;7212&lt;/a&gt;&lt;/td&gt;
+          
+          &lt;td class=&quot;title&quot;&gt;Precompile for secp256r1 Curve Support&lt;/td&gt;
+          &lt;td class=&quot;author&quot;&gt;Ulaş Erdoğan&amp;nbsp;(&lt;a href=&quot;https://github.com/ulerdogan&quot;&gt;@ulerdogan&lt;/a&gt;), Doğan Alpaslan&amp;nbsp;(&lt;a href=&quot;https://github.com/doganalpaslan&quot;&gt;@doganalpaslan&lt;/a&gt;)&lt;/td&gt;
+        &lt;/tr&gt;
+      
+    &lt;/table&gt;
+  
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+    &lt;h2 id=&quot;draft&quot;&gt;Draft&lt;/h2&gt;
+    &lt;table class=&quot;eiptable&quot;&gt;
+      &lt;thead&gt;
+        
+          &lt;tr&gt;&lt;th class=&quot;eipnum&quot;&gt;Number&lt;/th&gt;&lt;th class=&quot;title&quot;&gt;Title&lt;/th&gt;&lt;th class=&quot;author&quot;&gt;Author&lt;/th&gt;&lt;/tr&gt;
+        
+      &lt;/thead&gt;
+      
+        &lt;tr&gt;
+          &lt;td class=&quot;eipnum&quot;&gt;&lt;a href=&quot;/RIPS/rip-7560&quot;&gt;7560&lt;/a&gt;&lt;/td&gt;
+          
+          &lt;td class=&quot;title&quot;&gt;Native Account Abstraction&lt;/td&gt;
+          &lt;td class=&quot;author&quot;&gt;Vitalik Buterin&amp;nbsp;(&lt;a href=&quot;https://github.com/vbuterin&quot;&gt;@vbuterin&lt;/a&gt;), Yoav Weiss&amp;nbsp;(&lt;a href=&quot;https://github.com/yoavw&quot;&gt;@yoavw&lt;/a&gt;), Alex Forshtat&amp;nbsp;(&lt;a href=&quot;https://github.com/forshtat&quot;&gt;@forshtat&lt;/a&gt;), Dror Tirosh&amp;nbsp;(&lt;a href=&quot;https://github.com/drortirosh&quot;&gt;@drortirosh&lt;/a&gt;), Shahaf Nacson&amp;nbsp;(&lt;a href=&quot;https://github.com/shahafn&quot;&gt;@shahafn&lt;/a&gt;)&lt;/td&gt;
+        &lt;/tr&gt;
+      
+    &lt;/table&gt;
+  
+
+  
+  
+  
+
+  
+  
+  
+
+
+</description>
+        <pubDate></pubDate>
+        <link>http://localhost:4000/all</link>
+        <guid isPermaLink="true">http://localhost:4000/all</guid>
+      </item>
+    
+      <item>
+        <title></title>
+        <category>/</category>
+        
+        <description>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;rss version=&quot;2.0&quot; xmlns:atom=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+  &lt;channel&gt;
+    &lt;title&gt;Ethereum EIPs&lt;/title&gt;
+    &lt;description&gt;A feed of all EIPs&lt;/description&gt;
+    &lt;link&gt;{{ site.url }}&lt;/link&gt;
+    &lt;atom:link href=&quot;{{ site.url }}/all.xml&quot; rel=&quot;self&quot; type=&quot;application/rss+xml&quot; /&gt;
+    &lt;lastBuildDate&gt;{{ site.time | date_to_rfc822 }}&lt;/lastBuildDate&gt;
+    {% assign eips = site.pages | sort: &apos;eip&apos; %}
+    {% for eip in eips %}
+      &lt;item&gt;
+        &lt;title&gt;{{ eip.title | xml_escape }}&lt;/title&gt;
+        &lt;category&gt;{{ eip.type | xml_escape }}/{{ eip.category | xml_escape }}&lt;/category&gt;
+        {% if eip.discussions-to %}
+          &lt;comments&gt;{{ eip.discussions-to | xml_escape }}&lt;/comments&gt;
+        {% endif %}
+        &lt;description&gt;{{ eip.content | xml_escape }}&lt;/description&gt;
+        &lt;pubDate&gt;{{ eip.created | date_to_rfc822 }}&lt;/pubDate&gt;
+        &lt;link&gt;{{ site.url }}{{ eip.url }}&lt;/link&gt;
+        &lt;guid isPermaLink=&quot;true&quot;&gt;{{ site.url }}{{ eip.url }}&lt;/guid&gt;
+      &lt;/item&gt;
+    {% endfor %}
+  &lt;/channel&gt;
+&lt;/rss&gt;
+</description>
+        <pubDate></pubDate>
+        <link>http://localhost:4000/rss/all.xml</link>
+        <guid isPermaLink="true">http://localhost:4000/rss/all.xml</guid>
+      </item>
+    
+      <item>
+        <title>Core</title>
+        <category>/</category>
+        
+        <description>{% assign eips=site.pages|where:&quot;type&quot;,&quot;Standards Track&quot;|where:&quot;category&quot;,&quot;Core&quot; %}
+{% include eiptable.html eips=eips %}
+</description>
+        <pubDate></pubDate>
+        <link>http://localhost:4000/core</link>
+        <guid isPermaLink="true">http://localhost:4000/core</guid>
+      </item>
+    
+      <item>
+        <title></title>
+        <category>/</category>
+        
+        <description>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;rss version=&quot;2.0&quot; xmlns:atom=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+  &lt;channel&gt;
+    &lt;title&gt;Ethereum EIPs - Last Call Review&lt;/title&gt;
+    &lt;description&gt;All EIPs which are in the &quot;last call&quot; status, please help review these and provide your feedback!&lt;/description&gt;
+    &lt;link&gt;{{ site.url }}&lt;/link&gt;
+    &lt;atom:link href=&quot;{{ site.url }}/rss/last-call.xml&quot; rel=&quot;self&quot; type=&quot;application/rss+xml&quot; /&gt;
+    &lt;lastBuildDate&gt;{{ site.time | date_to_rfc822 }}&lt;/lastBuildDate&gt;
+    {% assign eips = site.pages | sort: &apos;eip&apos; %}
+    {% for eip in eips %}
+      {% if eip.category == &quot;ERC&quot; %}
+      {% if eip.status == &quot;Last Call&quot; %}
+      {% capture description %}
+        &lt;p&gt;&lt;strong&gt;EIP #{{ eip.eip }} - {{eip.title }}&lt;/strong&gt; is in Last Call status. It is authored by {{ eip.author }} and was originally created {{ eip.created }}. It is in the {{ eip.category }} category of type {{ eip.type }}. Please review and note any changes that should block acceptance.&lt;/p&gt;
+        {% if eip.discussions-to %}
+          &lt;p&gt;The author has requested that discussions happen at the following URL: &lt;a href=&quot;{{ eip.discussions-to }}&quot;&gt;{{ eip.discussions-to }}&lt;/a&gt;&lt;/p&gt;
+        {% endif %}
+        &lt;hr /&gt;
+        {{ eip.content }}
+      {% endcapture %}
+      &lt;item&gt;
+        &lt;title&gt;{{ eip.title | xml_escape }}&lt;/title&gt;
+        &lt;description&gt;{{ description | xml_escape }}&lt;/description&gt;
+        &lt;pubDate&gt;{{ eip.created | date_to_rfc822 }}&lt;/pubDate&gt;
+        &lt;link&gt;{{ site.url }}/{{ eip.url }}&lt;/link&gt;
+        &lt;guid isPermaLink=&quot;true&quot;&gt;{{ site.url }}/{{ eip.url }}&lt;/guid&gt;
+      &lt;/item&gt;
+      {% endif %}
+      {% endif %}
+    {% endfor %}
+  &lt;/channel&gt;
+&lt;/rss&gt;
+</description>
+        <pubDate></pubDate>
+        <link>http://localhost:4000/rss/erc-last-call.xml</link>
+        <guid isPermaLink="true">http://localhost:4000/rss/erc-last-call.xml</guid>
+      </item>
+    
+      <item>
+        <title></title>
+        <category>/</category>
+        
+        <description>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;rss version=&quot;2.0&quot; xmlns:atom=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+  &lt;channel&gt;
+    &lt;title&gt;Ethereum ERCs&lt;/title&gt;
+    &lt;description&gt;All updates for ERCs&lt;/description&gt;
+    &lt;link&gt;{{ site.url }}&lt;/link&gt;
+    &lt;atom:link href=&quot;{{ site.url }}/rss/erc.xml&quot; rel=&quot;self&quot; type=&quot;application/rss+xml&quot; /&gt;
+    &lt;lastBuildDate&gt;{{ site.time | date_to_rfc822 }}&lt;/lastBuildDate&gt;
+    {% assign eips = site.pages | sort: &apos;eip&apos; %}
+    {% for eip in eips %}
+      {% if eip.category == &quot;ERC&quot; %}
+      {% capture description %}
+        &lt;p&gt;&lt;strong&gt;EIP #{{ eip.eip }} - {{eip.title }}&lt;/strong&gt; is in the {{ eip.category }} category of type {{ eip.type }} and was just updated.&lt;/p&gt;
+        {% if eip.discussions-to %}
+          &lt;p&gt;The author has requested that discussions happen at the following URL: &lt;a href=&quot;{{ eip.discussions-to }}&quot;&gt;{{ eip.discussions-to }}&lt;/a&gt;&lt;/p&gt;
+        {% endif %}
+        &lt;hr /&gt;
+        {{ eip.content }}
+      {% endcapture %}
+      &lt;item&gt;
+        &lt;title&gt;{{ eip.title | xml_escape }}&lt;/title&gt;
+        &lt;description&gt;{{ description | xml_escape }}&lt;/description&gt;
+        &lt;pubDate&gt;{{ eip.created | date_to_rfc822 }}&lt;/pubDate&gt;
+        &lt;link&gt;{{ site.url }}/{{ eip.url }}&lt;/link&gt;
+        &lt;guid isPermaLink=&quot;true&quot;&gt;{{ site.url }}/{{ eip.url }}&lt;/guid&gt;
+      &lt;/item&gt;
+      {% endif %}
+    {% endfor %}
+  &lt;/channel&gt;
+&lt;/rss&gt;
+</description>
+        <pubDate></pubDate>
+        <link>http://localhost:4000/rss/erc.xml</link>
+        <guid isPermaLink="true">http://localhost:4000/rss/erc.xml</guid>
+      </item>
+    
+      <item>
+        <title>Home</title>
+        <category>/</category>
+        
+        <description>&lt;h1 class=&quot;page-heading&quot;&gt;EIPs
+  &lt;a href=&quot;https://discord.io/EthCatHerders&quot;&gt;&lt;img src=&quot;https://dcbadge.vercel.app/api/server/Nz6rtfJ8Cu?style=flat&quot; alt=&quot;Discord channel for ECH eip-editer&quot;&gt;&lt;/a&gt;
+  &lt;a href=&quot;https://discord.gg/EVTQ9crVgQ&quot;&gt;&lt;img src=&quot;https://dcbadge.vercel.app/api/server/EVTQ9crVgQ?style=flat&quot; alt=&quot;Discord channel for Eth R&amp;D eip-editing&quot;&gt;&lt;/a&gt;
+  &lt;a href=&quot;https://discord.gg/mRzPXmmYEA&quot;&gt;&lt;img src=&quot;https://dcbadge.vercel.app/api/server/mRzPXmmYEA?style=flat&quot; alt=&quot;Discord server for discussions about proposals that impact Ethereum wallets&quot;&gt;&lt;/a&gt;
+  
+  &lt;a href=&quot;rss/last-call.xml&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/rss-Last Calls-red.svg&quot; alt=&quot;RSS&quot;&gt;&lt;/a&gt;
+  &lt;a href=&quot;rss/nonerc.xml&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/rss-All except ERC-red.svg&quot; alt=&quot;RSS&quot;&gt;&lt;/a&gt;
+  &lt;a href=&quot;https://eepurl.com/ikqNIP&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/-email%20alerts-red.svg&quot; alt=&quot;RSS&quot;&gt;&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Ethereum Improvement Proposals (EIPs) describe standards for the Ethereum platform, including core protocol specifications, client APIs, and contract standards. Network upgrades are discussed separately in the &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/ethereum/pm/&quot;&gt;Ethereum Project Management&lt;/a&gt; repository.&lt;/p&gt;
+
+&lt;h2&gt;Contributing&lt;/h2&gt;
+&lt;p&gt;First review &lt;a href=&quot;EIPS/eip-1&quot;&gt;EIP-1&lt;/a&gt;. Then clone the repository and add your EIP to it. There is a &lt;a href=&quot;https://github.com/ethereum/EIPs/blob/master/eip-template.md?plain=1&quot;&gt;template EIP here&lt;/a&gt;. Then submit a Pull Request to Ethereum&apos;s &lt;a href=&quot;https://github.com/ethereum/EIPs&quot;&gt;EIPs repository&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;EIP status terms&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Idea&lt;/strong&gt; - An idea that is pre-draft. This is not tracked within the EIP Repository.
+  &lt;li&gt;&lt;strong&gt;Draft&lt;/strong&gt; - The first formally tracked stage of an EIP in development. An EIP is merged by an EIP Editor into the EIP repository when properly formatted.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Review&lt;/strong&gt; - An EIP Author marks an EIP as ready for and requesting Peer Review.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Last Call&lt;/strong&gt; - This is the final review window for an EIP before moving to FINAL. An EIP editor will assign Last Call status and set a review end date (`last-call-deadline`), typically 14 days later. If this period results in necessary normative changes it will revert the EIP to Review.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Final&lt;/strong&gt; - This EIP represents the final standard. A Final EIP exists in a state of finality and should only be updated to correct errata and add non-normative clarifications.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Stagnant&lt;/strong&gt; - Any EIP in Draft or Review if inactive for a period of 6 months or greater is moved to Stagnant. An EIP may be resurrected from this state by Authors or EIP Editors through moving it back to Draft.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Withdrawn&lt;/strong&gt; - The EIP Author(s) have withdrawn the proposed EIP. This state has finality and can no longer be resurrected using this EIP number. If the idea is pursued at later date it is considered a new proposal.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Living&lt;/strong&gt; - A special status for EIPs that are designed to be continually updated and not reach a state of finality. This includes most notably EIP-1.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;EIP Types&lt;/h2&gt;
+
+&lt;p&gt;EIPs are separated into a number of types, and each has its own list of EIPs.&lt;/p&gt;
+
+&lt;h3&gt;Standard Track ({{site.pages|where:&quot;type&quot;,&quot;Standards Track&quot;|size}})&lt;/h3&gt;
+&lt;p&gt;Describes any change that affects most or all Ethereum implementations, such as a change to the network protocol, a change in block or transaction validity rules, proposed application standards/conventions, or any change or addition that affects the interoperability of applications using Ethereum. Furthermore Standard EIPs can be broken down into the following categories.&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href=&quot;{{&quot;core&quot;|relative_url}}&quot;&gt;Core&lt;/a&gt; ({{site.pages|where:&quot;type&quot;,&quot;Standards Track&quot;|where:&quot;category&quot;,&quot;Core&quot;|size}})&lt;/h4&gt;
+&lt;p&gt;Improvements requiring a consensus fork (e.g. &lt;a href=&quot;./EIPS/eip-5&quot;&gt;EIP-5&lt;/a&gt;, &lt;a href=&quot;./EIPS/eip-211&quot;&gt;EIP-211&lt;/a&gt;), as well as changes that are not necessarily consensus critical but may be relevant to “core dev” discussions (for example, the PoA algorithm for testnets described in &lt;a href=&quot;./EIPS/eip-225&quot;&gt;EIP-225&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href=&quot;{{&quot;networking&quot;|relative_url}}&quot;&gt;Networking&lt;/a&gt; ({{site.pages|where:&quot;type&quot;,&quot;Standards Track&quot;|where:&quot;category&quot;,&quot;Networking&quot;|size}})&lt;/h4&gt;
+&lt;p&gt;Includes improvements around devp2p (&lt;a href=&quot;./EIPS/eip-8&quot;&gt;EIP-8&lt;/a&gt;) and Light Ethereum Subprotocol, as well as proposed improvements to network protocol specifications of whisper and swarm.&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href=&quot;{{&quot;interface&quot;|relative_url}}&quot;&gt;Interface&lt;/a&gt; ({{site.pages|where:&quot;type&quot;,&quot;Standards Track&quot;|where:&quot;category&quot;,&quot;Interface&quot;|size}})&lt;/h4&gt;
+&lt;p&gt;Includes improvements around client API/RPC specifications and standards, and also certain language-level standards like method names (&lt;a href=&quot;./EIPS/eip-6&quot;&gt;EIP-6&lt;/a&gt;) and contract ABIs. The label “interface” aligns with the interfaces repo and discussion should primarily occur in that repository before an EIP is submitted to the EIPs repository.&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href=&quot;{{&quot;erc&quot;|relative_url}}&quot;&gt;ERC&lt;/a&gt; ({{site.pages|where:&quot;type&quot;,&quot;Standards Track&quot;|where:&quot;category&quot;,&quot;ERC&quot;|size}})&lt;/h4&gt;
+&lt;p&gt;Application-level standards and conventions, including contract standards such as token standards (&lt;a href=&quot;./EIPS/eip-20&quot;&gt;EIP-20&lt;/a&gt;), name registries (&lt;a href=&quot;./EIPS/eip-137&quot;&gt;EIP-137&lt;/a&gt;), URI schemes (&lt;a href=&quot;./EIPS/eip-681&quot;&gt;EIP-681&lt;/a&gt;), library/package formats (&lt;a href=&quot;./EIPS/eip-190&quot;&gt;EIP-190&lt;/a&gt;), and account abstraction (&lt;a href=&quot;./EIPS/eip-4337&quot;&gt;EIP-4337&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h3&gt;&lt;a href=&quot;{{&quot;meta&quot;|relative_url}}&quot;&gt;Meta&lt;/a&gt; ({{site.pages|where:&quot;type&quot;,&quot;Meta&quot;|size}})&lt;/h3&gt;
+&lt;p&gt;Describes a process surrounding Ethereum or proposes a change to (or an event in) a process. Process EIPs are like Standards Track EIPs but apply to areas other than the Ethereum protocol itself. They may propose an implementation, but not to Ethereum&apos;s codebase; they often require community consensus; unlike Informational EIPs, they are more than recommendations, and users are typically not free to ignore them. Examples include procedures, guidelines, changes to the decision-making process, and changes to the tools or environment used in Ethereum development. Any meta-EIP is also considered a Process EIP.&lt;/p&gt;
+</description>
+        <pubDate></pubDate>
+        <link>http://localhost:4000/</link>
+        <guid isPermaLink="true">http://localhost:4000/</guid>
+      </item>
+    
+      <item>
+        <title></title>
+        <category>/</category>
+        
+        <description>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;rss version=&quot;2.0&quot; xmlns:atom=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+  &lt;channel&gt;
+    &lt;title&gt;Ethereum EIPs - Last Call Review&lt;/title&gt;
+    &lt;description&gt;All EIPs which are in the two-week &quot;last call&quot; status, please help review these and provide your feedback!&lt;/description&gt;
+    &lt;link&gt;{{ site.url }}&lt;/link&gt;
+    &lt;atom:link href=&quot;{{ site.url }}/rss/last-call.xml&quot; rel=&quot;self&quot; type=&quot;application/rss+xml&quot; /&gt;
+    &lt;lastBuildDate&gt;{{ site.time | date_to_rfc822 }}&lt;/lastBuildDate&gt;
+    {% assign eips = site.pages | sort: &apos;eip&apos; %}
+    {% for eip in eips %}
+      {% if eip.status == &quot;Last Call&quot; %}
+      {% capture description %}
+        &lt;p&gt;&lt;strong&gt;EIP #{{ eip.eip }} - {{eip.title }}&lt;/strong&gt; is in Last Call status. It is authored by {{ eip.author }} and was originally created {{ eip.created }}. It is in the {{ eip.category }} category of type {{ eip.type }}. Please review and note any changes that should block acceptance.&lt;/p&gt;
+        {% if eip.discussions-to %}
+          &lt;p&gt;The author has requested that discussions happen at the following URL: &lt;a href=&quot;{{ eip.discussions-to }}&quot;&gt;{{ eip.discussions-to }}&lt;/a&gt;&lt;/p&gt;
+        {% endif %}
+        &lt;hr /&gt;
+        {{ eip.content }}
+      {% endcapture %}
+      &lt;item&gt;
+        &lt;title&gt;{{ eip.title | xml_escape }}&lt;/title&gt;
+        &lt;description&gt;{{ description | xml_escape }}&lt;/description&gt;
+        &lt;pubDate&gt;{{ eip.created | date_to_rfc822 }}&lt;/pubDate&gt;
+        &lt;link&gt;{{ site.url }}/{{ eip.url }}&lt;/link&gt;
+        &lt;guid isPermaLink=&quot;true&quot;&gt;{{ site.url }}/{{ eip.url }}&lt;/guid&gt;
+      &lt;/item&gt;
+      {% endif %}
+    {% endfor %}
+  &lt;/channel&gt;
+&lt;/rss&gt;
+</description>
+        <pubDate></pubDate>
+        <link>http://localhost:4000/rss/last-call.xml</link>
+        <guid isPermaLink="true">http://localhost:4000/rss/last-call.xml</guid>
+      </item>
+    
+      <item>
+        <title></title>
+        <category>/</category>
+        
+        <description>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;rss version=&quot;2.0&quot; xmlns:atom=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+  &lt;channel&gt;
+    &lt;title&gt;Ethereum EIPs - Last Call Review&lt;/title&gt;
+    &lt;description&gt;All EIPs which are in the two-week &quot;last call&quot; status, please help review these and provide your feedback!&lt;/description&gt;
+    &lt;link&gt;{{ site.url }}&lt;/link&gt;
+    &lt;atom:link href=&quot;{{ site.url }}/rss/last-call.xml&quot; rel=&quot;self&quot; type=&quot;application/rss+xml&quot; /&gt;
+    &lt;lastBuildDate&gt;{{ site.time | date_to_rfc822 }}&lt;/lastBuildDate&gt;
+    {% assign eips = site.pages | sort: &apos;eip&apos; %}
+    {% for eip in eips %}
+      {% unless eip.category == &quot;ERC&quot; %}
+      {% if eip.status == &quot;Last Call&quot; %}
+      {% capture description %}
+        &lt;p&gt;&lt;strong&gt;EIP #{{ eip.eip }} - {{eip.title }}&lt;/strong&gt; is in Last Call status. It is authored by {{ eip.author }} and was originally created {{ eip.created }}. It is in the {{ eip.category }} category of type {{ eip.type }}. Please review and note any changes that should block acceptance.&lt;/p&gt;
+        {% if eip.discussions-to %}
+          &lt;p&gt;The author has requested that discussions happen at the following URL: &lt;a href=&quot;{{ eip.discussions-to }}&quot;&gt;{{ eip.discussions-to }}&lt;/a&gt;&lt;/p&gt;
+        {% endif %}
+        &lt;hr /&gt;
+        {{ eip.content }}
+      {% endcapture %}
+      &lt;item&gt;
+        &lt;title&gt;{{ eip.title | xml_escape }}&lt;/title&gt;
+        &lt;description&gt;{{ description | xml_escape }}&lt;/description&gt;
+        &lt;pubDate&gt;{{ eip.created | date_to_rfc822 }}&lt;/pubDate&gt;
+        &lt;link&gt;{{ site.url }}/{{ eip.url }}&lt;/link&gt;
+        &lt;guid isPermaLink=&quot;true&quot;&gt;{{ site.url }}/{{ eip.url }}&lt;/guid&gt;
+      &lt;/item&gt;
+      {% endif %}
+      {% endunless %}
+    {% endfor %}
+  &lt;/channel&gt;
+&lt;/rss&gt;
+</description>
+        <pubDate></pubDate>
+        <link>http://localhost:4000/rss/nonerc-last-call.xml</link>
+        <guid isPermaLink="true">http://localhost:4000/rss/nonerc-last-call.xml</guid>
+      </item>
+    
+      <item>
+        <title></title>
+        <category>/</category>
+        
+        <description>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;rss version=&quot;2.0&quot; xmlns:atom=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+  &lt;channel&gt;
+    &lt;title&gt;Ethereum EIPs&lt;/title&gt;
+    &lt;description&gt;All EIPs that are not ERCs&lt;/description&gt;
+    &lt;link&gt;{{ site.url }}&lt;/link&gt;
+    &lt;atom:link href=&quot;{{ site.url }}/rss/last-call.xml&quot; rel=&quot;self&quot; type=&quot;application/rss+xml&quot; /&gt;
+    &lt;lastBuildDate&gt;{{ site.time | date_to_rfc822 }}&lt;/lastBuildDate&gt;
+    {% assign eips = site.pages | sort: &apos;eip&apos; %}
+    {% for eip in eips %}
+      {% unless eip.category == &quot;ERC&quot; %}
+      {% if eip.status == &quot;Last Call&quot; %}
+      {% capture description %}
+        &lt;p&gt;&lt;strong&gt;EIP #{{ eip.eip }} - {{eip.title }}&lt;/strong&gt; is in Last Call status. It is authored by {{ eip.author }} and was originally created {{ eip.created }}. It is in the {{ eip.category }} category of type {{ eip.type }}. Please review and note any changes that should block acceptance.&lt;/p&gt;
+        {% if eip.discussions-to %}
+          &lt;p&gt;The author has requested that discussions happen at the following URL: &lt;a href=&quot;{{ eip.discussions-to }}&quot;&gt;{{ eip.discussions-to }}&lt;/a&gt;&lt;/p&gt;
+        {% endif %}
+        &lt;hr /&gt;
+        {{ eip.content }}
+      {% endcapture %}
+      &lt;item&gt;
+        &lt;title&gt;{{ eip.title | xml_escape }}&lt;/title&gt;
+        &lt;description&gt;{{ description | xml_escape }}&lt;/description&gt;
+        &lt;pubDate&gt;{{ eip.created | date_to_rfc822 }}&lt;/pubDate&gt;
+        &lt;link&gt;{{ site.url }}/{{ eip.url }}&lt;/link&gt;
+        &lt;guid isPermaLink=&quot;true&quot;&gt;{{ site.url }}/{{ eip.url }}&lt;/guid&gt;
+      &lt;/item&gt;
+      {% endif %}
+      {% endunless %}
+    {% endfor %}
+  &lt;/channel&gt;
+&lt;/rss&gt;
+</description>
+        <pubDate></pubDate>
+        <link>http://localhost:4000/rss/nonerc.xml</link>
+        <guid isPermaLink="true">http://localhost:4000/rss/nonerc.xml</guid>
+      </item>
+    
+      <item>
+        <title>Precompile for secp256r1 Curve Support</title>
+        <category>Standards Track/Core</category>
+        
+          <comments>https://ethereum-magicians.org/t/eip-7212-precompiled-for-secp256r1-curve-support/14789</comments>
+        
+        <description>## Abstract
+
+This proposal creates a precompiled contract that performs signature verifications in the “secp256r1” elliptic curve by given parameters of message hash, `r` and `s` components of the signature, `x` and `y` coordinates of the public key. So that, any EVM chain - principally Ethereum rollups - will be able to integrate this precompiled contract easily.
+
+## Motivation
+
+“secp256r1” elliptic curve is a standardized curve by NIST which has the same calculations by different input parameters with “secp256k1” elliptic curve used by the “ecrecover” precompiled contract. The cost of combined attacks and the security conditions are almost the same for both curves. Adding a precompiled contract which is similar to &quot;ecrecover&quot; can provide signature verifications using the “secp256r1” elliptic curve in the smart contracts and multi-faceted benefits can occur. One important factor is that this curve is widely used and supported in many modern devices such as Apple’s Secure Enclave, Webauthn, Android Keychain which proves the user adoption. Additionally, the introduction of this precompiled contract could enable valuable features in the account abstraction which allows more efficient and flexible management of accounts by transaction signs in mobile devices.
+Most of the modern devices and applications rely on the “secp256r1” elliptic curve. The addition of this precompiled contract enables the verification of device native transaction signing mechanisms. For example:
+
+1. **Apple&apos;s Secure Enclave:** There is a separate “Trusted Execution Environment” in Apple hardware which can sign arbitrary messages and can only be accessed by biometric identification.
+2. **Webauthn:** Web Authentication (WebAuthn) is a web standard published by the World Wide Web Consortium (W3C). WebAuthn aims to standardize an interface for authenticating users to web-based applications and services using public-key cryptography. It is being used by almost all of the modern web browsers.
+3. **Android Keystore:** Android Keystore is an API that manages the private keys and signing methods. The private keys are not processed while using Keystore as the applications’ signing method. Also, it can be done in the “Trusted Execution Environment” in the microchip.
+4. **Passkeys:** Passkeys is utilizing FIDO Alliance and W3C standards. It replaces passwords with cryptographic key-pairs which is also can be used for the elliptic curve cryptography.
+
+Modern devices have these signing mechanisms that are designed to be more secure and they are able to sign transaction data, but none of the current wallets are utilizing these signing mechanisms. So, these secure signing methods can be enabled by the proposed precompiled contract to initiate the transactions natively from the devices and also, can be used for the key management. This proposal aims to reach maximum security and convenience for the key management.
+
+## Specification
+
+The key words &quot;MUST&quot;, &quot;MUST NOT&quot;, &quot;REQUIRED&quot;, &quot;SHALL&quot;, &quot;SHALL NOT&quot;, &quot;SHOULD&quot;, &quot;SHOULD NOT&quot;, &quot;RECOMMENDED&quot;, &quot;NOT RECOMMENDED&quot;, &quot;MAY&quot;, and &quot;OPTIONAL&quot; in this document are to be interpreted as described in RFC 2119 and RFC 8174.
+
+As of `FORK_TIMESTAMP` in the integrated EVM chain, add precompiled contract `P256VERIFY` for signature verifications in the “secp256r1” elliptic curve at address `PRECOMPILED_ADDRESS` in `0x100` (indicates 0x0000000000000000000000000000000000000100).
+
+### Elliptic Curve Information
+
+“secp256r1” is a specific elliptic curve, also known as “P-256” and “prime256v1” curves. The curve is defined with the following equation and domain parameters:
+
+```
+# curve: short weierstrass form
+y^2 ≡ x^3 + ax + b
+
+# p: curve prime field modulus
+0xffffffff00000001000000000000000000000000ffffffffffffffffffffffff
+
+# a: elliptic curve short weierstrass first coefficient
+0xffffffff00000001000000000000000000000000fffffffffffffffffffffffc
+
+# b: elliptic curve short weierstrass second coefficient
+0x5ac635d8aa3a93e7b3ebbd55769886bc651d06b0cc53b0f63bce3c3e27d2604b
+
+# G: base point of the subgroup
+(0x6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296,
+ 0x4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5)
+
+# n: subgroup order (number of points)
+0xffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc632551
+
+# h: cofactor of the subgroup
+0x1
+
+```
+
+### Elliptic Curve Signature Verification Steps
+
+The signature verifying algorithm takes the signed message hash, the signature components provided by the “secp256r1” curve algorithm, and the public key derived from the signer private key. The verification can be done with the following steps:
+
+```
+# h (message hash)
+# pubKey = (public key of the signer private key)
+
+# Calculate the modular inverse of the signature proof:
+s1 = s^(−1) (mod n)
+
+# Recover the random point used during the signing:
+R&apos; = (h * s1) * G + (r * s1) * pubKey
+
+# Take from R&apos; its x-coordinate:
+r&apos; = R&apos;.x
+
+# Calculate the signature validation result by comparing whether:
+r&apos; == r
+
+```
+
+### Required Checks in Verification
+
+The following requirements **MUST** be checked by the precompiled contract to verify signature components are valid:
+
+- Verify that the `r` and `s` values are in `(0, n)` (exclusive) where `n` is the order of the subgroup.
+- Verify that the point formed by `(x, y)` is on the curve and that both `x` and `y` are in `[0, p)` (inclusive 0, exclusive p) where `p` is the prime field modulus. Note that many implementations use `(0, 0)` as the reference point at infinity, which is not on the curve and should therefore be rejected.
+
+### Precompiled Contract Specification
+
+The `P256VERIFY` precompiled contract is proposed with the following input and outputs, which are big-endian values:
+
+- **Input data:** 160 bytes of data including:
+    - 32 bytes of the signed data `hash`
+    - 32 bytes of the `r` component of the signature
+    - 32 bytes of the `s` component of the signature
+    - 32 bytes of the `x` coordinate of the public key
+    - 32 bytes of the `y` coordinate of the public key
+- **Output data:** 32 bytes of result data and error
+    - If the signature verification process succeeds, it returns 1 in 32 bytes format.
+
+### Precompiled Contract Gas Usage
+
+The use of signature verification cost by `P256VERIFY` is `3450` gas. Following reasons and calculations are provided in the [Rationale](#rationale) and [Test Cases](#test-cases) sections.
+
+## Rationale
+
+“secp256r1” ECDSA signatures consist of `v`, `r`, and `s` components. While the `v` value makes it possible to recover the public key of the signer, most signers do not generate the `v` component of the signature since `r` and `s` are sufficient for verification. In order to provide an exact and more compatible implementation, verification is preferred over recovery for the precompile.
+
+Existing P256 implementations verify `(x, y, r, s)` directly. We&apos;ve chosen to match this style here, encoding each argument for the EVM as a `uint256`.
+
+This is different from the `ecrecover` precompiled address specification. The advantage is that it 1. follows the NIST specification (as defined in NIST FIPS 186-5 Digital Signature Standard (DSS)), 2. matches the rest of the (large) P256 ecosystem, and most importantly 3. allows execution clients to use existing well-vetted verifier implementations and test vectors.
+
+Another important difference is that the NIST FIPS 186-5 specification does not include a malleability check. We&apos;ve matched that here in order to maximize compatibility with the large existing NIST P-256 ecosystem.
+
+Wrapper libraries **SHOULD** add a malleability check by default, with functions wrapping the raw precompile call (exact NIST FIPS 186-5 spec, without malleability check) clearly identified. For example, `P256.verifySignature` and `P256.verifySignatureWithoutMalleabilityCheck`. Adding the malleability check is straightforward and costs minimal gas.
+
+The `PRECOMPILED_ADDRESS` is chosen as `0x100` as `P256VERIFY` is the first precompiled contract presented as an RIP, and the address is the first available address in the precompiled address set that is reserved for the RIP precompiles.
+
+The gas cost is proposed by comparing the performance of the `P256VERIFY` and the `ECRECOVER` precompiled contract which is implemented in the EVM at `0x01` address. It is seen that “secp256r1” signature verification is ~15% slower (elaborated in [test cases](#test-cases)) than “secp256k1” signature recovery, so `3450` gas is proposed by comparison which causes similar “mgas/op” values in both precompiled contracts.
+
+## Backwards Compatibility
+
+No backward compatibility issues found as the precompiled contract will be added to `PRECOMPILED_ADDRESS` at the next available address in the precompiled address set.
+
+## Test Cases
+
+Functional tests are applied for multiple cases in the [reference implementation](#reference-implementation) of `P256VERIFY` precompiled contract and they succeed. Benchmark tests are also applied for both `P256VERIFY` and `ECRECOVER` with some pre-calculated data and signatures in the “go-ethereum”s precompile testing structure to propose a meaningful gas cost for the “secp256r1” signature verifications by the precompiled contract implemented in the [reference implementation](#reference-implementation). The benchmark test results by example data in the assets can be checked:
+
+- [P256Verify Benchmark Test Results](/assets/rip-7212/p256Verify_benchmark_test)
+- [Ecrecover Benchmark Test Results](/assets/rip-7212/ecrecover_benchmark_test)
+
+```
+# results of geth benchmark tests of
+# ECRECOVER and P256VERIFY (reference implementation)
+# by benchstat tool
+
+goos: darwin
+goarch: arm64
+pkg: github.com/ethereum/go-ethereum/core/vm
+                                            │ compare_p256Verify │ compare_ecrecover  │
+                                            │       sec/op       │   sec/op           │
+PrecompiledP256Verify/p256Verify-Gas=3450-8          57.75µ ± 1%
+PrecompiledEcrecover/-Gas=3000-8                                   50.48µ ± 1%
+geomean                                              57.75µ        50.48µ
+
+                                            │ compare_p256Verify │ compare_ecrecover  │
+                                            │       gas/op       │   gas/op           │
+PrecompiledP256Verify/p256Verify-Gas=3450-8          3.450k ± 0%
+PrecompiledEcrecover/-Gas=3000-8                                   3.000k ± 0%
+geomean                                              3.450k        3.000k
+
+                                            │ compare_p256Verify │ compare_ecrecover │
+                                            │       mgas/s       │   mgas/s          │
+PrecompiledP256Verify/p256Verify-Gas=3450-8           59.73 ± 1%
+PrecompiledEcrecover/-Gas=3000-8                                   59.42 ± 1%
+geomean                                               59.73        59.42
+
+                                            │ compare_p256Verify │ compare_ecrecover │
+                                            │        B/op        │    B/op           │
+PrecompiledP256Verify/p256Verify-Gas=3450-8         1.523Ki ± 0%
+PrecompiledEcrecover/-Gas=3000-8                                   800.0 ± 0%
+geomean                                             1.523Ki        800.0
+
+                                            │ compare_p256Verify │ compare_ecrecover │
+                                            │     allocs/op      │ allocs/op         │
+PrecompiledP256Verify/p256Verify-Gas=3450-8           33.00 ± 0%
+PrecompiledEcrecover/-Gas=3000-8                                   7.000 ± 0%
+geomean                                               33.00        7.000
+
+```
+
+## Reference Implementation
+
+Implementation of the `P256VERIFY` precompiled contract is applied to go-ethereum client to create a reference. Also, a “secp256r1” package has already been included in the Besu Native library which is used by Besu client. Other client implementations are in the future roadmap.
+
+## Security Considerations
+
+The changes are not directly affecting the protocol security, it is related with the applications using `P256VERIFY` for the signature verifications. The “secp256r1” curve has been using in many other protocols and services and there is not any security issues in the past.
+
+
+## Copyright
+
+Copyright and related rights waived via [CC0](/LICENSE).
+</description>
+        <pubDate>Thu, 22 Jun 2023 00:00:00 +0530</pubDate>
+        <link>http://localhost:4000/RIPS/rip-7212</link>
+        <guid isPermaLink="true">http://localhost:4000/RIPS/rip-7212</guid>
+      </item>
+    
+      <item>
+        <title>Native Account Abstraction</title>
+        <category>Standards Track/Core</category>
+        
+          <comments>https://ethereum-magicians.org/t/rip-7560-native-account-abstraction/16664</comments>
+        
+        <description>## Abstract
+
+Combining the [EIP-2938](./eip-2938)
+and [ERC-4337](./eip-4337)
+into a comprehensive Native Account Abstraction proposal.
+
+We propose splitting the Ethereum transaction scope into multiple steps: validations, execution,
+and post-transaction logic.
+Transaction validity is determined by the result of the validation steps of a transaction.
+
+We further separate transaction validation for the purposes of authorization and the gas fee payment,
+allowing contract B to pay gas for a transaction that will be executed from account contract A.
+
+The benefits are in backward compatibility with the emerging ERC-4337 ecosystem while achieving the
+long-term goal of Native Account Abstraction.
+
+## Motivation
+
+ERC-4337 can do a lot as a purely voluntary ERC. However, any of the out-of-protocol ways of achieving
+Account Abstraction faces several drawbacks compared to native support. There are a few key areas where
+it is weaker than a truly in-protocol solution:
+
+* Existing users cannot benefit from it or upgrade to use it without moving all their assets and activity
+  to a new account.
+
+* Extra gas overhead of ~42k for a basic `UserOperation` compared to ~21k for a basic transaction.
+
+* Less benefit from in-protocol censorship resistance techniques such as crLists, which target transactions
+  and would miss `UserOperations`.
+
+* Relying on a significantly smaller set of participating nodes and non-standard RPC methods like
+  `eth_sendRawTransactionConditional`.
+
+* Inability to use `tx.origin` or contracts that rely on it as it returns the meaningless address of a bundler.
+
+EIP-2938 defines a very mature alternative approach to Account Abstraction. However, it does not translate
+well to the architecture of ERC-4337 that is being used in production without any protocol changes.
+Therefore, the implementation of EIP-2938 will not benefit as much from the production experience gained by using
+ERC-4337 and from maintaining backward compatibility with it.
+
+There is also a possibility that at some point in the future, the EOAs on Ethereum will be replaced with pre-deployed
+smart contracts. This, however, is impossible without an addition of Native Account Abstraction to the protocol.
+
+## Specification
+
+### Constants
+
+| Name                  | Value                                                                           |
+|-----------------------|---------------------------------------------------------------------------------|
+| FORK_BLOCK            | 	TBD                                                                            |
+| AA_TX_TYPE            | 4                                                                               |
+| AA_ENTRY_POINT        | `address(7560)`                                                                 |
+| AA_SENDER_CREATOR     | `address(ffff7560)`                                                             |
+| AA_NONCE_MANAGER      | TODO                                                                            |
+| AA_BASE_GAS_COST      | 15000                                                                           |
+| AA_ECRECOVER_COST     | 6000                                                                            |
+| VERSION               | 1                                                                               |
+| MAGIC_VALUE_SENDER    | 0xbf45c166  // bytes4(keccak256(&quot;validateTransaction(uint256,bytes32,bytes)&quot;))          |
+| MAGIC_VALUE_PAYMASTER | 0xe0e6183a  // bytes4(keccak256(&quot;validatePaymasterTransaction(uint256,bytes32,bytes)&quot;)) |
+| MAX_CONTEXT_SIZE      | 65536                                                                           |
+| UNUSED_GAS_PENALTY    | 10                                                                              |
+
+### New Transaction Type
+
+A new [EIP-2718](./eip-2718) transaction with type AA_TX_TYPE is introduced. Transactions of this type are referred to as
+“AA transactions”. Their payload should be interpreted as:
+
+```
+
+0x04 || 0x00 || rlp([
+  chainId, sender, nonce, builderFee,
+  callData, paymasterData, deployerData,
+  maxPriorityFeePerGas, maxFeePerGas,
+  validationGasLimit, paymasterGasLimit, callGasLimit,
+  accessList, signature
+])
+
+```
+
+The base gas cost of this transaction is set to AA_BASE_GAS_COST instead of 21000 to reflect the lack of “intrinsic”
+ECDSA signature verification.
+
+If `paymasterData` is specified, its first 20 bytes contain the address of a `paymaster` contract.
+
+If `deployerData` is specified, its first 20 bytes contain the address of a `deployer` contract.
+
+### Optional &quot;transaction counter header&quot;
+
+In some cases the block builders may want to split up an array of type `AA_TX_TYPE` transactions into individual
+batches of transactions that perform validations and executions separately.
+
+Without a header transaction type this would only be possible by creating an artificial legacy type transaction.
+Instead, we propose to introduce an explicit &quot;counter&quot; transaction subtype.
+
+Their payload should be interpreted as:
+
+```
+0x04 || 0x01 || rlp([chainId, transactionCount])
+```
+
+Header transactions have a unique hash calculated as follows:
+
+```
+keccak256(AA_TX_TYPE || 0x01 || rlp(chainId, transactionCount, blockNumber, txIndex))
+```
+
+The `blockNumber` and `txIndex` parameters are added to the hash to achieve unique header transaction IDs.
+
+The header transactions are only used to help execution clients determine how many of the `AA_TX_TYPE` transactions
+belong to each individual batch.
+The block is not valid if a header transaction is located anywhere except before an `AA_TX_TYPE` transactions.\
+If a header transaction is included all `AA_TX_TYPE` transactions in the block must be covered by one.
+
+Header transactions do not affect blockchain state and do not cost any gas.
+
+### Non-sequential nonce support
+
+Before RIP-7560, for accounts with associated code (smart contracts), the account nonce is only used and incremented
+when the account executes the `CREATE` (`0xf0`) opcode.
+
+However, with Smart Contract Accounts this creates a bottleneck for some use-cases.
+For example, an account that is operated by multiple participants simultaneously will require these participants
+to coordinate their transactions to avoid invalidating each other.
+
+Another example when this can also be a limitation is a case where there are separate execution flows.
+A configuration change may require multiple participants to co-sign a transaction but a regular operation does not.
+With sequential nonces, all operations will have to be halted until the configuration change is executed.
+
+To address it we propose an introduction of a separate 2-dimensional nonce used when contracts initiate a transaction.
+
+The `nonce` parameter of the transaction is to be interpreted as `uint192 key || uint64 seq` value.
+The contract account nonce is then defined as a mapping `address account =&gt; uint192 key =&gt; uint64 seq`.
+This approach guarantees unique transaction nonce and hash but removes the requirement of nonce being sequential
+numbers.
+
+This `nonce` is exposed to the EVM in a `NonceManager` pre-deployed contract located at the AA_NONCE_MANAGER address.
+
+The `nonce` is [validated and incremented](#nonce-validation-frame) on-chain before the rest of the validation code.
+
+The old `nonce` account parameter remains in use for transactions initiated by EOAs and for the `CREATE` opcode.
+
+#### NonceManager Pseudocode
+
+```
+
+if evm.caller == AA_ENTRY_POINT:
+    validate_increment()
+else:
+    get()
+
+def get():
+    if len(evm.calldata) != 44:
+        evm.revert()
+
+    // address sender, uint192 key
+    address = to_uint160_be(evm.calldata[0:20])
+    key = to_uint192_be(evm.calldata[20:44])
+
+    nonce = storage.get(keccak(address, key))
+
+    evm.return((key &lt;&lt; 64) + nonce)
+
+def validate_increment():
+
+    address = to_uint160_be(evm.calldata[0:20])
+    key = to_uint192_be(evm.calldata[20:44])
+    nonce = to_uint64_be(evm.calldata[44:52])
+
+    current_nonce = storage.get(keccak(address, key))
+
+    if (nonce != current_nonce):
+        evm.revert()
+
+    storage.set(kecca
+    k(address, key), current_nonce + 1)
+
+```
+
+#### NonceManager Bytecode and deployment
+
+TODO.
+
+### Gas fees are charged directly from the contract balance
+
+The maximum gas cost of the AA_TX_TYPE transaction is defined as:
+
+```
+
+maxPossibleGasCost = AA_BASE_GAS_COST +
+  callGasLimit +
+  paymasterGasLimit +
+  validationGasLimit
+
+```
+
+If `paymaster` is not specified, the `maxPossibleGasCost` is charged up-front, before any computation is done in any
+execution frame, from the balance of the `sender` address.
+If `paymaster` is specified, the gas cost is charged from its balance.
+The transaction is invalid if the balance of the account that is being pre-charged,
+whether it is a `sender` or a `paymaster`, is insufficient.
+After the transaction finishes its execution, the address that was pre-charged may receive a gas refund.
+
+### Gas fees charged for transaction input
+
+For all the existing transaction types, G_txdatazero (4 gas) and G_txdatanonzero (16 gas) per byte is
+charged for the `data` parameter.
+
+Transaction Type AA_TX_TYPE introduces the following dynamic length inputs: `callData`, `paymasterData`,
+`deployerData`, `signature`. Each of these parameters&apos; gas cost is counted towards transaction data cost.
+This transaction data gas cost is referred to as `calldataCost` and is subtracted from the `validationGasLimit`
+before execution of the transaction.
+The transaction is considered INVALID if `validationGasLimit` is smaller than `calldataCost`.
+
+### Builder Fee
+
+As we need to account for an additional off-chain work that block builders have to perform to
+include `AA_TX_TYPE` transactions in their blocks, as well as a potential L1 gas cost for builders
+operating on L2 rollups, and given that this work does not correspond to the amount of gas spent on
+validation and is not linked to the gas price, the `sender` may decide
+to pay an extra `builderFee` as a &quot;tip&quot; to the block builder.
+
+This value is denominated in wei and is passed from the `sender`, or the `paymaster` if it is specified,
+to the `coinbase` of the current block as part of the gas pre-charge.
+
+### Unused gas penalty charge
+
+Transactions of type `AA_TX_TYPE` that reserve a lot of gas for themselves using `validationGasLimit`,
+`paymasterGasLimit` and `callGasLimit` fields but do not use the reserved gas present a challenge for
+block builders. This is especially demanding in case a gas used by a transaction can be significantly different
+based on its position within a block, as such transactions may cause the block builder to iterate its algorithm
+many times until a fully utilized block is discovered.
+
+A penalty of `UNUSED_GAS_PENALTY` percent of the entire unused gas limit is charged from the
+transaction `sender` or `paymaster`.
+
+The total gas limit is calculated as `totalLimit = validationGasLimit + paymasterGasLimit + callGasLimit`.\
+The `totalGasUsed` is calculated as a sum of all gas used during the transaction.\
+The unused gas is calculated as `unusedGas = totalLimit - totalGasUsed`.
+
+### Multiple execution frames for a single transaction
+
+All existing transaction types only have an implicit validation phase where balance, nonce, and signature are checked,
+and a single top-level execution frame with
+`tx.origin == msg.sender` which is the address that is determined by a transaction ECDSA signature.
+
+When processing a transaction of type `AA_TX_TYPE`, however, multiple execution frames will be created.
+The full list of possible frames tries to replicate the ERC-4337 flow:
+
+1. Validation Phase
+   * `nonce` validation and increment frame (required)
+   * `sender` deployment frame (once per account)
+   * `sender` validation frame (required)
+   * `paymaster` validation frame (optional)
+2. Execution Phase
+   * `sender` execution frame (required)
+   * `paymaster` post-transaction frame (optional)
+
+All execution frames in the &quot;Validation Phase&quot; must be completed successfully without reverting, and the return value
+for `sender` and `paymaster` validation frames must include `MAGIC_VALUE_SENDER` and `MAGIC_VALUE_PAYMASTER` accrodingly
+in order for the transaction to be considered valid for a given position in a block.
+
+In terms of block validity, all validation and execution frames may read and write any state when included in the block.
+However, the AA transactions in the mempool SHOULD be bound by storage access rules to avoid DoS on block builders.
+These rules are defined in [ERC-7562](./eips/eip-7562).
+
+In all top-level frames, the global variables have the following meaning:
+
+| Opcode Name | Solidity Equivalent | Value                                                                         |
+|-------------|---------------------|-------------------------------------------------------------------------------|
+| `CALLER`    | `msg.sender`        | The `AA_ENTRY_POINT` address. `AA_SENDER_CREATOR` for the &quot;deployment frame&quot;. |
+| `ORIGIN`    | `tx.origin`         | The transaction `sender` address                                              |
+| `CALLDATA*` | `msg.data`          | The transaction data is set to inputs of the corresponding frame              |
+
+#### Nonce validation frame
+
+The `NonceManager` is invoked with the following data:
+
+```solidity
+abi.encodePacked(sender, nonce)
+```
+
+#### Sender deployment frame
+
+The `deployer` address is invoked with the `deployerData[20:]` as call data input.
+It is important that the `deployer` is **not** invoked from the `AA_ENTRY_POINT` but from the `AA_SENDER_CREATOR`.
+This is necessary to guarantee that `AA_ENTRY_POINT` may never initiate a call to a `sender` execution function
+without first completing a successful validation.
+
+The gas limit of this frame is set to `validationGasLimit`.
+The amount of gas used by this frame is referred to as `senderCreationGasUsed`.
+
+The sender deployment frame MUST result in the `sender` address becoming
+initialized with contract code.
+
+#### Sender validation frame
+
+We define the following Solidity struct to represent the AA transaction on-chain:
+
+```solidity
+
+struct TransactionType4 {
+    address sender;
+    uint256 nonce;
+    uint256 validationGasLimit;
+    uint256 paymasterGasLimit;
+    uint256 callGasLimit;
+    uint256 maxFeePerGas;
+    uint256 maxPriorityFeePerGas;
+    uint256 builderFee;
+    bytes paymasterData;
+    bytes deployerData;
+    bytes callData;
+    bytes signature;
+}
+
+```
+
+We then define the following Solidity method and the `sender` of the transaction is invoked with the corresponding data:
+
+```solidity
+
+function validateTransaction(uint256 version, bytes32 txHash, bytes transaction) external returns (uint256 validationData);
+
+```
+
+The gas limit of this frame is set to `validationGasLimit - senderCreationGasUsed - calldataCost`.\
+The `transaction` parameter is interpreted as an ABI encoding of `TransactionType4`.\
+The `txHash` parameter represents the hash of the AA_TX_TYPE transaction with empty signature, as defined in section
+[Calculation of Transaction Type AA_TX_TYPE hash](#calculation-of-transaction-type-aatxtype-hash).\
+The `version` parameter is added in order to maintain the Solidity method ID in case of changes to this struct
+in future revisions of this EIP.
+
+The amount of gas used by this frame is referred to as `senderValidationGasUsed`.
+
+The frame must return 32 bytes `validationData` that is interpreted as:
+
+```solidity
+
+abi.encodePacked(MAGIC_VALUE_SENDER, validUntil, validAfter)
+
+```
+
+In order to allow a gas estimation to determine the amount of gas that this frame
+requires to complete successfully while not having the actual `signature` value, this function
+should avoid reverting on invalid signature, and should return a value different from `MAGIC_VALUE_SENDER`.
+
+Type of the `validUntil` is 6-byte timestamp value, or zero for &quot;infinite&quot;. The transaction is valid only up to this time.
+Type of the `validAfter` is 6-byte timestamp. The transaction is valid only after this time.
+
+The `validateTransaction` function can choose to revert on any condition that can be satisfied during gas estimation.
+
+#### Paymaster validation frame
+
+The `paymaster` of the transaction, if specified, is invoked with the following data:
+
+```solidity
+
+function validatePaymasterTransaction(uint256 version, bytes32 txHash, bytes transaction) external returns (bytes context, uint256 validationData);
+
+```
+
+The gas limit of this frame is set to `paymasterGasLimit`.
+
+The amount of gas used by this frame is referred to as `paymasterValidationGasUsed`.
+
+The `transaction` parameter is interpreted as an ABI encoding of `TransactionType4`.\
+The `txHash` parameter represents the hash of the AA_TX_TYPE transaction with empty signature, as defined in section
+[Calculation of Transaction Type AA_TX_TYPE hash](#calculation-of-transaction-type-aatxtype-hash).
+
+The frame must return a bytes array that is interpreted as:
+
+```solidity
+
+abi.encode(context, MAGIC_VALUE_PAYMASTER, validUntil, validAfter)
+
+```
+
+Same as in the [`sender` validation frame](#sender-validation-frame), in order to support gas estimation this
+frame should return a value different from `MAGIC_VALUE_PAYMASTER` for conditions that cannot be satisfied
+before signing.
+
+The size of the `context` byte array may not exceed `MAX_CONTEXT_SIZE` for a transaction to be considered valid.
+
+#### Sender execution frame
+
+The `sender` address is invoked with `callData` input.
+
+The gas limit of this frame is set to `callGasLimit`.\
+Calculation of the `calldataCost` value is defined in the
+[Gas fees charged for transaction input](#gas-fees-charged-for-transaction-input) section.\
+The amount of gas used by this frame is referred to as `gasUsedByExecution`.
+
+The validation frames do not revert if the execution frame reverts.
+The `postPaymasterTransaction` may still be called with a `success: false` flag.
+
+#### Paymaster post-transaction frame
+
+After the sender execution frame is over the `paymaster` may need to perform some post-transaction logic,
+for instance to perform some kind of cleanup or bookkeeping.
+If the gas payment validation returned a non-zero `context`, the `paymaster` is invoked again
+with the following inputs:
+
+```solidity
+
+function postPaymasterTransaction(bool success, uint256 actualGasCost, bytes context) external;
+
+```
+
+The `actualGasCost` parameter is the actual amount paid by the paymaster for this transaction,
+and `success` indicates whether this transaction&apos;s execution frame completed without revert.
+
+The gas limit of this frame is set to `paymasterGasLimit - paymasterValidationGasUsed`.
+
+Revert in the `postPaymasterTransaction` frame reverts the transaction&apos;s execution frame as well.
+The validation frames do not revert if the `postPaymasterTransaction` frame reverts.
+The gas fees charged from the `paymaster` will still include the gas cost of the reverted execution frame.
+
+### Execution flow diagram
+
+The execution flow determined by an Account Abstraction Transaction is visualised by the following flow diagram:
+
+![](/assets/rip-7560/flow_diagram.png)
+*Execution flow for the Native Account Abstraction Transactions*
+
+### Execution layer transaction validation
+
+On the execution layer, the transaction validity conditions for a block are extended as follows:
+
+```
+
+func validateAccountAbstractionTransaction(tx *Transaction) {
+    assert !(sender.code.length &gt; 0 &amp;&amp; deployerData.length &gt; 0)
+
+    if (sender.code.length == 0 &amp;&amp; deployerData.length == 0) {
+        validUntil = (nonce &gt;&gt; 112) &amp; 0xffffffffffff
+        validAfter = (nonce &gt;&gt; 160) &amp; 0xffffffffffff
+        assert Date.now() &lt;= validUntil
+        assert Date.now() &gt;= validAfter
+    }
+
+    if (sender.code.length == 0 &amp;&amp; deployerData.length &gt; 0) {
+        assert deployerData.length &gt;= 20
+        deployer := deployerData[0:20]
+        calldataCost := calculateCalldataCost(tx)
+        retDeployer, error := evm.Call(
+            from: AA_SENDER_CREATOR,
+            to: deployer,
+            input: deployerData[20:],
+            gas: validationGasLimit - calldataCost)
+        assert error == nil
+        assert sender.code.length &gt; 0
+    }
+
+    if (paymasterData.length &gt; 0) {
+        assert paymasterData.length &gt;= 20
+        paymaster := paymasterData[0:20]
+        paymasterInput := ABI.encodeWithSelector(&apos;validatePaymasterTransaction&apos;, tx, tx.hash)
+        retPaymaster, error := evm.Call(
+            from: AA_ENTRY_POINT,
+            to: paymaster,
+            input: paymasterInput,
+            gas: paymasterGasLimit)
+        assert error == nil
+        assert Date.now() &lt;= retPaymaster.validUntil
+        assert Date.now() &gt;= retPaymaster.validAfter
+        assert retPaymaster.isValid
+    }
+
+    if (sender.code.length == 0) {
+      signer := ecrecover(tx.hash, tx.signature)
+      assert signer == sender.address
+    } else {
+      senderInput := ABI.encodeWithSelector(&apos;validateTransaction&apos;, tx, tx.hash);
+      retSender, error := evm.Call(
+          from: AA_ENTRY_POINT,
+          to: sender,
+          input: senderInput,
+          gas: validationGasLimit - retDeployer.gasUsed)
+      assert error == nil
+      assert Date.now() &lt;= retSender.validUntil
+      assert Date.now() &gt;= retSender.validAfter
+      assert retSender.isValid
+    }
+}
+
+```
+
+In order to defend from DoS attack vectors, the block builders performing mempool transaction validation SHOULD consider
+the opcode banning and storage access rules described in ERC-7562.
+
+[Block validation](#execution-layer-block-validation) takes roughly the same amount of work as without AA transactions.
+In any case, validation must execute the entire block in order to verify the state change.
+During this execution, it currently verifies signatures, nonces, and gas payment.
+With Account Abstraction, it will also verify that all the validation frames were successful.
+There is a slight increase in required memory mostly used to store the `context` value that is passed from
+the `paymaster` validation frame to its post-transaction frame.
+
+As long as all transaction validation steps return correct values the block is considered valid.
+Block builders who are willing to relax the rules applied to the validation frames MAY do so.
+
+Such transactions MUST NOT be propagated through the default transaction mempool as they will be rejected by the nodes
+and the sending node will be blocked as a spammer.
+They may be propagated in the alternative mempool that allows them explicitly as defined in ERC-7562.
+
+### All validation state changes apply before all execution ones
+
+Filling a block with AA transactions must not be a challenge for the block builder.
+However, if each transaction during its execution can alter any state that affects the validity of another transaction
+in the mempool, the block builder will be forced to revalidate all transactions in the mempool after each inclusion.
+
+We mitigate that by applying all changes in all the validation frames of a sequence of AA transactions first
+and all execution frames apply immediately after that.
+
+In theory, the validation frames can also invalidate each other, but we define ways to prevent that by applying
+certain rules for the mempool transactions in ERC-7562.
+
+A builder that chooses not to enforce the rules from ERC-7562 **must** take care to re-validate each transaction
+against the mid-block state at the position where it is being included into a block.
+Otherwise, the resulting block is likely to end up being invalid.
+
+### Block structure diagram
+
+Here is a visual representation of a block that contains multiple Account Abstraction Transactions.
+The validation parts of AA transactions are executed as separate transactions,
+but are not represented as separate transactions in the block data.
+
+![](/assets/rip-7560/block_overview.png)
+*The structure of a block containing multiple Native Account Abstraction Transactions*
+
+Zooming into a single transaction, the validation part of an AA transaction may include multiple exectution frames:
+
+![](/assets/rip-7560/zoom_into_transaction.png)
+*Frames within a single Native Account Abstraction Transaction within a block*
+
+### Validation state change virtual transactions
+
+The validation frames of the AA_TX_TYPE transaction are represented as individual virtual transactions by the clients.
+They are assigned their own sequential `transactionIndex`, and their `transactionHash` is defined as
+(`AA_TX_TYPE transaction hash + 1`).
+
+All block-related RPC methods, like `eth_getBlockByHash` and `eth_getBlockByNumber`, must include these virtual
+transactions as part of the `transactions` field and include validation in the block transaction count.
+
+All transaction-related RPC methods, like `eth_getTransactionByHash` and `eth_getTransactionReceipt`, must
+accept the virtual transaction hash as input and return the details calculated as if the validation was a
+separate transaction.
+
+There is a number of behaviours that define transaction-wide effects in Ethereum.
+This list includes, but is not limited to:
+
+* Tracking `accessed_addresses`
+* [EIP-1283](./eip-1283) Gas metering for SSTORE
+* [EIP-1153](./eip-1153) Transient storage opcodes
+
+Any such behaviour has separate effects in the &quot;Validation Virtual Transaction&quot; and &quot;Execution Transaction&quot;.
+
+Gas refunds are issued at the end of the entire transaction only.
+
+### Transaction validity time range parameters
+
+The `Paymaster validation frame` and the `Sender validation frame` each return values `validUntil` and `validAfter`.
+If the transaction is initiated by an EOA, these fields may be encoded into unused bits of the `nonce`.
+
+These values allow the `sender` and `paymaster` contracts to specify
+a time range for the blocks the transaction will be valid for.
+
+Transaction cannot be included in a block outside of this time range.
+If included, such a block is considered invalid.
+
+Passing `validUntil = 0` and `validAfter = 0` disables the check.
+
+### Calculation of Transaction Type AA_TX_TYPE hash
+
+```
+
+keccak256(AA_TX_TYPE || 0x00 || rlp(transaction_payload)
+
+```
+
+Note that the `chainId` and `accessList` parameters are included in the transaction hash calculation but are not
+available on-chain as part of the `TransactionType4` struct.
+
+In order to calculate the transaction hash that will be used during the signing of the transaction and validation of
+the transaction signature by the `sender`, the value of the `signature` parameter is considered to be an empty
+byte array.
+
+### Accepting EOA account as `sender` to achieve native gas abstraction
+
+In case the `sender` address does not have any code deployed and the `deployerData` length is zero,
+interpret the `signature` parameter as `(y_parity, r, s)` and the `nonce` parameter
+as `(validUntil, validAfter, nonce)`.
+Replace the sender validation frame with default ECDSA signature validation.
+Also check the block timestamp is within the `[validUntil, validAfter]` range.
+
+The base transaction gas cost, in this case, is increased by `AA_ECRECOVER_COST`.
+
+The `callData` parameter in this case is interpreted as following:
+
+```
+
+target || value || data
+
+```
+
+### Execution layer block validation
+
+When validating a block, the validity conditions for a block are extended as follows:
+
+```
+
+for txIndex := 0; txIndex &lt; range block.Transactions.Len(); txIndex++ {
+
+    // 1. Save the current transaction
+    txCurr = block.Transactions[txIndex]
+
+    if (txCurr.Type() == AccountAbstractionTransaction) {
+
+      // 2. Start running validations for AA transactions
+      for j := txIndex; j &lt; range block.Transactions().Len(); j++ {
+        tx = block.Transactions[j]
+
+        // 3. Stop after encountering a non-AA transaction (or reaching the end of the block)
+        if (tx.Type() != AccountAbstractionTransaction) {
+          break
+        }
+        context[j], paymasterValidationGasUsed[j], error := validateAccountAbstractionTransaction(tx)
+        assert error == nil
+      }
+
+      // 4. If all validations are successful, go back to the saved tx index and run all executions
+      for j := txIndex; j &lt; range block.Transactions().Len(); j++ {
+        tx = block.Transactions[j]
+        if (tx.Type() != AccountAbstractionTransaction) {
+          break
+        }
+
+        retCall, error := evm.Call(
+            from: AA_ENTRY_POINT,
+            to: sender,
+            input: callData,
+            gas: callGasLimit)
+
+        txIndex := j // transaction executed - no need to revisit in the outer loop
+
+
+        // 5. Run paymaster&apos;s post-transaction logic if necessary
+        if (context[j].Len() == 0){
+          continue
+        }
+
+        paymasterPostTransactionInput := ABI.encodeWithSelector(&apos;postPaymasterTransaction&apos;, success, actualGasCost, context[j])
+        retPostTransaction, error := evm.Call(
+            from: AA_ENTRY_POINT,
+            to: paymaster,
+            input: paymasterPostTransactionInput,
+            gas: paymasterGasLimit - paymasterValidationGasUsed[j])
+      }
+   }
+   else {
+      // handle other types of transactions
+      evm.Apply(txCurr)
+   }
+}
+
+```
+
+### RPC methods (eth namespace)
+
+#### `eth_sendTransaction` and `eth_sendRawTransaction`
+
+Accepts Transaction Type `AA_TX_TYPE`.
+
+Return values unchanged for a successful call.
+
+In case of failure, MUST return an error result object, with code and message.
+The error code and message SHOULD be set as follows:
+
+* code: -32500 - transaction validation failed by `sender`.
+  The message field SHOULD be set to the revert message from the `sender`.
+
+* code: -32501 - transaction validation failed by `paymaster`.
+  The message field SHOULD be set to the revert message from the `paymaster`.
+
+* code: -32502 - transaction rejected because of storage or opcode rules violation in a validation frame.
+  The message field SHOULD be set to the location and description of the violated rule.
+
+* code: -32503 - Transaction out of time range.
+
+* code: -32504 - transaction rejected because `paymaster` is throttled or banned, as defined by ERC-7562.
+
+* code: -32505 - transaction rejected because `factory` is throttled or banned.
+
+* code: -32506 - transaction rejected because `sender` is throttled or banned.
+
+#### `eth_signTransaction`
+
+Accepts Transaction Type `AA_TX_TYPE`.
+
+Returns the RLP-encoded transaction object with value for the `signature` field that makes the `AA_TX_TYPE`
+transaction valid.
+
+Returns error object if this operation cannot be performed by the RPC endpoint.
+
+#### `eth_getTransactionReceipt`
+
+Accepts the hash of a virtual transaction that encapsulates the validation frames of the `AA_TX_TYPE` transaction.
+This transaction&apos;s ID is defined as (`AA_TX_TYPE transaction hash + 1`).
+
+If an AA transaction is included in a block, returns the following values in addition to the existing fields:
+
+| Name                       | Value                                                                        |
+|----------------------------|------------------------------------------------------------------------------|
+| sender                     | Address of the sender of this transaction                                    |
+| nonce                      | The transaction nonce value                                                  |
+| paymaster                  | Address of the Paymaster if it is paying for the transaction, null otherwise |
+| deployer                   | Address of the Deployer if it is included in the transaction, null otherwise    |
+| senderCreationGasUsed      | The amount of gas actually used by the sender deployment frame               |
+| senderValidationGasUsed    | The amount of gas actually used by the sender validation frame               |
+| paymasterValidationGasUsed | The amount of gas actually used by the paymaster validation frame            |
+
+Accepts hash of Transaction Type `AA_TX_TYPE`.
+
+If an AA transaction is included in a block, returns the following values in addition to the existing fields:
+
+| Name                            | Value                                                                                          |
+|---------------------------------|------------------------------------------------------------------------------------------------|
+| status                          | Either 1 (success) or 0 (failure) status of the execution frame                                |
+| executionGasUsed                | The amount of gas actually used by the execution frame                                         |
+| postPaymasterTransactionStatus  | Either 1 (success), 0 (failure), or `null` (did not run) status of the `postPaymasterTransaction` frame |
+| postPaymasterTransactionGasUsed | The amount of gas actually used by the paymaster `postPaymasterTransaction` frame                       |
+
+Note that the field `to` is not included as there is no clear `target` in an `AA_TX_TYPE` transaction.
+
+#### `eth_call`
+
+Accepts Transaction Type `AA_TX_TYPE` with all fields except `from` and `callData` optional.
+
+Returns the return value of [the `sender` execution frame](#sender-execution-frame).
+
+If provided with `paymasterData` and `deployerData` also executes the corresponding frame.
+
+If any of the frames reverts the call returns the revert data of each reverted frame.
+
+#### `eth_estimateGasAccountAbstraction`
+
+Accepts Transaction Type `AA_TX_TYPE` with fields `validationGasLimit`, `paymasterGasLimit`, `callGasLimit` optional.
+
+Optionally accepts the State Override Set to allow users to modify the state during the gas estimation.
+This field as well as its behavior is equivalent to the ones defined for `eth_call` RPC method.
+
+Returns `{validationGasLimit, paymasterGasLimit, callGasLimit, builderFee}` object.
+
+Note that the `deployerData` and `paymasterData` fields are required for a consistent result.
+
+As mentioned earlier, the `sender` and `paymaster` contracts should not revert on the validation failure
+and should return a value different from `MAGIC_VALUE_SENDER` or `MAGIC_VALUE_PAYMASTER` accordingly
+in order to enable gas estimation.
+
+One acceptable way to achieve this behavior for Smart Contract Accounts is to compare the `signature` parameter to
+a predetermined &quot;dummy signature&quot; and to return without reverting in case the values match.
+This will not result in transaction being authorized as long as returned value does not include `MAGIC_VALUE_SENDER`.
+
+## Rationale
+
+### Using Solidity method selectors in a Core EIP
+
+The contracts that have a role in this Account Abstraction proposal, such as `sender` or `paymaster`,
+MUST know which code to execute and understand the calldata provided to them in order to validate the transaction.
+
+We argue that the most straightforward implementation is to rely on Solidity 4-byte method selectors as it is an
+established de-facto standard.
+
+### Accepting `AA_TX_TYPE` transactions from EOAs
+
+While it may seem like allowing EOAs to initiate `AA_TX_TYPE` transactions contradicts the purpose of Account Abstraction, we argue that this
+may actually be important for the adoption of Smart Contract Accounts.
+
+It will enable all existing EOAs to benefit from the improved UX features like gas abstraction and validity ranges.
+
+In the future, this can be used to pay gas for transactions that add code to the EOA addresses,
+once Ethereum implements changes like the ones proposed in
+[EIP-5003: Insert Code into EOAs with AUTHUSURP](./eip-5003),
+[EIP-6913: SETCODE instruction](./eip-6913) and
+[EIP-7377: Migration Transaction](./eip-7377).
+
+## Backwards Compatibility
+
+This EIP preserves most of the design elements established by the ERC-4337. This allows the same client code and smart
+contracts to be used in both systems with minimal to no modifications, while providing significant UX improvements.
+
+Existing contracts are not significantly affected by the change.
+The assumption that `tx.origin` is guaranteed to be an EOA is no longer valid.
+The assumption that `tx.origin` is the address that pays for the current transaction is no longer valid as well.
+
+Any code that expects a single top-level execution frame for an Ethereum transaction will have to accommodate
+the new transaction type.
+
+[EIP-3607](./eip-3607) introduces a ban on transactions from senders with deployed code.
+This limitation does not apply to AA_TX_TYPE transactions.
+
+### Migration path for existing ERC-4337 projects and further roadmap
+
+#### Existing bundlers can co-exist on the network
+
+The ERC-4337 is not a protocol change and may remain operational in parallel to this EIP indefinitely.
+Given the similarity to ERC-4337, the same block builders may easily support both ERC-4337 and `AA_TX_TYPE` transactions.
+
+#### Accounts need to upgrade their `EntryPoint` to an adapter contract
+
+The team behind ERC-4337 will provide a reference implementation of a contract converting
+the ABI of the `paymaster` and `sender` contracts. This adapter can be set as a trusted
+`EntryPoint` address by the ERC-4337 contracts.
+
+#### Supporting ERC-4337 RPC calls as a compatibility layer
+
+The `sender` contracts MAY support both ERC-4337 and `AA_TX_TYPE` transactions during a transition period,
+as long as this EIP may be adopted by some chains and not by others.
+
+## Security Considerations
+
+This EIP creates a complex and sophisticated mechanism and aims to expand the usage of Smart Contract Accounts.
+All of it creates a lot of new risk vectors and attack surfaces.
+
+The following is a non-exhaustive list of known security considerations regarding Native Account Abstraction.
+
+### Attacks on validation-execution separation
+
+The state that exists at the end of the validation frame may be observed or modified by unrelated contracts before
+the execution frame begins.
+`Sender` contracts must take great care in making sure their code does not make any false assumptions.
+
+### DoS attacks on block builders
+
+The amount of computation and available memory that is necessary to maintain a mempool and produce valid blocks is
+increased significantly.
+
+### Directly charging the balance of a contract
+
+This EIP adds a new way for a smart contract to have its balance charged simply by returning a valid value from a
+function with method ID that corresponds to `validateTransaction`, `validatePaymasterTransaction`.
+
+This creates a new kind of risk for contracts that accidentally or maliciously contain such methods but are not public
+about the fact that these contracts can be used as a `sender` or a `paymaster` in an `AA_TX_TYPE` transaction.
+
+This is somewhat mitigated by requiring these contracts to return `MAGIC_VALUE_SENDER` or `MAGIC_VALUE_PAYMASTER`,
+however code reviewers should still be aware of this.
+
+### Observing revert reasons in a validation frame
+
+Existing transaction types get included in a block even if reverted and provide a revert reason for debugging purposes.
+There is a very short list of things that can cause a transaction not to be included on-chain:
+
+* low gas fee
+* insufficient balance
+* invalid nonce
+* censorship
+
+This is not the case for reverts that occur in the validation phase of an `AA_TX_TYPE` transaction.
+In order to address this developers should track the validity of these transactions being signed and are encouraged
+to rely on the `validUntil` time range parameter to guarantee a transaction that has not been included in the intended time
+will not become valid again unexpectedly for the user who had sent it.
+
+## Copyright
+
+Copyright and related rights waived via [CC0](/LICENSE).
+</description>
+        <pubDate>Fri, 01 Sep 2023 00:00:00 +0530</pubDate>
+        <link>http://localhost:4000/RIPS/rip-7560</link>
+        <guid isPermaLink="true">http://localhost:4000/RIPS/rip-7560</guid>
+      </item>
+    
+      <item>
+        <title></title>
+        <category>/</category>
+        
+        <description>@import &quot;minima&quot;;
+</description>
+        <pubDate></pubDate>
+        <link>http://localhost:4000/assets/main.css</link>
+        <guid isPermaLink="true">http://localhost:4000/assets/main.css</guid>
+      </item>
+    
+      <item>
+        <title></title>
+        <category>/</category>
+        
+        <description>Creative Commons Legal Code
+
+CC0 1.0 Universal
+
+    CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+    LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+    ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+    INFORMATION ON AN &quot;AS-IS&quot; BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+    REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+    PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+    THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+    HEREUNDER.
+
+Statement of Purpose
+
+The laws of most jurisdictions throughout the world automatically confer
+exclusive Copyright and Related Rights (defined below) upon the creator
+and subsequent owner(s) (each and all, an &quot;owner&quot;) of an original work of
+authorship and/or a database (each, a &quot;Work&quot;).
+
+Certain owners wish to permanently relinquish those rights to a Work for
+the purpose of contributing to a commons of creative, cultural and
+scientific works (&quot;Commons&quot;) that the public can reliably and without fear
+of later claims of infringement build upon, modify, incorporate in other
+works, reuse and redistribute as freely as possible in any form whatsoever
+and for any purposes, including without limitation commercial purposes.
+These owners may contribute to the Commons to promote the ideal of a free
+culture and the further production of creative, cultural and scientific
+works, or to gain reputation or greater distribution for their Work in
+part through the use and efforts of others.
+
+For these and/or other purposes and motivations, and without any
+expectation of additional consideration or compensation, the person
+associating CC0 with a Work (the &quot;Affirmer&quot;), to the extent that he or she
+is an owner of Copyright and Related Rights in the Work, voluntarily
+elects to apply CC0 to the Work and publicly distribute the Work under its
+terms, with knowledge of his or her Copyright and Related Rights in the
+Work and the meaning and intended legal effect of CC0 on those rights.
+
+1. Copyright and Related Rights. A Work made available under CC0 may be
+protected by copyright and related or neighboring rights (&quot;Copyright and
+Related Rights&quot;). Copyright and Related Rights include, but are not
+limited to, the following:
+
+  i. the right to reproduce, adapt, distribute, perform, display,
+     communicate, and translate a Work;
+ ii. moral rights retained by the original author(s) and/or performer(s);
+iii. publicity and privacy rights pertaining to a person&apos;s image or
+     likeness depicted in a Work;
+ iv. rights protecting against unfair competition in regards to a Work,
+     subject to the limitations in paragraph 4(a), below;
+  v. rights protecting the extraction, dissemination, use and reuse of data
+     in a Work;
+ vi. database rights (such as those arising under Directive 96/9/EC of the
+     European Parliament and of the Council of 11 March 1996 on the legal
+     protection of databases, and under any national implementation
+     thereof, including any amended or successor version of such
+     directive); and
+vii. other similar, equivalent or corresponding rights throughout the
+     world based on applicable law or treaty, and any national
+     implementations thereof.
+
+2. Waiver. To the greatest extent permitted by, but not in contravention
+of, applicable law, Affirmer hereby overtly, fully, permanently,
+irrevocably and unconditionally waives, abandons, and surrenders all of
+Affirmer&apos;s Copyright and Related Rights and associated claims and causes
+of action, whether now known or unknown (including existing as well as
+future claims and causes of action), in the Work (i) in all territories
+worldwide, (ii) for the maximum duration provided by applicable law or
+treaty (including future time extensions), (iii) in any current or future
+medium and for any number of copies, and (iv) for any purpose whatsoever,
+including without limitation commercial, advertising or promotional
+purposes (the &quot;Waiver&quot;). Affirmer makes the Waiver for the benefit of each
+member of the public at large and to the detriment of Affirmer&apos;s heirs and
+successors, fully intending that such Waiver shall not be subject to
+revocation, rescission, cancellation, termination, or any other legal or
+equitable action to disrupt the quiet enjoyment of the Work by the public
+as contemplated by Affirmer&apos;s express Statement of Purpose.
+
+3. Public License Fallback. Should any part of the Waiver for any reason
+be judged legally invalid or ineffective under applicable law, then the
+Waiver shall be preserved to the maximum extent permitted taking into
+account Affirmer&apos;s express Statement of Purpose. In addition, to the
+extent the Waiver is so judged Affirmer hereby grants to each affected
+person a royalty-free, non transferable, non sublicensable, non exclusive,
+irrevocable and unconditional license to exercise Affirmer&apos;s Copyright and
+Related Rights in the Work (i) in all territories worldwide, (ii) for the
+maximum duration provided by applicable law or treaty (including future
+time extensions), (iii) in any current or future medium and for any number
+of copies, and (iv) for any purpose whatsoever, including without
+limitation commercial, advertising or promotional purposes (the
+&quot;License&quot;). The License shall be deemed effective as of the date CC0 was
+applied by Affirmer to the Work. Should any part of the License for any
+reason be judged legally invalid or ineffective under applicable law, such
+partial invalidity or ineffectiveness shall not invalidate the remainder
+of the License, and in such case Affirmer hereby affirms that he or she
+will not (i) exercise any of his or her remaining Copyright and Related
+Rights in the Work or (ii) assert any associated claims and causes of
+action with respect to the Work, in either case contrary to Affirmer&apos;s
+express Statement of Purpose.
+
+4. Limitations and Disclaimers.
+
+ a. No trademark or patent rights held by Affirmer are waived, abandoned,
+    surrendered, licensed or otherwise affected by this document.
+ b. Affirmer offers the Work as-is and makes no representations or
+    warranties of any kind concerning the Work, express, implied,
+    statutory or otherwise, including without limitation warranties of
+    title, merchantability, fitness for a particular purpose, non
+    infringement, or the absence of latent or other defects, accuracy, or
+    the present or absence of errors, whether or not discoverable, all to
+    the greatest extent permissible under applicable law.
+ c. Affirmer disclaims responsibility for clearing rights of other persons
+    that may apply to the Work or any use thereof, including without
+    limitation any person&apos;s Copyright and Related Rights in the Work.
+    Further, Affirmer disclaims responsibility for obtaining any necessary
+    consents, permissions or other rights required for any use of the
+    Work.
+ d. Affirmer understands and acknowledges that Creative Commons is not a
+    party to this document and has no duty or obligation with respect to
+    this CC0 or use of the Work.
+</description>
+        <pubDate></pubDate>
+        <link>http://localhost:4000/LICENSE</link>
+        <guid isPermaLink="true">http://localhost:4000/LICENSE</guid>
+      </item>
+    
+      <item>
+        <title></title>
+        <category>/</category>
+        
+        <description>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;{% if page.xsl %}&lt;?xml-stylesheet type=&quot;text/xml&quot; href=&quot;{{ &apos;/feed.xslt.xml&apos; | absolute_url }}&quot;?&gt;{% endif %}&lt;feed xmlns=&quot;http://www.w3.org/2005/Atom&quot; {% if site.lang %}xml:lang=&quot;{{ site.lang }}&quot;{% endif %}&gt;&lt;generator uri=&quot;https://jekyllrb.com/&quot; version=&quot;{{ jekyll.version }}&quot;&gt;Jekyll&lt;/generator&gt;&lt;link href=&quot;{{ page.url | absolute_url }}&quot; rel=&quot;self&quot; type=&quot;application/atom+xml&quot; /&gt;&lt;link href=&quot;{{ &apos;/&apos; | absolute_url }}&quot; rel=&quot;alternate&quot; type=&quot;text/html&quot; {% if site.lang %}hreflang=&quot;{{ site.lang }}&quot; {% endif %}/&gt;&lt;updated&gt;{{ site.time | date_to_xmlschema }}&lt;/updated&gt;&lt;id&gt;{{ page.url | absolute_url | xml_escape }}&lt;/id&gt;{% assign title = site.title | default: site.name %}{% if page.collection != &quot;posts&quot; %}{% assign collection = page.collection | capitalize %}{% assign title = title | append: &quot; | &quot; | append: collection %}{% endif %}{% if page.category %}{% assign category = page.category | capitalize %}{% assign title = title | append: &quot; | &quot; | append: category %}{% endif %}{% if title %}&lt;title type=&quot;html&quot;&gt;{{ title | smartify | xml_escape }}&lt;/title&gt;{% endif %}{% if site.description %}&lt;subtitle&gt;{{ site.description | xml_escape }}&lt;/subtitle&gt;{% endif %}{% if site.author %}&lt;author&gt;&lt;name&gt;{{ site.author.name | default: site.author | xml_escape }}&lt;/name&gt;{% if site.author.email %}&lt;email&gt;{{ site.author.email | xml_escape }}&lt;/email&gt;{% endif %}{% if site.author.uri %}&lt;uri&gt;{{ site.author.uri | xml_escape }}&lt;/uri&gt;{% endif %}&lt;/author&gt;{% endif %}{% if page.tags %}{% assign posts = site.tags[page.tags] %}{% else %}{% assign posts = site[page.collection] %}{% endif %}{% if page.category %}{% assign posts = posts | where: &quot;category&quot;, page.category %}{% endif %}{% unless site.show_drafts %}{% assign posts = posts | where_exp: &quot;post&quot;, &quot;post.draft != true&quot; %}{% endunless %}{% assign posts = posts | sort: &quot;date&quot; | reverse %}{% assign posts_limit = site.feed.posts_limit | default: 10 %}{% for post in posts limit: posts_limit %}&lt;entry{% if post.lang %}{{&quot; &quot;}}xml:lang=&quot;{{ post.lang }}&quot;{% endif %}&gt;{% assign post_title = post.title | smartify | strip_html | normalize_whitespace | xml_escape %}&lt;title type=&quot;html&quot;&gt;{{ post_title }}&lt;/title&gt;&lt;link href=&quot;{{ post.url | absolute_url }}&quot; rel=&quot;alternate&quot; type=&quot;text/html&quot; title=&quot;{{ post_title }}&quot; /&gt;&lt;published&gt;{{ post.date | date_to_xmlschema }}&lt;/published&gt;&lt;updated&gt;{{ post.last_modified_at | default: post.date | date_to_xmlschema }}&lt;/updated&gt;&lt;id&gt;{{ post.id | absolute_url | xml_escape }}&lt;/id&gt;{% assign excerpt_only = post.feed.excerpt_only | default: site.feed.excerpt_only %}{% unless excerpt_only %}&lt;content type=&quot;html&quot; xml:base=&quot;{{ post.url | absolute_url | xml_escape }}&quot;&gt;{{ post.content | strip | xml_escape }}&lt;/content&gt;{% endunless %}{% assign post_author = post.author | default: post.authors[0] | default: site.author %}{% assign post_author = site.data.authors[post_author] | default: post_author %}{% assign post_author_email = post_author.email | default: nil %}{% assign post_author_uri = post_author.uri | default: nil %}{% assign post_author_name = post_author.name | default: post_author %}&lt;author&gt;&lt;name&gt;{{ post_author_name | default: &quot;&quot; | xml_escape }}&lt;/name&gt;{% if post_author_email %}&lt;email&gt;{{ post_author_email | xml_escape }}&lt;/email&gt;{% endif %}{% if post_author_uri %}&lt;uri&gt;{{ post_author_uri | xml_escape }}&lt;/uri&gt;{% endif %}&lt;/author&gt;{% if post.category %}&lt;category term=&quot;{{ post.category | xml_escape }}&quot; /&gt;{% elsif post.categories %}{% for category in post.categories %}&lt;category term=&quot;{{ category | xml_escape }}&quot; /&gt;{% endfor %}{% endif %}{% for tag in post.tags %}&lt;category term=&quot;{{ tag | xml_escape }}&quot; /&gt;{% endfor %}{% if post.excerpt and post.excerpt != empty %}&lt;summary type=&quot;html&quot;&gt;{{ post.excerpt | strip_html | normalize_whitespace | xml_escape }}&lt;/summary&gt;{% endif %}{% assign post_image = post.image.path | default: post.image %}{% if post_image %}{% unless post_image contains &quot;://&quot; %}{% assign post_image = post_image | absolute_url %}{% endunless %}&lt;media:thumbnail xmlns:media=&quot;http://search.yahoo.com/mrss/&quot; url=&quot;{{ post_image | xml_escape }}&quot; /&gt;&lt;media:content medium=&quot;image&quot; url=&quot;{{ post_image | xml_escape }}&quot; xmlns:media=&quot;http://search.yahoo.com/mrss/&quot; /&gt;{% endif %}&lt;/entry&gt;{% endfor %}&lt;/feed&gt;</description>
+        <pubDate></pubDate>
+        <link>http://localhost:4000/feed.xml</link>
+        <guid isPermaLink="true">http://localhost:4000/feed.xml</guid>
+      </item>
+    
+  </channel>
+</rss>
